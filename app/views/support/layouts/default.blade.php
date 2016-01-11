@@ -15,11 +15,11 @@
         <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,700">
         <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oswald:400,700,300">
         @include('support.partials.css_assets')
+        @include('support.partials.js_assets')
     </head>
 
     <body class="pace-done">
         @include('support.layouts.navbar')
         @include('support.layouts.sidebar')
-        @include('support.partials.js_assets')
     </body>
 </html>
