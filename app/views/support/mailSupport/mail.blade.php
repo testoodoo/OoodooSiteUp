@@ -73,10 +73,10 @@
 							<div class="mtm mbm"></div>
 							<div class="panel">
 								<div class="panel-body pan">
-									<ul style="background: #fff" class="nav nav-pills nav-stacked" id="mailType">
-										<li class="check active"><a href="#"><span class="badge pull-right">42</span><i class="fa fa-inbox fa-fw mrs"></i>Inbox</a></li>
-										<li class="check"><a href="#"><i class="fa fa-plane fa-fw mrs"></i>Sent Mail</a></li>
-										<li class="check"><a href="#"><span class="badge pull-right">3</span><i class="fa fa-edit fa-fw mrs"></i>Drafts</a></li>
+									<ul style="background: #fff" class="nav nav-pills nav-stacked" id="mailType" onclick="love();">
+										<li class="check active" value="INBOX"><a href="#"><span class="badge pull-right">42</span><i class="fa fa-inbox fa-fw mrs"></i>Inbox</a></li>
+										<li class="check" value="SENT"><a href="#"><i class="fa fa-plane fa-fw mrs"></i>Sent Mail</a></li>
+										<li class="check" value="DRAFT"><a href="#"><span class="badge pull-right">3</span><i class="fa fa-edit fa-fw mrs"></i>Drafts</a></li>
 									</ul>
 								</div>
 							</div>
@@ -131,9 +131,11 @@ $(document).ready(function(){
 });
 $(document).ready(function(){
 	$('#mailType').on('click', function(){
-		alert('hi');
+		
 	});
 });
+	var a = $('#mailType').value;
+	alert(a);
 </script>
 @stop
             
