@@ -191,5 +191,15 @@ public function expandHomeDirectory($path) {
   }
   return str_replace('~', realpath($homeDirectory), $path);
 }
+
+public function mailType(){
+    $type = Input::get('item');
+    $mails = MailSupport::where('label', 'INBOX')->get();
+    $data['mails'] = $mails;
+    return View::make('support.mailSupport.mail', $data);
+
+    #var_dump($hello); die;
+}
+
 }
 

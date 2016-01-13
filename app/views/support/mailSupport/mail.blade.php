@@ -73,10 +73,10 @@
 							<div class="mtm mbm"></div>
 							<div class="panel">
 								<div class="panel-body pan">
-									<ul style="background: #fff" class="nav nav-pills nav-stacked" id="mailType" onclick="love();">
-										<li class="check active" value="INBOX"><a href="#"><span class="badge pull-right">42</span><i class="fa fa-inbox fa-fw mrs"></i>Inbox</a></li>
-										<li class="check" value="SENT"><a href="#"><i class="fa fa-plane fa-fw mrs"></i>Sent Mail</a></li>
-										<li class="check" value="DRAFT"><a href="#"><span class="badge pull-right">3</span><i class="fa fa-edit fa-fw mrs"></i>Drafts</a></li>
+									<ul style="background: #fff" class="nav nav-pills nav-stacked" id="mailType">
+										<li class="check active" data-value="INBOX"><a href="#"><span class="badge pull-right">42</span><i class="fa fa-inbox fa-fw mrs"></i>Inbox</a></li>
+										<li class="check" data-value="SENT"><a href="#"><i class="fa fa-plane fa-fw mrs"></i>Sent Mail</a></li>
+										<li class="check" data-svalue="DRAFT"><a href="#"><span class="badge pull-right">3</span><i class="fa fa-edit fa-fw mrs"></i>Drafts</a></li>
 									</ul>
 								</div>
 							</div>
@@ -84,8 +84,8 @@
 						</div>
 						<div class="col-sm-9 col-md-10">
 							<div class="tab-content">
-								<div id="home" class="tab-pane fade in active">
-									@foreach($inbox as $mail)
+								<div id="home" class="tab-pane fade in active pageContent">
+									@foreach($mails as $mail)
 										<div class="list-group mail-box">
 											<a href="#" class="list-group-item">
 												<div class="icheckbox_minimal-grey" style="position: relative;">
@@ -130,7 +130,26 @@ $(document).ready(function(){
 	});
 });
 $(document).ready(function(){
-	$('#mailType').on('change', function(){
+	$('#mailType li').on('click', function(){
+		var item = $(this).attr('data-value');
+		$(".list-group").remove();
+
+        if (item.length != 0) {
+          $.ajax({
+                url:'mailType',
+                type:'GET',
+                data: { item : item },
+                success : function(data) {
+                    if (data["found"] == "false") {
+                        alert('Plan not Found');
+
+                    } else {
+                    	alert('hi');
+                        }
+                }
+            });
+        }
+		
 		
 	});
 });
