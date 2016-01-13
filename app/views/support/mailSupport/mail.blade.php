@@ -130,12 +130,10 @@ $(document).ready(function(){
 	});
 });
 $(document).ready(function(){
-	$('#mailType').on('click', function(){
+	$('#mailType').on('change', function(){
 		
 	});
 });
-	var a = $('#mailType').value;
-	alert(a);
 </script>
 @stop
             
