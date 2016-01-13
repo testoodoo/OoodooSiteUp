@@ -15,8 +15,9 @@ require 'vendor/autoload.php';
 class MailController extends BaseController {
 
    public function index(){
-    $mail['inbox'] = MailSupport::where('label','INBOX')->get();    
-    return View::make('support.mailSupport.mail',$mail);
+    $data['mails'] = MailSupport::where('label','INBOX')->get(); 
+    #var_dump($data); die;   
+    return View::make('support.mailSupport.mail',$data);
    }
    
 

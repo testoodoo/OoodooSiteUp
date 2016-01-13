@@ -1,9 +1,12 @@
 <?php
 namespace Support;
-use View, BaseController, Masterdata;
+use View, BaseController, Masterdata, MailSupport;
 class SupportController extends BaseController {
 	public function index(){
-		return View::make('support.mailSupport.mail');
+	    $mails = MailSupport::where('label', 'INBOX')->get();
+		$data['mails'] = $mails;
+	    return View::make('support.mailSupport.mail', $data);
+		#return View::make('support.mailSupport.mail');
 	}
 
 	public function query(){
