@@ -11,55 +11,14 @@
 				</div>
 				<div class="col-lg-12">
 					<div class="row">
-						<div class="col-sm-3 col-md-2">
-							<div class="btn-group btn-group-sm">
-								<button type="button" data-toggle="dropdown" class="btn btn-primary dropdown-toggle">
-									Mail&nbsp;<span class="caret"></span>
-								</button>
-								<ul role="menu" class="dropdown-menu">
-									<li><a href="#">Mail</a></li>
-									<li><a href="#">Contacts</a></li>
-									<li><a href="#">Tasks</a></li>
-								</ul>
-							</div>
-						</div>
 						<div class="col-sm-9 col-md-10">
-							<div class="btn-group">
-								<button type="button" class="btn btn-default">
-									<div class="icheckbox_minimal-grey" style="position: relative;">
-										<input type="checkbox" style="margin: 0px; vertical-align: middle; position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);" class="checkall">
-											<ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins>
-									</div>
-								</button>
-								<button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle">
-									<span class="caret"></span><span class="sr-only">Toggle Dropdown</span>
-								</button>
-								<ul role="menu" class="dropdown-menu">
-									<li><a href="#">All</a></li>
-									<li><a href="#">None</a></li>
-									<li><a href="#">Read</a></li>
-									<li><a href="#">Unread</a></li>
-									<li><a href="#">Starred</a></li>
-									<li><a href="#">Unstarred</a></li>
-								</ul>
-							</div>
-							<button type="button" data-toggle="tooltip" title="" class="btn btn-default mls mrs" data-original-title="Refresh">
+<!-- Refresh button -->
+<!--  							<button type="button" data-toggle="tooltip" title="" class="btn btn-default mls mrs" data-original-title="Refresh">
 								<span class="fa fa-refresh"></span>
-							</button>
-							<div class="btn-group">
-								<button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle">More&nbsp;
-									<span class="caret"></span>
-								</button>
-								<ul role="menu" class="dropdown-menu">
-									<li><a href="#">Mark all as read</a></li>
-									<li class="divider"></li>
-									<li class="text-center pbm">
-										<small class="text-muted">Select messages to see more actions</small>
-									</li>
-								</ul>
-							</div>
-							<div class="pull-right">
-								<span class="text-muted"><b>1</b>&nbsp; – &nbsp;<b>50</b>&nbsp; of &nbsp;<b>277</b></span>
+							</button> -->
+
+							<div class="right">
+								<span class="text-muted"><b>1</b>&nbsp; – &nbsp;<b>25</b>&nbsp; of &nbsp;<b>143</b></span>
 								<div class="btn-group mlm">
 										<button type="button" class="btn btn-default"><span class="fa fa-chevron-left"></span></button>
 										<button type="button" class="btn btn-default"><span class="fa fa-chevron-right"></span></button>
@@ -69,19 +28,6 @@
 					</div>
 					<div class="mtl mbl"></div>
 					<div class="row">
-						<div class="col-sm-3 col-md-2 block-space"><a href="#" role="button" class="btn btn-danger btn-sm btn-block">COMPOSE</a>
-							<div class="mtm mbm"></div>
-							<div class="panel">
-								<div class="panel-body pan">
-									<ul style="background: #fff" class="nav nav-pills nav-stacked" id="mailType">
-										<li class="check active" data-value="INBOX"><a href="#"><span class="badge pull-right">42</span><i class="fa fa-inbox fa-fw mrs"></i>Inbox</a></li>
-										<li class="check" data-value="SENT"><a href="#"><i class="fa fa-plane fa-fw mrs"></i>Sent Mail</a></li>
-										<li class="check" data-svalue="DRAFT"><a href="#"><span class="badge pull-right">3</span><i class="fa fa-edit fa-fw mrs"></i>Drafts</a></li>
-									</ul>
-								</div>
-							</div>
-							<br>
-						</div>
 						<div class="col-sm-9 col-md-10">
 							<div class="tab-content">
 								<div id="home" class="tab-pane fade in active pageContent">
@@ -107,6 +53,9 @@
 									@endforeach
 								</div>
 							</div>
+						</div>
+						<div class="col-sm-2 col-md-2">
+
 						</div>
 					</div>
 					<div class="common-modal modal fade" id="common-Modal1" tabindex="-1" role="dialog" aria-hidden="true">
