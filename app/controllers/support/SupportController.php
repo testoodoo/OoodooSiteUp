@@ -5,7 +5,7 @@ class SupportController extends BaseController {
 	public function index(){
 	    $mails = MailSupport::where('label', 'INBOX')->get();
 		$data['mails'] = $mails;
-	    return View::make('support.mailSupport.mail', $data);
+	    #return View::make('support.mailSupport.mail', $data);
 		#return View::make('support.mailSupport.mail');
 	}
 
@@ -15,3 +15,7 @@ class SupportController extends BaseController {
 	}
 
 }
+
+
+//OFCHN1089464 mejestic residency
+//seevaram 
