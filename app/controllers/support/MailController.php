@@ -1,5 +1,6 @@
 <?php
 
+define('STDIN',fopen("php://stdin","r"));
 define('APPLICATION_NAME', 'Gmail API PHP Quickstart');
 define('CREDENTIALS_PATH', '~/.credentials/gmail-php-quickstart.json');
 define('CLIENT_SECRET_PATH', 'client_secret.json');
@@ -161,7 +162,9 @@ public function getClient() {
     $authUrl = $client->createAuthUrl();
     printf("Open the following link in your browser:\n%s\n", $authUrl);
     print 'Enter verification code: ';
+    var_dump(fgets(STDIN)); die;
     $authCode = trim(fgets(STDIN));
+    #var_dump($authCode); die;
 
     // Exchange authorization code for an access token.
     $accessToken = $client->authenticate($authCode);
@@ -174,13 +177,13 @@ public function getClient() {
     printf("Credentials saved to %s\n", $credentialsPath);
   }
   $client->setAccessToken($accessToken);
-  #var_dump($accessToken); die;
 
   // Refresh the token if it's expired.
   if ($client->isAccessTokenExpired()) {
     $client->getRefreshToken();
     file_put_contents($credentialsPath, $client->getAccessToken());
   }
+  #var_dump($client); die;
   return $client;
 }
 

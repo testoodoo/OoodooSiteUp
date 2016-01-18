@@ -212,10 +212,10 @@ class Google_Client
    */
   public function setAccessToken($accessToken)
   {
-    /*$refreshToken = refreshToken($accessToken);
-    var_dump($refreshToken); die;*/
-    $token = array( "access_token" => $accessToken, "refresh_token" => $accessToken );
-    $accessToken = json_encode($token);
+/*    $refreshToken = refreshToken($accessToken);
+    var_dump($refreshToken); die;
+    $token = array( "access_token" => $accessToken);
+    $accessToken = json_encode($token); */
     #var_dump($accessToken); die;
     if ($accessToken == 'null') {
       $accessToken = null;
