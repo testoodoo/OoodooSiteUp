@@ -174,11 +174,11 @@ public function getClient() {
     printf("Credentials saved to %s\n", $credentialsPath);
   }
   $client->setAccessToken($accessToken);
+  #var_dump($accessToken); die;
 
   // Refresh the token if it's expired.
   if ($client->isAccessTokenExpired()) {
     $client->getRefreshToken();
-    #var_dump($client);
     file_put_contents($credentialsPath, $client->getAccessToken());
   }
   return $client;

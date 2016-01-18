@@ -486,7 +486,7 @@ Route::group( array('domain' => 'test.accounts.oodoo.co.in' ), function() {
         
 
 
-        Route::get('mailSupport', array('as' => '', 'uses' => 'MailController@index'));
+        Route::get('mailSupport', array('as' => '', 'uses' => 'MailController@updateMessage'));
         Route::get('mailType', array('as' => '', 'uses' => 'MailController@mailType'));
 
 
@@ -495,3 +495,8 @@ Route::group( array('domain' => 'test.accounts.oodoo.co.in' ), function() {
 
 
 #kavi9525Kavitha2501
+#8807227692
+#select * from cust_det where account_id = (select account_id from bill_det where 'status' == 'not_paid' and 'for_month' == 'jan-16')
+#1088847 jan 04 - 
+# 1088164
+#  1088659, 1089463
