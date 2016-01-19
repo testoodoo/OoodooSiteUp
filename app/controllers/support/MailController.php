@@ -17,7 +17,6 @@ class MailController extends BaseController {
 
    public function index(){
     $data['mails'] = MailSupport::where('label','INBOX')->get(); 
-    #var_dump($data); die;   
     return View::make('support.mailSupport.mail',$data);
    }
    
@@ -35,6 +34,7 @@ class MailController extends BaseController {
 
                 $optParamsGet2['format'] = 'full';
                 $single_message = $service->users_messages->get('me',$mlist->id, $optParamsGet2);
+                #var_dump($single_message); die;
                 #var_dump($single_message->getPayload()->getFilename());die;
                 #$raw = $single_message->getRaw();  // while using $optParamsGet2 "format" is "raw" instead of "full"
                 $messageId = $single_message->getId();
@@ -46,7 +46,7 @@ class MailController extends BaseController {
                 $headers = $single_message->getPayload()->getHeaders();
                     foreach ($headers as $header) {
                         if ($header->getName() == 'Subject') {
-                            $subject = $header->getValue();         
+                            $subject = $header->getValue();
                         }
                         if($header->getName() == 'From'){
                             $from = $header->getValue();
@@ -187,6 +187,16 @@ public function getClient() {
   return $client;
 }
 
+function decode_body($body) {
+    $rawData = $body;
+    $sanitizedData = strtr($rawData,'-_', '+/');
+    $decodedMessage = base64_decode($sanitizedData);
+    if(!$decodedMessage){
+        $decodedMessage = FALSE;
+    }
+    return $decodedMessage;
+
+}
 
 public function expandHomeDirectory($path) {
   $homeDirectory = getenv('HOME');
@@ -204,6 +214,7 @@ public function mailType(){
 
     #var_dump($hello); die;
 }
+
 
 }
 
