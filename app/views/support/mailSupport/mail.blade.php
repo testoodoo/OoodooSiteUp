@@ -42,7 +42,7 @@
 												<span style="min-width: 120px; display: inline-block;" class="name">{{$mail->from_mail}}</span>
 												<span>{{$mail->subject}}</span>&nbsp; - &nbsp;
 												<span style="font-size: 11px;" class="text-muted">{{$mail->snippet}}</span>
-												<span class="time-badge">{{$mail->time}}</span>
+												<span class="time-badge" id="check_it">{{$mail->time}}</span>
 												<span class="pull-right mrl">
 													@if($mail->attachment)
 														<span class="fa fa-paperclip"></span>
@@ -50,6 +50,7 @@
 												</span>
 										    </a>
 										</div>
+										{{$mail->body}}
 									@endforeach
 								</div>
 							</div>
@@ -70,6 +71,35 @@
 			</div>
 		</div>
 	</div>
+
+<script>
+var hell = $('#check_it').value;
+alert(hell);
+var table_date = "2015-11-20 08:34:22";
+var date_test = new Date(table_date.replace(/-/g,"/"));
+differ = Math.abs(new Date()-date_test);
+hours = differ/(60*60*1000);
+if(Math.round(hours)<24){
+   if(hours<1){
+      minutes = Math.round(differ/(1000*60));
+      alert(minutes+" min");
+   }   else{
+          hours = Math.floor(hours);
+          alert(hours+" hr");
+       }
+}
+else{
+   days = Math.round(differ/(60*60*1000*24));
+   if(days>30){
+       months = Math.round(days/30);
+       /*alert(months+" mon");*/
+   }else{
+       alert(days+" days");
+   }
+}
+
+</script>
+
 
 <script type="text/javascript">
 $(document).ready(function(){

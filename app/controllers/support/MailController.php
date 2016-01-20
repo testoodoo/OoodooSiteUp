@@ -17,6 +17,7 @@ class MailController extends BaseController {
 
    public function index(){
     $data['mails'] = MailSupport::where('label','INBOX')->get(); 
+    #$data['mails'] = MailSupport::groupBy('subject')->get();
     return View::make('support.mailSupport.mail',$data);
    }
    
@@ -63,12 +64,16 @@ class MailController extends BaseController {
                 }
                 /*  body message   */
                 $body = $single_message->getPayload()->getBody();
-                $body_new = decode_body($body['data']);
+
+                #var_dump($this->decode_body("PGRpdiBkaXI9Imx0ciI-dW5yZWFkIG1lc3NhZ2UgYm9keTwvZGl2Pg0K")); die;
+                $body_new = $this->decode_body($body['data']);
+                #var_dump($body_new); die;
+                #var_dump($single_message->getPayload()->getParts()); die;
                 if(!$body_new){
                     $parts = $single_message->getPayload()->getParts();
                     foreach($parts as $part){
-                        if($part['body']) {
-                            $body_new = decode_body($part['body']->data);
+                            if($part['body']) {
+                            $body_new = $this->decode_body($part['body']->data);
                             if($body_new === true){
                                 break;
                             }
@@ -76,7 +81,7 @@ class MailController extends BaseController {
                         if($part['parts'] && !$body_new) {
                             foreach ($part['parts'] as $p) {
                                 if($p['mimeType'] === 'text/plain' && $p['body']) {
-                                    $body_new = decode_body($p['body']->data);
+                                    $body_new = $this->decode_body($p['body']->data);
                                     break;
                                 }
                             }
@@ -86,8 +91,8 @@ class MailController extends BaseController {
                         }
                     }
                 }
-                $body = $body_new;
 
+                $body = $body_new;
                 //attachment success
                 unset($attachment);
                 $parts = $single_message->getPayload()->getParts();
@@ -117,6 +122,9 @@ class MailController extends BaseController {
                         // imagedestroy($image);
                     }
                 }
+/* remove re and fwd from subject
+                $subject = preg_replace('/^Re: /', '', $subject);
+                $subject = preg_replace('/^Fwd: /', '', $subject);*/
 
 
 
@@ -198,6 +206,7 @@ function decode_body($body) {
 
 }
 
+
 public function expandHomeDirectory($path) {
   $homeDirectory = getenv('HOME');
   if (empty($homeDirectory)) {
@@ -218,3 +227,11 @@ public function mailType(){
 
 }
 
+
+
+/*1088111
+1089424
+1088878
+1088982
+1089561
+*/
