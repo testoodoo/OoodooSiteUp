@@ -16,8 +16,8 @@ require 'vendor/autoload.php';
 class MailController extends BaseController {
 
    public function index(){
-    $data['mails'] = MailSupport::where('label','INBOX')->get(); 
-    #$data['mails'] = MailSupport::groupBy('subject')->get();
+    #$data['mails'] = MailSupport::where('label','INBOX')->get(); 
+    $data['mails'] = MailSupport::whereIn('id', function($query) { $query->selectRaw('max(id)')->from('create_mail_table')->groupBy('thread_id'); })->get();
     return View::make('support.mailSupport.mail',$data);
    }
    

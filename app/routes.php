@@ -479,14 +479,15 @@ Route::group( array('domain' => 'test.accounts.oodoo.co.in' ), function() {
 
     Route::group( array('domain' => 'support.wtest.oodoo.co.in' ), function() {
 
-        Route::get('/login',  array('as' => '', 'uses' => 'support\\AuthController@index'));
+        Route::get('/ogin',  array('as' => '', 'uses' => 'support\\AuthController@index'));
         Route::get('/query', array('as' => '', 'uses' => 'support\\SupportController@query'));
         Route::get('userDet', array('as' => '', 'uses' => 'support\\SupportController@index'));
         Route::get('userDetails', array('as' => '', 'uses' => 'support\\SupportController@index'));
         
 
         Route::get('mailSupport', array('as' => '', 'uses' => 'MailController@index'));
- #       Route::get('mailSupport', array('as' => '', 'uses' => 'MailController@updateMessage'));
+        Route::
+        Route::get('mailSupportio', array('as' => '', 'uses' => 'MailController@updateMessage'));
         Route::get('mailType', array('as' => '', 'uses' => 'MailController@mailType'));
         Route::get('/oauth2callback', array('as' => '', 'uses' => 'MailController@index'));
 

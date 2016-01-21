@@ -30,29 +30,31 @@
 					<div class="row">
 						<div class="col-sm-9 col-md-10">
 							<div class="tab-content">
-								<div id="home" class="tab-pane fade in active pageContent">
-									@foreach($mails as $mail)
-										<div class="list-group mail-box">
-											<a href="#" class="list-group-item">
-												<div class="icheckbox_minimal-grey" style="position: relative;">
-													<input type="checkbox" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);">
-													<ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins>
-												</div>
-												<span class="fa fa-star-o mrm mlm"></span>
-												<span style="min-width: 120px; display: inline-block;" class="name">{{$mail->from_mail}}</span>
-												<span>{{$mail->subject}}</span>&nbsp; - &nbsp;
-												<span style="font-size: 11px;" class="text-muted">{{$mail->snippet}}</span>
-												<span class="time-badge" id="check_it">{{$mail->time}}</span>
-												<span class="pull-right mrl">
-													@if($mail->attachment)
-														<span class="fa fa-paperclip"></span>
-													@endif
-												</span>
-										    </a>
-										</div>
-										{{$mail->body}}
+								@foreach($mails as $mail)
+							<div id="home" class="tab-pane fade in active pageContent">
+									<div class="list-group mail-box">
+										<a href="#" class="list-group-item">
+											<div class="icheckbox_minimal-grey" style="position: relative;">
+												<input type="checkbox" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);">
+												<ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins>
+											</div>
+											<span class="fa fa-star-o mrm mlm"></span>
+											<span style="min-width: 120px; display: inline-block;" class="name">{{$mail->from_mail}}</span>
+											<span>{{$mail->subject}}</span>
+											<span style="font-size: 11px;" class="text-muted">{{$mail->snippet}}</span>
+											<span class="time-badge" id="check_it">{{$mail->time}}</span>
+											<span class="pull-right mrl">
+												@if($mail->attachment)
+													<span class="fa fa-paperclip"></span>
+												@endif
+											</span>
+									    </a>
+									</div>
+									<span class="fa fa-edit fa-fw"> 
+									</span>
+									{{$mail->body}}
+							</div>
 									@endforeach
-								</div>
 							</div>
 						</div>
 						<div class="col-sm-2 col-md-2">
@@ -74,7 +76,7 @@
 
 <script>
 var hell = $('#check_it').value;
-alert(hell);
+
 var table_date = "2015-11-20 08:34:22";
 var date_test = new Date(table_date.replace(/-/g,"/"));
 differ = Math.abs(new Date()-date_test);
