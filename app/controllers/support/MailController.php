@@ -20,6 +20,12 @@ class MailController extends BaseController {
     $data['mails'] = MailSupport::whereIn('id', function($query) { $query->selectRaw('max(id)')->from('create_mail_table')->groupBy('thread_id'); })->get();
     return View::make('support.mailSupport.mail',$data);
    }
+
+   public function ticket($id){
+    $thread_id = MailSupport::where('id',$id)->get()->first()->thread_id;
+    $data['mails'] = MailSupport::where('thread_id', $thread_id)->get();
+    var_dump(); die;
+   }
    
 
    public function updateMessage() {
@@ -215,23 +221,4 @@ public function expandHomeDirectory($path) {
   return str_replace('~', realpath($homeDirectory), $path);
 }
 
-public function mailType(){
-    $type = Input::get('item');
-    $mails = MailSupport::where('label', 'INBOX')->get();
-    $data['mails'] = $mails;
-    return View::make('support.mailSupport.mail', $data);
-
-    #var_dump($hello); die;
 }
-
-
-}
-
-
-
-/*1088111
-1089424
-1088878
-1088982
-1089561
-*/

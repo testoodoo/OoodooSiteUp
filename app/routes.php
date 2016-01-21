@@ -486,7 +486,7 @@ Route::group( array('domain' => 'test.accounts.oodoo.co.in' ), function() {
         
 
         Route::get('mailSupport', array('as' => '', 'uses' => 'MailController@index'));
-        Route::
+        Route::get('mailSupport/ticket/{id}', array('as'=>'', 'uses' => 'MailController@ticket'));
         Route::get('mailSupportio', array('as' => '', 'uses' => 'MailController@updateMessage'));
         Route::get('mailType', array('as' => '', 'uses' => 'MailController@mailType'));
         Route::get('/oauth2callback', array('as' => '', 'uses' => 'MailController@index'));
