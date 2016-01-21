@@ -24,7 +24,8 @@ class MailController extends BaseController {
    public function ticket($id){
     $thread_id = MailSupport::where('id',$id)->get()->first()->thread_id;
     $data['mails'] = MailSupport::where('thread_id', $thread_id)->get();
-    var_dump(); die;
+    return View::make('support.mailSupport.ticket', $data);
+
    }
    
 
