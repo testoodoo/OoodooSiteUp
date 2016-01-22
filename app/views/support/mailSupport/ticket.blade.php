@@ -24,9 +24,26 @@
 			        @endforeach
 			        <div class="pull-right">
 			        <button class="btn btn-blue"> Forward </button> &nbsp; &nbsp;
-			        <button class="btn btn-blue"> Reply </button>			        
+			        <button class="btn btn-blue" onclick="sendmail();"> Reply </button>			        
 			        </div>
-
+			        <div class="mbxl"></div>
+			        <div id="replyMessage"  style="display:none;">
+						<table class="table table-hover table-bordered">
+						    <thead>
+						        <tr>
+						            <th>
+						            	<span>To : {{$mail->from_mail}}</span>
+						            </th>
+					            <tr>
+					            	<th>
+					            		<textarea class="form-control" name="replayMessage"> </textarea>
+					            	</th>
+					            </tr>
+						        </tr>
+						    </thead>
+						</table>
+						<button class="btn btn-blue pull-right" onclick="mailio();"> Send </button>
+					</div>
 		        </div>
 		    </div>
 		</div>
@@ -53,10 +70,10 @@
 					    </ul>
 					</div>
 
-				<form id="remarks" action="/mailSupport/ticket/{{$mail->id}}" method="post">
+				<form action="/mailSupport/ticket/{{$mail->id}}" method="post">
 					<div class="panel-body">
 						<textarea name="remark" class="form-control"></textarea><hr>
-						<button class="btn btn-blue pull-right" onclick="remark();"> Submit </button>
+						<button class="btn btn-blue pull-right"> Submit </button>
 					</div>
 				</form>
 			</div>
@@ -66,10 +83,11 @@
 </div>
 
 <script>
-function remark(){
-	var data = new FormData($('remarks'));
-	alert(data);
+function sendmail(){
+             jQuery('#replyMessage').toggle('hide');	
+}
+function mailio(){
+	alert('thread_id group');
 }
 </script>
-
 @stop
