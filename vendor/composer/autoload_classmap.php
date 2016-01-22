@@ -130,6 +130,7 @@ return array(
     'CreateStockInFiberTable' => $baseDir . '/app/database/migrations/2015_10_28_162007_create_stock_in_fiber_table.php',
     'CreateSwitchRouterIdTable' => $baseDir . '/app/database/migrations/2015_06_14_092508_create_switch_router_id_table.php',
     'CreateTicketDetails' => $baseDir . '/app/database/migrations/2015_07_03_190253_create_ticket_details.php',
+    'CreateTicketStatusTable' => $baseDir . '/app/database/migrations/2016_01_22_200843_create_ticket_status_table.php',
     'CreateTicketTable' => $baseDir . '/app/database/migrations/2014_12_23_114450_create_ticket_table.php',
     'CreateUpgradeTables' => $baseDir . '/app/database/migrations/2015_05_08_153000_create_upgrade_tables.php',
     'CreateUsersTable' => $baseDir . '/app/database/migrations/2014_03_24_132530_create_users_table.php',

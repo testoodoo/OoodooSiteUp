@@ -502,3 +502,6 @@ Route::group( array('domain' => 'test.accounts.oodoo.co.in' ), function() {
 #1088847 jan 04 - 
 # 1088164
 #  1088659, 1089463
+
+
+# not paid activation, mail support, bill waiver
