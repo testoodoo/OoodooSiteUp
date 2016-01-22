@@ -25,8 +25,17 @@ class MailController extends BaseController {
 
 
     $thread_id = MailSupport::where('id',$id)->get()->first()->thread_id;
+    $data['thread_id'] = $thread_id;
     $data['mails'] = MailSupport::where('thread_id', $thread_id)->orderBy('time','ASC')->get();
     $data['subject'] = MailSupport::where('thread_id', $thread_id)->orderBy('time','ASC')->get()->first()->subject;
+    $remark = Input::get('remark');
+    if($remark){
+        $ticket = new MailTicket();
+        $ticket->thread_id = $thread_id;
+        $ticket->message = $remark;
+        $ticket->save();
+    }
+    $data['messages'] = MailTicket::where('thread_id', $thread_id)->orderBy('created_at','ASC')->get();
     return View::make('support.mailSupport.ticket', $data);
 
    }
