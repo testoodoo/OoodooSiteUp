@@ -174,24 +174,38 @@ class MailController extends BaseController {
             $client = $this->getClient();
             $service = new Google_Service_Gmail($client);
             $userId='me';
-            $senderDet = MailSupport::where('thread_id',$thread_id)->orderBy('time','ASC')->get()->first();
+            $senderDet = MailSupport::where('thread_id',$thread_id)->orderBy('created_at','ASC')->get()->first();
             $from = $senderDet->to_mail;
             $to = $senderDet->from_mail;
             $subject = $senderDet->subject;
             $body = Input::get('body');
                 $message = new Google_Service_Gmail_Message();
-                
-$text = 'From: '.$from.'
+
+$text ='From: '.$from.'
 To: '.$to.'
 Subject:'.$subject.'
 
 '.$body.'';
 
-
-  $encoded_message = rtrim(strtr(base64_encode($text), '+/', '-_'), '=');
-  $message->setRaw($encoded_message);
-      $message = $service->users_messages->send($userId, $message);
-          print 'Message with ID: ' . $message->getId() . ' sent.';
+            $encoded_message = rtrim(strtr(base64_encode($text), '+/', '-_'), '=');
+            $message->setRaw($encoded_message);
+            $message = $service->users_messages->send($userId, $message);
+           /* $inboxmail=new InboxMail();
+            $inboxmail->message_id = $message->getId();
+            $inboxmail->thread_id = $thread_id;
+            $inboxmail->history_id = '0000';
+            $inboxmail->label = 'SENT';
+            $inboxmail->subject = $subject;
+            $inboxmail->from_mail = $from;
+            $inboxmail->to_mail = $to;
+            $inboxmail->body = $body;
+            if(isset($attachment)){
+            $inboxmail->attachment = json_encode($attachment);
+            }
+            $inboxmail->time = Date("Y-m-d H:i:s");
+            $inboxmail->save();
+            */
+            print 'Message with ID: ' . $message->getId() . ' sent.';
     }    
 
 
