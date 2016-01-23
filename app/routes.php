@@ -487,7 +487,8 @@ Route::group( array('domain' => 'test.accounts.oodoo.co.in' ), function() {
 
         Route::get('mailSupport', array('as' => '', 'uses' => 'MailController@index'));
         Route::get('mailSupport/ticket/{id}', array('as'=>'', 'uses' => 'MailController@ticket'));
-        Route::post('mailSupport/ticket/{id}', array('as'=>'', 'uses' => 'MailController@ticket'));        
+        Route::post('mailSupport/ticket/{id}', array('as'=>'', 'uses' => 'MailController@ticket'));  
+        Route::post('replyMessage/{thread_id}',array('as'=>'', 'uses'=> 'MailController@replyMessage'));      
 
 
 

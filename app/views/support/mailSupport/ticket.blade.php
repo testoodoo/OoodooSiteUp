@@ -29,20 +29,22 @@
 			        <div class="mbxl"></div>
 			        <div id="replyMessage"  style="display:none;">
 						<table class="table table-hover table-bordered">
+						    <form action="/replyMessage/{{$mail->thread_id}}" class="form-group" method="POST">
 						    <thead>
 						        <tr>
 						            <th>
-						            	<span>To : {{$mail->from_mail}}</span>
+						            	To : <input class="form-control" value="{{$mail->from_mail}}" readonly>
 						            </th>
 					            <tr>
 					            	<th>
-					            		<textarea class="form-control" name="replayMessage"> </textarea>
+					            		<textarea class="form-control" name="body" placeholder="Type your message here..."> </textarea>
 					            	</th>
 					            </tr>
 						        </tr>
 						    </thead>
 						</table>
-						<button class="btn btn-blue pull-right" onclick="mailio();"> Send </button>
+						<button class="btn btn-blue pull-right"> Send </button>
+						    </form>
 					</div>
 		        </div>
 		    </div>
@@ -85,9 +87,6 @@
 <script>
 function sendmail(){
              jQuery('#replyMessage').toggle('hide');	
-}
-function mailio(){
-	alert('thread_id group');
 }
 </script>
 @stop

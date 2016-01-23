@@ -170,20 +170,28 @@ class MailController extends BaseController {
 
     }
 
-    public function sendMessage(){
+    public function replyMessage($thread_id){
             $client = $this->getClient();
             $service = new Google_Service_Gmail($client);
             $userId='me';
-            $sender_det = MailSupport::where('')
+            $senderDet = MailSupport::where('thread_id',$thread_id)->orderBy('time','ASC')->get()->first();
+            $from = $senderDet->to_mail;
+            $to = $senderDet->from_mail;
+            $subject = $senderDet->subject;
+            $body = Input::get('body');
                 $message = new Google_Service_Gmail_Message();
-    $text = 'From: '.$from_name.' <'.$from.'>
-To: '.$to_name.' <'.$to.'>
+                
+$text = 'From: '.$from.'
+To: '.$to.'
 Subject:'.$subject.'
 
 '.$body.'';
+
+
   $encoded_message = rtrim(strtr(base64_encode($text), '+/', '-_'), '=');
   $message->setRaw($encoded_message);
       $message = $service->users_messages->send($userId, $message);
+          print 'Message with ID: ' . $message->getId() . ' sent.';
     }    
 
 

@@ -5,7 +5,7 @@ define('APPLICATION_NAME', 'Gmail API PHP Quickstart');
 define('CREDENTIALS_PATH', '~/.credentials/gmail-php-quickstart.json');
 define('CLIENT_SECRET_PATH', __DIR__ . '/client_secret.json');
 define('SCOPES', implode(' ', array(
-  Google_Service_Gmail::GMAIL_READONLY)
+  Google_Service_Gmail::MAIL_GOOGLE_COM)
 ));
 
 if (php_sapi_name() != 'cli') {
