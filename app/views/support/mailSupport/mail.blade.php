@@ -42,7 +42,7 @@
 											<span style="min-width: 120px; display: inline-block;" class="name">{{$mail->from_mail}}</span>
 											<span>{{$mail->subject}}</span>
 											<span style="font-size: 11px;" class="text-muted">{{$mail->snippet}}</span>
-											<span class="time-badge" data-livestamp="{{$mail->time}}"></span>
+											<span class="label label-default pull-right" data-livestamp="{{$mail->time}}"></span>
 											<span class="pull-right mrl">
 												@if($mail->attachment)
 													<span class="fa fa-paperclip"></span>
@@ -73,67 +73,5 @@
 			</div>
 		</div>
 	</div>
-
-<script>
-var hell = $('#check_it').value;
-
-var table_date = "2015-11-20 08:34:22";
-var date_test = new Date(table_date.replace(/-/g,"/"));
-differ = Math.abs(new Date()-date_test);
-hours = differ/(60*60*1000);
-if(Math.round(hours)<24){
-   if(hours<1){
-      minutes = Math.round(differ/(1000*60));
-      alert(minutes+" min");
-   }   else{
-          hours = Math.floor(hours);
-          alert(hours+" hr");
-       }
-}
-else{
-   days = Math.round(differ/(60*60*1000*24));
-   if(days>30){
-       months = Math.round(days/30);
-       /*alert(months+" mon");*/
-   }else{
-       alert(days+" days");
-   }
-}
-
-</script>
-
-
-<script type="text/javascript">
-$(document).ready(function(){
-	$('.check').on('click', function(){
-		$(this).siblings().removeClass('active');
-		$(this).addClass('active');
-	});
-});
-$(document).ready(function(){
-	$('#mailType li').on('click', function(){
-		var item = $(this).attr('data-value');
-		$(".list-group").remove();
-
-        if (item.length != 0) {
-          $.ajax({
-                url:'mailType',
-                type:'GET',
-                data: { item : item },
-                success : function(data) {
-                    if (data["found"] == "false") {
-                        alert('Plan not Found');
-
-                    } else {
-                    	alert('hi');
-                        }
-                }
-            });
-        }
-		
-		
-	});
-});
-</script>
 @stop
             

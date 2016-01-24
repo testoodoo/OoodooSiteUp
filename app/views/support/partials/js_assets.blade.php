@@ -35,7 +35,6 @@
     {{ HTML::script('/assets/dist/support/js/modernizr.min.js')}}
     {{ HTML::script('assets/dist/support/js/jplist.min.js')}}
     {{ HTML::script('/assets/dist/support/js/jplist.js')}}
-    {{ HTML::script('/assets/dist/support/js/jquery.timeago.js') }}
     {{ HTML::script('/assets/dist/support/js/moment.js') }}    
     {{ HTML::script('/assets/dist/support/js/livestamp.min.js') }}
 
