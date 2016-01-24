@@ -42,7 +42,7 @@
 											<span style="min-width: 120px; display: inline-block;" class="name">{{$mail->from_mail}}</span>
 											<span>{{$mail->subject}}</span>
 											<span style="font-size: 11px;" class="text-muted">{{$mail->snippet}}</span>
-											<span class="time-badge" id="check_it">{{$mail->time}}</span>
+											<span class="time-badge" data-livestamp="{{$mail->time}}"></span>
 											<span class="pull-right mrl">
 												@if($mail->attachment)
 													<span class="fa fa-paperclip"></span>
@@ -50,9 +50,9 @@
 											</span>
 									    </a>
 									</div>
-									<span class="fa fa-edit fa-fw"> 
-									</span>
-									{{$mail->body}}
+									<div style="height:50px; width: 100%; overflow: hidden; background-color: #FFFFFF;">
+										{{$mail->body}}
+									</div>
 							</div>
 									@endforeach
 							</div>

@@ -12,8 +12,7 @@
 						    <thead>
 						        <tr>
 						            <th>
-						            <span class="pull-right" onLoad="time_elapsed_string({{$mail->time}});">
-						            {{$mail->time}}
+						            <span class="pull-right" data-livestamp="{{$mail->time}}">
 						            </span> </th>
 					            <tr>
 					            	<th> {{$mail->body}} </th>
