@@ -25,9 +25,8 @@ class MailController extends BaseController {
 
 
     $thread_id = MailSupport::where('id',$id)->get()->first()->thread_id;
-    $data['thread_id'] = $thread_id;
+    $data['list'] = MailSupport::where('thread_id', $thread_id)->orderBy('time','ASC')->get()->first();
     $data['mails'] = MailSupport::where('thread_id', $thread_id)->orderBy('time','ASC')->get();
-    $data['subject'] = MailSupport::where('thread_id', $thread_id)->orderBy('time','ASC')->get()->first()->subject;
     $remark = Input::get('remark');
     if($remark){
         $ticket = new MailTicket();
@@ -144,9 +143,11 @@ class MailController extends BaseController {
 /* remove re and fwd from subject
                 $subject = preg_replace('/^Re: /', '', $subject);
                 $subject = preg_replace('/^Fwd: /', '', $subject);*/
+                $thread_id = MailSupport::where('thread_id',$threadId)->get();
+                if(!count($thread_id) && $labelIds['0'] == 'INBOX'){
+                    $this->autoMessage($from, $to, $subject);
 
-
-
+                }
                     $inboxmail=new InboxMail();
                     $inboxmail->message_id = $mlist->id;
                     $inboxmail->thread_id = $threadId;
@@ -170,18 +171,45 @@ class MailController extends BaseController {
 
     }
 
+    public function autoMessage($from, $to, $subject){
+        $client = $this->getClient();
+        $service = new Google_Service_Gmail($client);
+        $userId='me';
+        $subject = "Ticket Received - ".$subject."";
+        $body = "Dear ".$from.",
+
+We would like to acknowledge that we have received your request and a ticket has been created.
+
+A support representative will be reviewing your request and will send you a personal response.(usually within 24 hours).
+
+Thank you for your patience.
+
+Sincerely,
+OODOO Fiber Support Team";
+
+        $message = new Google_Service_Gmail_Message();
+            $text = 'From: '.$to.'
+To: '.$from.'
+Subject:'.$subject.'
+
+'.$body.'';
+
+        $encoded_message = rtrim(strtr(base64_encode($text), '+/', '-_'), '=');
+        $message->setRaw($encoded_message);
+        $message = $service->users_messages->send($userId, $message);
+    }
+
     public function replyMessage($thread_id){
             $client = $this->getClient();
             $service = new Google_Service_Gmail($client);
             $userId='me';
-            $senderDet = MailSupport::where('thread_id',$thread_id)->orderBy('created_at','ASC')->get()->first();
+            $senderDet = MailSupport::where('thread_id',$thread_id)->orderBy('time','ASC')->get()->first();
             $from = $senderDet->to_mail;
             $to = $senderDet->from_mail;
             $subject = $senderDet->subject;
             $body = Input::get('body');
-                $message = new Google_Service_Gmail_Message();
-
-$text ='From: '.$from.'
+            $message = new Google_Service_Gmail_Message();
+            $text = 'From: '.$from.'
 To: '.$to.'
 Subject:'.$subject.'
 

@@ -6,7 +6,7 @@
 			    <div class="panel panel-blue" style="background:#FFF;">
 			        <div class="panel-heading">Mail Support</div>
 			        <div class="panel-body">
-			        <h3>{{$subject}}</h3>
+			        <h3>{{$list->subject}}</h3>
 						@foreach($mails as $mail)
 						<div class="list-group mail-box">
 							<table class="demo-tbl">
@@ -28,11 +28,12 @@
 				        <div class="mbxl"></div>
 				        <div id="replyMessage"  style="display:none;">
 							<table class="table table-hover table-bordered">
-							    <form action="/replyMessage/{{$mail->thread_id}}" class="form-group" method="POST">
+
+							    <form action="/replyMessage/{{$list->thread_id}}" class="form-group" method="POST">
 							    <thead>
 							        <tr>
 							            <th>
-							            	To : <input class="form-control" value="{{$mail->from_mail}}" readonly>
+							            	To : <input class="form-control" name="to_mail" value="{{$list->from_mail}}" readonly>
 							            </th>
 						            <tr>
 						            	<th>
@@ -41,9 +42,9 @@
 						            </tr>
 							        </tr>
 							    </thead>
-							    </form>
 							</table>
 							<button class="btn btn-blue pull-right"> Send </button>
+							    </form>
 						</div>
 			        </div>
 			    </div>

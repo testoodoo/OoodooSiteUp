@@ -27,40 +27,42 @@
 						</div>
 					</div>
 					<div class="mtl mbl"></div>
-					<div class="row">
-						<div class="col-sm-9 col-md-10">
+					@foreach($mails as $mail)
+						<div class="row">
+							<div class="col-sm-9 col-md-10">
+								<div class="tab-content">
+								<div id="home" class="tab-pane fade in active pageContent">
+										<div class="list-group mail-box">
+											<a href="/mailSupport/ticket/{{$mail->id}}" class="list-group-item">
+												<div class="icheckbox_minimal-grey" style="position: relative;">
+													<input type="checkbox" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);">
+													<ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins>
+												</div>
+												<span class="fa fa-star-o mrm mlm"></span>
+												<span style="min-width: 120px; display: inline-block;" class="name">{{$mail->from_mail}}</span>
+												<span>{{$mail->subject}}</span>
+												<span style="font-size: 11px;" class="text-muted">{{$mail->snippet}}</span>
+												<span class="label label-default pull-right" data-livestamp="{{$mail->time}}"></span>
+												<span class="pull-right mrl">
+													@if($mail->attachment)
+														<span class="fa fa-paperclip"></span>
+													@endif
+												</span>
+										    </a>
+										</div>
+										<div style="height:50px; width: 100%; overflow: hidden; background-color: #FFFFFF;">
+											{{$mail->body}}
+										</div>
+								</div>
+								</div>
+							</div>
+							<div class="col-sm-2 col-md-2">
 							<div class="tab-content">
-								@foreach($mails as $mail)
-							<div id="home" class="tab-pane fade in active pageContent">
-									<div class="list-group mail-box">
-										<a href="/mailSupport/ticket/{{$mail->id}}" class="list-group-item">
-											<div class="icheckbox_minimal-grey" style="position: relative;">
-												<input type="checkbox" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);">
-												<ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins>
-											</div>
-											<span class="fa fa-star-o mrm mlm"></span>
-											<span style="min-width: 120px; display: inline-block;" class="name">{{$mail->from_mail}}</span>
-											<span>{{$mail->subject}}</span>
-											<span style="font-size: 11px;" class="text-muted">{{$mail->snippet}}</span>
-											<span class="label label-default pull-right" data-livestamp="{{$mail->time}}"></span>
-											<span class="pull-right mrl">
-												@if($mail->attachment)
-													<span class="fa fa-paperclip"></span>
-												@endif
-											</span>
-									    </a>
-									</div>
-									<div style="height:50px; width: 100%; overflow: hidden; background-color: #FFFFFF;">
-										{{$mail->body}}
-									</div>
+							hello
 							</div>
-									@endforeach
 							</div>
 						</div>
-						<div class="col-sm-2 col-md-2">
-
-						</div>
-					</div>
+					@endforeach
 					<div class="common-modal modal fade" id="common-Modal1" tabindex="-1" role="dialog" aria-hidden="true">
 						<div class="modal-content">
 							<ul class="list-inline item-details">
