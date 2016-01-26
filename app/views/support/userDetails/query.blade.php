@@ -16,6 +16,9 @@
                                 </span>
                             </div>
                         </div>
+                    <div class="panel-heading" style="display:none;" id="errorMsg">
+                    <h3 style="color:red;"> Please enter valid credentials<h3>
+                    </div>
                     </div>
                 <div class="col-lg-9" id="content" style="display:none;">
                     <div class="form-body pal">
@@ -59,26 +62,20 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-5 form-horizontal" style="margin-top: 10px; margin-left: 450px" id="userDet">
+    <div class="col-lg-5 form-horizontal" style="margin-top: 10px; margin-left: 450px; display:none; " id="userDet">
         <div class="panel panel-blue" style="background:#fff;">
             <div class="panel-heading">
                 Account Details
             </div>
             <div class="panel-body">
-            <div class="panel-body">
-                                <table class="table table-hover table-bordered" id="myTable">
-                                    <thead>
-                                    <tr>
-                                        <th>Column</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody id="responsecontainer">
-
-                                    </tbody>
-                                </table>
-                            </div>
-
-                
+                <table id="myTable" class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Address</th>
+                        </tr>
+                    </thead>
+                </table>                
             </div>
         </div>
     </div>
@@ -91,6 +88,7 @@
              jQuery('#userDet').toggle('hide')
     };
     function userDet(){
+        $('#myTable > thead').empty();
         var query = $('#input-chat').val();
         if(query.length != 0){
             $.ajax({
@@ -99,11 +97,18 @@
                 dataType: 'json',
                 data: { query : query },
                 success:function(json){
-                    $('#responsecontainer').empty();
                     $.each(json, function(index, value){
-                        $.each(value, function(index, value){
-                        console.log(value.account_id);                            
-                        });
+                        if(value.length != 0){
+                            $.each(value, function(index, value){
+                                $("#errorMsg").hide();
+                                $("#userDet").show();
+                                $("#myTable > thead").append("<tr><td>"+value.first_name+"</td><td>"+value.address1+value.address2+value.address3+"</td></tr>");                   
+                            });
+                        }
+                        else{
+                            $("#errorMsg").show();
+                            $("#userDet").hide();
+                        }
 
                     });
                 }
