@@ -6,19 +6,17 @@
                 PLEASE ENTER <i><b>ACCOUNT ID</b></i> OR <i><b>MOBILE NUMBER</b></i>
             </div>
             <div class="panel-body pan ">
-                <form action="/query" method="POST">
                     <div class="form-body pal" id="exsistConn">
                         <div class="chat-form">
                             <div class="input-group">
                                 <input name="query" id="input-chat" type="text" placeholder="Account ID or Mobile number..." class="form-control"><span id="btn-chat" class="input-group-btn">
-                                <button type="submit" class="btn btn-default">
+                                <button class="btn btn-default" onclick="userDet();">
                                     Explore
                                 </button>
                                 </span>
                             </div>
                         </div>
                     </div>
-                </form>
                 <div class="col-lg-9" id="content" style="display:none;">
                     <div class="form-body pal">
                         <div class="row">
@@ -61,13 +59,56 @@
             </div>
         </div>
     </div>
+    <div class="col-lg-5 form-horizontal" style="margin-top: 10px; margin-left: 450px" id="userDet">
+        <div class="panel panel-blue" style="background:#fff;">
+            <div class="panel-heading">
+                Account Details
+            </div>
+            <div class="panel-body">
+            <div class="panel-body">
+                                <table class="table table-hover table-bordered" id="myTable">
+                                    <thead>
+                                    <tr>
+                                        <th>Column</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="responsecontainer">
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                
+            </div>
+        </div>
+    </div>
 </body>
 
 <script>
     function hello(){ 
              jQuery('#content').toggle('hide');
              jQuery('#exsistConn').toggle('hide');
-             jQuery('')
+             jQuery('#userDet').toggle('hide')
+    };
+    function userDet(){
+        var query = $('#input-chat').val();
+        if(query.length != 0){
+            $.ajax({
+                url:'userDetails',
+                type:'POST',
+                dataType: 'json',
+                data: { query : query },
+                success:function(json){
+                    $('#responsecontainer').empty();
+                    $.each(json, function(index, value){
+                        $.each(value, function(index, value){
+                        console.log(value.account_id);                            
+                        });
+
+                    });
+                }
+            });
+        }
     };
 </script>
 

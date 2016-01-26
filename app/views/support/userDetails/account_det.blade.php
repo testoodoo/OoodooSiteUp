@@ -1,3 +1,3 @@
-@extends('support.layouts.default')
+@extends ('support.layouts.default')
 @section('main')
-@end
+@stop

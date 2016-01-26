@@ -228,3 +228,24 @@ $('.date-picker').datepicker({
 
 @stop
 
+
+
+
+
+
+        if(query.length != 0){
+            $.ajax({
+                url:'userDetails',
+                type:'POST',
+                data: { query : query },
+                success: function(result){
+                    $.each(result, function(index, value){
+                        alert(index.length);
+                        $('#responsecontainer').append('<tr>><td>'.value[i].account_id.'</td></tr>');
+                        i = i+1;
+                        $('#responsecontainer').append(accDet);
+                    });
+                }
+
+            });
+        }

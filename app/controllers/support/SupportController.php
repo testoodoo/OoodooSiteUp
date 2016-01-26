@@ -15,10 +15,14 @@ class SupportController extends BaseController {
 		if($query){
 			$data['cusDet'] = CusDet::where('account_id','like','%'.$query.'%')->orWhere('phone','like','%'.$query.'%')->get();
 		}
-		else{
 		return View::make('support.userDetails.query',$data);
+
 	}
 
+	public function userDetails(){
+		$query = Input::get('query');
+		$data['cusDet'] = CusDet::where('account_id','like','%'.$query.'%')->orWhere('phone','like','%'.$query.'%')->get();
+		echo json_encode($data);
 	}
 
 }

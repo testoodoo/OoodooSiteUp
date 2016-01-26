@@ -482,7 +482,8 @@ Route::group( array('domain' => 'test.accounts.oodoo.co.in' ), function() {
         Route::get('/login',  array('as' => '', 'uses' => 'support\\AuthController@index'));
         Route::get('/query', array('as' => '', 'uses' => 'support\\SupportController@query'));
         Route::get('userDet', array('as' => '', 'uses' => 'support\\SupportController@index'));
-        Route::post('/query', array('as' => '', 'uses' => 'support\\SupportController@query'));
+        Route::post('query', array('as' => '', 'uses' => 'support\\SupportController@query'));
+        Route::post('userDetails', array('as' => '', 'uses' => 'support\\SupportController@userDetails'));
         
 
         Route::get('mailSupport', array('as' => '', 'uses' => 'MailController@index'));
