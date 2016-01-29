@@ -70,10 +70,6 @@
             <div class="panel-body">
                 <table id="myTable" class="table table-hover">
                     <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Address</th>
-                        </tr>
                     </thead>
                 </table>                
             </div>
@@ -85,7 +81,7 @@
     function hello(){ 
              jQuery('#content').toggle('hide');
              jQuery('#exsistConn').toggle('hide');
-             jQuery('#userDet').toggle('hide')
+             jQuery('#userDet').toggle('hide'); 
     };
     function userDet(){
         $('#myTable > thead').empty();
@@ -102,7 +98,7 @@
                             $.each(value, function(index, value){
                                 $("#errorMsg").hide();
                                 $("#userDet").show();
-                                $("#myTable > thead").append("<tr><td>"+value.first_name+"</td><td>"+value.address1+value.address2+value.address3+"</td></tr>");                   
+                                $("#myTable > thead").append("<tr><a href='userDet/{"+value.account_id+"}'><td>"+value.first_name+"</td></a><td>"+value.address1+value.address2+value.address3+"</td></tr>");
                             });
                         }
                         else{
