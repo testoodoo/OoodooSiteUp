@@ -95,7 +95,8 @@
                                 $("#errorMsg").hide();
                                 $("#userDet").show();
                                 var one = value.account_id;
-                                $("#myTable > tbody").append("<tr onClick='rowClick("+value.account_id+")' data-href='/query/"+value.account_id+"'><td>"+value.first_name+"</td><td>"+value.address1+value.address2+value.address3+"</td><td class='hello' style='display:none;'>"+value.account_id+"</td></tr>");
+                                alert(one);
+                                $("#myTable > tbody").append("<tr onclick='hello(\""+one+"\")'><td>"+value.first_name+"</td><td>"+value.address1+value.address2+value.address3+"</td><td style='display:none;'>"+value.account_id+"</td></tr>");
                             });
                         }
                         else{
@@ -108,8 +109,9 @@
             });
         }
     };
-function rowClick(one){
-    alert(one);
+
+function hello(hel){
+    alert(+hel);
 };
 </script>
 
