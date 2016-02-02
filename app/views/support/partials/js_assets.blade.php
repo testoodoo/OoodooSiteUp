@@ -1,7 +1,7 @@
     {{ HTML::script('/assets/dist/support/js/main.js') }}
+    {{ HTML::script('/assets/dist/support/js/jquery-ui.js') }}
     {{ HTML::script('/assets/dist/support/js/jquery-1.10.2.min.js') }}
     {{ HTML::script('/assets/dist/support/js/jquery-migrate-1.2.1.min.js') }}
-    {{ HTML::script('/assets/dist/support/js/jquery-ui.js') }}
     {{ HTML::script('/assets/dist/support/js/bootstrap.min.js') }}
     {{ HTML::script('/assets/dist/support/js/bootstrap-hover-dropdown.js') }}
     {{ HTML::script('/assets/dist/support/js/html5shiv.js') }}

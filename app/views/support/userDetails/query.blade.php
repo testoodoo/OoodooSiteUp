@@ -8,12 +8,8 @@
             <div class="panel-body pan ">
                     <div class="form-body pal" id="exsistConn">
                         <div class="chat-form">
-                            <div class="input-group">
-                                <input name="query" id="input-chat" type="text" placeholder="Account ID or Mobile number..." class="form-control"><span id="btn-chat" class="input-group-btn">
-                                <button class="btn btn-default" onclick="userDet();">
-                                    Explore
-                                </button>
-                                </span>
+                            <div>
+                                <input name="query" id="input-chat" type="text" placeholder="Account ID or Mobile number..." class="form-control" onInput="userDet();">
                             </div>
                         </div>
                     <div class="panel-heading" style="display:none;" id="errorMsg">
@@ -69,8 +65,8 @@
             </div>
             <div class="panel-body">
                 <table id="myTable" class="table table-hover">
-                    <thead>
-                    </thead>
+                    <tbody>
+                    </tbody>
                 </table>                
             </div>
         </div>
@@ -84,9 +80,9 @@
              jQuery('#userDet').toggle('hide'); 
     };
     function userDet(){
-        $('#myTable > thead').empty();
+        $('#myTable > tbody').empty();
         var query = $('#input-chat').val();
-        if(query.length != 0){
+        if(query.length > 4){
             $.ajax({
                 url:'userDetails',
                 type:'POST',
@@ -98,7 +94,8 @@
                             $.each(value, function(index, value){
                                 $("#errorMsg").hide();
                                 $("#userDet").show();
-                                $("#myTable > thead").append("<tr><a href='userDet/{"+value.account_id+"}'><td>"+value.first_name+"</td></a><td>"+value.address1+value.address2+value.address3+"</td></tr>");
+                                var one = value.account_id;
+                                $("#myTable > tbody").append("<tr onClick='rowClick("+value.account_id+")' data-href='/query/"+value.account_id+"'><td>"+value.first_name+"</td><td>"+value.address1+value.address2+value.address3+"</td><td class='hello' style='display:none;'>"+value.account_id+"</td></tr>");
                             });
                         }
                         else{
@@ -111,6 +108,9 @@
             });
         }
     };
+function rowClick(one){
+    alert(one);
+};
 </script>
 
 @include('support.partials.js_assets')

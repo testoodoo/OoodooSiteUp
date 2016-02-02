@@ -67,10 +67,8 @@
         </div>
         <div class="col-lg-12 text-center">
             <p>
-            <a href="#" style="color:red">Forgot password ?</a>            </p>
+            <a href="#" style="color:red">Forgot password ?</a></p>
         </div>
     </div>
 </body>
-
-<!-- 8939014064 swastik  1089293 -->
 </html>

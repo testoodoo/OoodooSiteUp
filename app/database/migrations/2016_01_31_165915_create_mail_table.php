@@ -37,7 +37,7 @@ class CreateMailTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('create_mail_table');
+		Schema::dropIfExists('create_mail_table');
 	}
 
 }

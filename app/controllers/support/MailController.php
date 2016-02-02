@@ -216,7 +216,9 @@ Subject:'.$subject.'
 '.$body.'';
 
             $encoded_message = rtrim(strtr(base64_encode($text), '+/', '-_'), '=');
+/*            $message->setThreadIds($thread_id);*/
             $message->setRaw($encoded_message);
+            
             $message = $service->users_messages->send($userId, $message);
            /* $inboxmail=new InboxMail();
             $inboxmail->message_id = $message->getId();
@@ -233,7 +235,6 @@ Subject:'.$subject.'
             $inboxmail->time = Date("Y-m-d H:i:s");
             $inboxmail->save();
             */
-            print 'Message with ID: ' . $message->getId() . ' sent.';
     }    
 
 

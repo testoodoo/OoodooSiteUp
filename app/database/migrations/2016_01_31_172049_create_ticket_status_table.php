@@ -20,7 +20,7 @@ class CreateTicketStatusTable extends Migration {
   			$table->string('message'); 
   			$table->string('updated_by');
             $table->timestamps();
-        });		
+        });
 	}
 
 	/**
@@ -30,7 +30,7 @@ class CreateTicketStatusTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('create_tiket_status_table');		
+		Schema::dropIfExists('create_ticket_status_table');
 	}
 
 }

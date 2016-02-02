@@ -503,14 +503,4 @@ Route::group( array('domain' => 'test.accounts.oodoo.co.in' ), function() {
 
 
 #kavi9525Kavitha2501
-#8807227692
-#select * from cust_det where account_id = (select account_id from bill_det where 'status' == 'not_paid' and 'for_month' == 'jan-16')
-#1088847 jan 04 - 
-# 1088164
-#  1088659, 1089463
-
-
-# not paid activation, mail support, bill waiver
-
-
 #http://localhost:3000/qr_code/index?utf8=%E2%9C%93&device=OFLCO&model_no=1234567&count=24&commit=Submit
