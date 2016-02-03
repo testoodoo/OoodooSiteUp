@@ -58,7 +58,7 @@
             <div class="col-lg-12">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2>Profile: {{$user->first_name}}</h2>
+                        <h2>{{$user->first_name}}&nbsp;{{$user->last_name}}</h2>
                         <div class="row mtl">
                             <div class="col-md-3">
                                 <div class="form-group">
@@ -75,37 +75,35 @@
                                     <table class="table table-striped table-hover">
                                         <tbody>
                                             <tr>
-                                                <td>User Name</td>
-                                                <td>{{$user->first_name}}</td>
+                                                <td>Account ID</td>
+                                                <td>{{$user->account_id}}</td>
                                             </tr>
+                                            <tr>
+                                                <td>Phone</td>
+                                                <td>{{$user->phone}}</td>
+                                            </tr>                                            
                                             <tr>
                                                 <td>Email</td>
                                                 <td>{{$user->email}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Address</td>
-                                                <td>{{$user->address1}}&nbsp;{{$user->address2}}&nbsp;{{$user->address3}}</td>
+                                                <td>{{$user->address1}}<br>{{$user->address2}}<br>{{$user->address3}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Plan</td>
+                                                <td>{{ $user->plan()->plan }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Plan Cycle</td>
+                                                <td>{{$user->plan()->plan_start_date}}&nbsp;To&nbsp;{{$user->plan()->plan_start_date}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Status</td>
                                                 <td>
                                                     <span class="label label-success">Active</span>
                                                 </td>
-                                            </tr>
-                                            <tr>
-                                                <td>User Rating</td>
-                                                <td>
-                                                    <i class="fa fa-star text-yellow fa-fw"></i>
-                                                    <i class="fa fa-star text-yellow fa-fw"></i>
-                                                    <i class="fa fa-star text-yellow fa-fw"></i>
-                                                    <i class="fa fa-star text-yellow fa-fw"></i>
-                                                    <i class="fa fa-star text-yellow fa-fw"></i>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>DOB</td>
-                                                <td>{{$user->dob}}</td>
-                                            </tr>
+                                            </tr>	                                                                                   
                                         </tbody>
                                     </table>
                                     <div class="common-modal modal fade" id="common-Modal1" tabindex="-1" role="dialog" aria-hidden="true">
@@ -124,406 +122,134 @@
                                 <div class="col-md-9">
                                     <ul class="nav nav-tabs">
                                         <li class="active">
-                                            <a href="#tab-edit" data-toggle="tab">Edit Profile</a>
+                                            <a href="#tab-bill" data-toggle="tab">Bill</a>
                                         </li>
                                         <li>
-                                            <a href="#tab-messages" data-toggle="tab">Messages</a>
+                                            <a href="#tab-payment" data-toggle="tab">Payments</a>
                                         </li>
+                                        <li>
+                                            <a href="#tab-dataUsage" data-toggle="tab">Data Usage</a>
+                                        </li>
+                                        <li>
+                                            <a href="#tab-sessionHistory" data-toggle="tab">Session History</a>
+                                        </li>
+                                        <li>
+                                            <a href="#tab-logs" data-toggle="tab">Logs</a>
+                                        </li>
+                                        <li>
+                                            <a href="#tab-ticket" data-toggle="tab">Ticket</a>
+                                        </li>                                                                               
                                     </ul>
                                     <div id="generalTabContent" class="tab-content">
-                                        <div id="tab-edit" class="tab-pane fade in active">
-                                            <form action="#" class="form-horizontal">
-                                                <h3>Account Setting</h3>
-                                                <div class="form-group">
-                                                    <label class="col-sm-3 control-label">Email</label>
-                                                    <div class="col-sm-9 controls">
-                                                        <div class="row">
-                                                            <div class="col-xs-9">
-                                                                <input type="email" placeholder="email@yourcompany.com" class="form-control">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="col-sm-3 control-label">Username</label>
-                                                        <div class="col-sm-9 controls">
-                                                            <div class="row">
-                                                                <div class="col-xs-9">
-                                                                    <input type="text" placeholder="username" class="form-control">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label class="col-sm-3 control-label">Password</label>
-                                                            <div class="col-sm-9 controls">
-                                                                <div class="row">
-                                                                    <div class="col-xs-4">
-                                                                        <input type="password" placeholder="password" class="form-control">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label class="col-sm-3 control-label">Confirm Password</label>
-                                                                <div class="col-sm-9 controls">
-                                                                    <div class="row">
-                                                                        <div class="col-xs-4">
-                                                                            <input type="password" placeholder="password" class="form-control">
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <hr>
-                                                                    <h3>Profile Setting</h3>
-                                                                    <div class="form-group">
-                                                                        <label class="col-sm-3 control-label">First Name</label>
-                                                                        <div class="col-sm-9 controls">
-                                                                            <div class="row">
-                                                                                <div class="col-xs-9">
-                                                                                    <input type="text" placeholder="first name" class="form-control">
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label class="col-sm-3 control-label">Last Name</label>
-                                                                            <div class="col-sm-9 controls">
-                                                                                <div class="row">
-                                                                                    <div class="col-xs-9">
-                                                                                        <input type="text" placeholder="last name" class="form-control">
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="form-group">
-                                                                                <label class="col-sm-3 control-label">Gender</label>
-                                                                                <div class="col-sm-9 controls">
-                                                                                    <div class="row">
-                                                                                        <div class="col-xs-9">
-                                                                                            <div class="radio">
-                                                                                                <label class="radio-inline">
-                                                                                                    <div class="iradio_minimal-grey checked" style="position: relative;">
-                                                                                                        <input type="radio" value="0" name="gender" checked="checked" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);">
-                                                                                                            <ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins>
-                                                                                                        </div>&nbsp;
-                                                                Male
-                                                                                                    </label>
-                                                                                                    <label class="radio-inline">
-                                                                                                        <div class="iradio_minimal-grey" style="position: relative;">
-                                                                                                            <input type="radio" value="1" name="gender" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);">
-                                                                                                                <ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins>
-                                                                                                            </div>&nbsp;
-                                                                Female
-                                                                                                        </label>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="form-group">
-                                                                                        <label class="col-sm-3 control-label">Birthday</label>
-                                                                                        <div class="col-sm-9 controls">
-                                                                                            <div class="row">
-                                                                                                <div class="col-xs-4">
-                                                                                                    <input id="datepicker-normal" type="text" class="form-control">
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="form-group">
-                                                                                            <label class="col-sm-3 control-label">Marital Status</label>
-                                                                                            <div class="col-sm-9 controls">
-                                                                                                <div class="row">
-                                                                                                    <div class="col-xs-4">
-                                                                                                        <select class="form-control">
-                                                                                                            <option>Single</option>
-                                                                                                            <option>Married</option>
-                                                                                                        </select>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="form-group">
-                                                                                            <label class="col-sm-3 control-label">Position</label>
-                                                                                            <div class="col-sm-9 controls">
-                                                                                                <div class="row">
-                                                                                                    <div class="col-xs-4">
-                                                                                                        <select class="form-control">
-                                                                                                            <option>CEO</option>
-                                                                                                            <option>Director</option>
-                                                                                                            <option>Manager</option>
-                                                                                                            <option>Staff</option>
-                                                                                                            <option>Office Boy</option>
-                                                                                                        </select>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="form-group">
-                                                                                            <label class="col-sm-3 control-label">About</label>
-                                                                                            <div class="col-sm-9 controls">
-                                                                                                <div class="row">
-                                                                                                    <div class="col-xs-9">
-                                                                                                        <textarea rows="3" class="form-control"></textarea>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <hr>
-                                                                                            <h3>Contact Setting</h3>
-                                                                                            <div class="form-group">
-                                                                                                <label class="col-sm-3 control-label">Mobile Phone</label>
-                                                                                                <div class="col-sm-9 controls">
-                                                                                                    <div class="row">
-                                                                                                        <div class="col-xs-9">
-                                                                                                            <input type="text" placeholder="mobile phone" class="form-control">
-                                                                                                            </div>
-                                                                                                        </div>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                                <div class="form-group">
-                                                                                                    <label class="col-sm-3 control-label">Website</label>
-                                                                                                    <div class="col-sm-9 controls">
-                                                                                                        <div class="row">
-                                                                                                            <div class="col-xs-9">
-                                                                                                                <input type="text" placeholder="website" class="form-control">
-                                                                                                                </div>
-                                                                                                            </div>
-                                                                                                        </div>
-                                                                                                    </div>
-                                                                                                    <div class="form-group">
-                                                                                                        <label class="col-sm-3 control-label">Facebook</label>
-                                                                                                        <div class="col-sm-9 controls">
-                                                                                                            <div class="row">
-                                                                                                                <div class="col-xs-9">
-                                                                                                                    <input type="text" placeholder="facebook" class="form-control">
-                                                                                                                    </div>
-                                                                                                                </div>
-                                                                                                            </div>
-                                                                                                        </div>
-                                                                                                        <div class="form-group">
-                                                                                                            <label class="col-sm-3 control-label">Twitter</label>
-                                                                                                            <div class="col-sm-9 controls">
-                                                                                                                <div class="row">
-                                                                                                                    <div class="col-xs-9">
-                                                                                                                        <input type="text" placeholder="twitter" class="form-control">
-                                                                                                                        </div>
-                                                                                                                    </div>
-                                                                                                                </div>
-                                                                                                            </div>
-                                                                                                            <hr>
-                                                                                                                <button type="submit" class="btn btn-blue btn-block">Finish</button>
-                                                                                                            </form>
-                                                                                                        </div>
-                                                                                                        <div id="tab-messages" class="tab-pane fade in">
-                                                                                                            <div class="row mbl">
-                                                                                                                <div class="col-lg-6">
-                                                                                                                    <span style="margin-left: 15px"></span>
-                                                                                                                    <div class="icheckbox_minimal-grey" style="position: relative;">
-                                                                                                                        <input type="checkbox" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);">
-                                                                                                                            <ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins>
-                                                                                                                        </div>
-                                                                                                                        <a href="#" class="btn btn-success btn-sm mlm mrm">
-                                                                                                                            <i class="fa fa-send-o"></i>&nbsp;
-                                                Write Mail
-                                                                                                                        </a>
-                                                                                                                        <a href="#" class="btn btn-white btn-sm">
-                                                                                                                            <i class="fa fa-trash-o"></i>&nbsp;
-                                                Delete
-                                                                                                                        </a>
-                                                                                                                    </div>
-                                                                                                                    <div class="col-lg-6">
-                                                                                                                        <div class="input-group">
-                                                                                                                            <input type="text" class="form-control">
-                                                                                                                                <span class="input-group-btn">
-                                                                                                                                    <button type="button" class="btn btn-white">Search</button>
-                                                                                                                                </span>
-                                                                                                                            </div>
-                                                                                                                        </div>
-                                                                                                                    </div>
-                                                                                                                    <div class="list-group">
-                                                                                                                        <a href="#" class="list-group-item">
-                                                                                                                            <div class="icheckbox_minimal-grey" style="position: relative;">
-                                                                                                                                <input type="checkbox" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);">
-                                                                                                                                    <ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins>
-                                                                                                                                </div>
-                                                                                                                                <span class="fa fa-star text-yellow mrm mlm"></span>
-                                                                                                                                <span style="min-width: 120px; display: inline-block;" class="name">Bhaumik Patel</span>
-                                                                                                                                <span>Sed ut perspiciatis unde</span>&nbsp; - &nbsp;
-                                                                                                                                <span style="font-size: 11px;" class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit</span>
-                                                                                                                                <span class="badge">12:10 AM</span>
-                                                                                                                                <span class="pull-right mrl">
-                                                                                                                                    <span class="glyphicon glyphicon-paperclip"></span>
-                                                                                                                                </span>
-                                                                                                                            </a>
-                                                                                                                            <a href="#" class="list-group-item">
-                                                                                                                                <div class="icheckbox_minimal-grey" style="position: relative;">
-                                                                                                                                    <input type="checkbox" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);">
-                                                                                                                                        <ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins>
-                                                                                                                                    </div>
-                                                                                                                                    <span class="fa fa-star-o mrm mlm"></span>
-                                                                                                                                    <span style="min-width: 120px; display: inline-block;" class="name">Bhaumik Patel</span>
-                                                                                                                                    <span>Sed ut perspiciatis unde</span>&nbsp;
-                                            - &nbsp;
-                                                                                                                                    <span style="font-size: 11px;" class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt</span>
-                                                                                                                                    <span class="badge">12:10 AM</span>
-                                                                                                                                    <span class="pull-right mrl">
-                                                                                                                                        <span class="glyphicon glyphicon-paperclip"></span>
-                                                                                                                                    </span>
-                                                                                                                                </a>
-                                                                                                                                <a href="#" class="list-group-item">
-                                                                                                                                    <div class="icheckbox_minimal-grey" style="position: relative;">
-                                                                                                                                        <input type="checkbox" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);">
-                                                                                                                                            <ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins>
-                                                                                                                                        </div>
-                                                                                                                                        <span class="fa fa-star text-yellow mrm mlm"></span>
-                                                                                                                                        <span style="min-width: 120px; display: inline-block;" class="name">Bhaumik Patel</span>
-                                                                                                                                        <span>Sed ut perspiciatis unde</span>&nbsp; - &nbsp;
-                                                                                                                                        <span style="font-size: 11px;" class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</span>
-                                                                                                                                        <span class="badge">12:10 AM</span>
-                                                                                                                                        <span class="pull-right mrl">
-                                                                                                                                            <span class="glyphicon glyphicon-paperclip"></span>
-                                                                                                                                        </span>
-                                                                                                                                    </a>
-                                                                                                                                    <a href="#" class="list-group-item">
-                                                                                                                                        <div class="icheckbox_minimal-grey" style="position: relative;">
-                                                                                                                                            <input type="checkbox" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);">
-                                                                                                                                                <ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins>
-                                                                                                                                            </div>
-                                                                                                                                            <span class="fa fa-star-o mrm mlm"></span>
-                                                                                                                                            <span style="min-width: 120px; display: inline-block;" class="name">Bhaumik Patel</span>
-                                                                                                                                            <span>Sed ut perspiciatis unde</span>&nbsp;
-                                            - &nbsp;
-                                                                                                                                            <span style="font-size: 11px;" class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit</span>
-                                                                                                                                            <span class="badge">12:10 AM</span>
-                                                                                                                                            <span class="pull-right mrl">
-                                                                                                                                                <span class="glyphicon glyphicon-paperclip"></span>
-                                                                                                                                            </span>
-                                                                                                                                        </a>
-                                                                                                                                        <a href="#" class="list-group-item">
-                                                                                                                                            <div class="icheckbox_minimal-grey" style="position: relative;">
-                                                                                                                                                <input type="checkbox" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);">
-                                                                                                                                                    <ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins>
-                                                                                                                                                </div>
-                                                                                                                                                <span class="fa fa-star-o mrm mlm"></span>
-                                                                                                                                                <span style="min-width: 120px; display: inline-block;" class="name">Bhaumik Patel</span>
-                                                                                                                                                <span>Sed ut perspiciatis unde</span>&nbsp; - &nbsp;
-                                                                                                                                                <span style="font-size: 11px;" class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt</span>
-                                                                                                                                                <span class="badge">12:10 AM</span>
-                                                                                                                                                <span class="pull-right mrl">
-                                                                                                                                                    <span class="glyphicon glyphicon-paperclip"></span>
-                                                                                                                                                </span>
-                                                                                                                                            </a>
-                                                                                                                                            <a href="#" class="list-group-item">
-                                                                                                                                                <div class="icheckbox_minimal-grey" style="position: relative;">
-                                                                                                                                                    <input type="checkbox" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);">
-                                                                                                                                                        <ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins>
-                                                                                                                                                    </div>
-                                                                                                                                                    <span class="fa fa-star-o mrm mlm"></span>
-                                                                                                                                                    <span style="min-width: 120px; display: inline-block;" class="name">Bhaumik Patel</span>
-                                                                                                                                                    <span>Sed ut perspiciatis unde</span>&nbsp; - &nbsp;
-                                                                                                                                                    <span style="font-size: 11px;" class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</span>
-                                                                                                                                                    <span class="badge">12:10 AM</span>
-                                                                                                                                                    <span class="pull-right mrl">
-                                                                                                                                                        <span class="glyphicon glyphicon-paperclip"></span>
-                                                                                                                                                    </span>
-                                                                                                                                                </a>
-                                                                                                                                                <a href="#" class="list-group-item">
-                                                                                                                                                    <div class="icheckbox_minimal-grey" style="position: relative;">
-                                                                                                                                                        <input type="checkbox" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);">
-                                                                                                                                                            <ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins>
-                                                                                                                                                        </div>
-                                                                                                                                                        <span class="fa fa-star-o mrm mlm"></span>
-                                                                                                                                                        <span style="min-width: 120px; display: inline-block;" class="name">Bhaumik Patel</span>
-                                                                                                                                                        <span>Sed ut perspiciatis unde</span>&nbsp;
-                                            - &nbsp;
-                                                                                                                                                        <span style="font-size: 11px;" class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit</span>
-                                                                                                                                                        <span class="badge">12:10 AM</span>
-                                                                                                                                                        <span class="pull-right mrl">
-                                                                                                                                                            <span class="glyphicon glyphicon-paperclip"></span>
-                                                                                                                                                        </span>
-                                                                                                                                                    </a>
-                                                                                                                                                    <a href="#" class="list-group-item">
-                                                                                                                                                        <div class="icheckbox_minimal-grey" style="position: relative;">
-                                                                                                                                                            <input type="checkbox" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);">
-                                                                                                                                                                <ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins>
-                                                                                                                                                            </div>
-                                                                                                                                                            <span class="fa fa-star-o mrm mlm"></span>
-                                                                                                                                                            <span style="min-width: 120px; display: inline-block;" class="name">Bhaumik Patel</span>
-                                                                                                                                                            <span>Sed ut perspiciatis unde</span>&nbsp; - &nbsp;
-                                                                                                                                                            <span style="font-size: 11px;" class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt</span>
-                                                                                                                                                            <span class="badge">12:10 AM</span>
-                                                                                                                                                            <span class="pull-right mrl">
-                                                                                                                                                                <span class="glyphicon glyphicon-paperclip"></span>
-                                                                                                                                                            </span>
-                                                                                                                                                        </a>
-                                                                                                                                                        <a href="#" class="list-group-item">
-                                                                                                                                                            <div class="icheckbox_minimal-grey" style="position: relative;">
-                                                                                                                                                                <input type="checkbox" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);">
-                                                                                                                                                                    <ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins>
-                                                                                                                                                                </div>
-                                                                                                                                                                <span class="fa fa-star-o mrm mlm"></span>
-                                                                                                                                                                <span style="min-width: 120px; display: inline-block;" class="name">Bhaumik Patel</span>
-                                                                                                                                                                <span>Sed ut perspiciatis unde</span>&nbsp; - &nbsp;
-                                                                                                                                                                <span style="font-size: 11px;" class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</span>
-                                                                                                                                                                <span class="badge">12:10 AM</span>
-                                                                                                                                                                <span class="pull-right mrl">
-                                                                                                                                                                    <span class="glyphicon glyphicon-paperclip"></span>
-                                                                                                                                                                </span>
-                                                                                                                                                            </a>
-                                                                                                                                                            <a href="#" class="list-group-item">
-                                                                                                                                                                <div class="icheckbox_minimal-grey" style="position: relative;">
-                                                                                                                                                                    <input type="checkbox" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);">
-                                                                                                                                                                        <ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins>
-                                                                                                                                                                    </div>
-                                                                                                                                                                    <span class="fa fa-star-o mrm mlm"></span>
-                                                                                                                                                                    <span style="min-width: 120px; display: inline-block;" class="name">Bhaumik Patel</span>
-                                                                                                                                                                    <span>Sed ut perspiciatis unde</span>&nbsp;
-                                            - &nbsp;
-                                                                                                                                                                    <span style="font-size: 11px;" class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit</span>
-                                                                                                                                                                    <span class="badge">12:10 AM</span>
-                                                                                                                                                                    <span class="pull-right mrl">
-                                                                                                                                                                        <span class="glyphicon glyphicon-paperclip"></span>
-                                                                                                                                                                    </span>
-                                                                                                                                                                </a>
-                                                                                                                                                                <a href="#" class="list-group-item">
-                                                                                                                                                                    <div class="icheckbox_minimal-grey" style="position: relative;">
-                                                                                                                                                                        <input type="checkbox" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);">
-                                                                                                                                                                            <ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins>
-                                                                                                                                                                        </div>
-                                                                                                                                                                        <span class="fa fa-star-o mrm mlm"></span>
-                                                                                                                                                                        <span style="min-width: 120px; display: inline-block;" class="name">Bhaumik Patel</span>
-                                                                                                                                                                        <span>Sed ut perspiciatis unde</span>&nbsp; - &nbsp;
-                                                                                                                                                                        <span style="font-size: 11px;" class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt</span>
-                                                                                                                                                                        <span class="badge">12:10 AM</span>
-                                                                                                                                                                        <span class="pull-right mrl">
-                                                                                                                                                                            <span class="glyphicon glyphicon-paperclip"></span>
-                                                                                                                                                                        </span>
-                                                                                                                                                                    </a>
-                                                                                                                                                                    <a href="#" class="list-group-item">
-                                                                                                                                                                        <div class="icheckbox_minimal-grey" style="position: relative;">
-                                                                                                                                                                            <input type="checkbox" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);">
-                                                                                                                                                                                <ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins>
-                                                                                                                                                                            </div>
-                                                                                                                                                                            <span class="fa fa-star-o mrm mlm"></span>
-                                                                                                                                                                            <span style="min-width: 120px; display: inline-block;" class="name">Bhaumik Patel</span>
-                                                                                                                                                                            <span>Sed ut perspiciatis unde</span>&nbsp; - &nbsp;
-                                                                                                                                                                            <span style="font-size: 11px;" class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</span>
-                                                                                                                                                                            <span class="badge">12:10 AM</span>
-                                                                                                                                                                            <span class="pull-right mrl">
-                                                                                                                                                                                <span class="glyphicon glyphicon-paperclip"></span>
-                                                                                                                                                                            </span>
-                                                                                                                                                                        </a>
-                                                                                                                                                                    </div>
-                                                                                                                                                                </div>
-                                                                                                                                                            </div>
-                                                                                                                                                        </div>
-                                                                                                                                                    </div>
-                                                                                                                                                </div>
-                                                                                                                                            </div>
-                                                                                                                                        </div>
-                                                                                                                                    </div>
-                                                                                                                                </div>
-                                                                                                                            </div>
+                                        <div id="tab-bill" class="tab-pane fade in active">
+                                        <table id="billTable" class="table table-hover table-bordered">
+                                        	<thead>
+                                        		<tr>
+                                        			<th>Bill No</th>
+                                        			<th>Month</th>
+                                        			<th>Plan</th>
+                                        			<th>Bill Date</th>
+                                        			<th>Previous Balance</th>
+                                        			<th>Last Payment</th>
+                                        			<th>Adjustment</th>
+                                        			<th>Current Charge</th>
+                                        			<th>Amount Before Due Date</th>
+                                        			<th>Amount Paid</th>
+                                        			<th>Status</th>
+                                        			<th>test+send+sms</th>                                        			                                        			                                        			
+                                        		</tr>
+                                        	</thead>
+                                        	<tbody>
+                                        	</tbody>
+                                        </table>
+                                        </div>
+			                            <div id="tab-payment" class="tab-pane fade in">
+                                        <table id="paymentTable" class="table table-hover table-bordered">
+                                        	<thead>
+                                        		<tr>
+	                                                <th>Created At</th>
+	                                                <th>Bill No</th>
+	                                                <th>Amount</th>
+	                                                <th>Transaction Code</th>
+	                                                <th>Payment Type</th>
+	                                                <th>Remarks</th>
+	                                                <th>Transaction Type</th>
+	                                                <th>Status</th>
+	                                                <th>view</th>                                       			                                        			                                        			
+                                        		</tr>
+                                        	</thead>
+                                        </table>
+                                        </div>
+			                            <div id="tab-dataUsage" class="tab-pane fade in">
+                                        <table id="usageTable" class="table table-hover table-bordered">
+                                        	<thead>
+                                        		<tr>
+	                                                <th>Account ID</th>
+	                                                <th>Rate Plan</th>
+	                                                <th>Status</th>
+	                                                <th>Current Speed</th>
+	                                                <th>Duration</th>
+	                                                <th>Bytes Down</th>
+	                                                <th>Bytes Up</th>
+	                                                <th>Bytes Total</th>
+	                                                <th>Total GB</th>
+	                                                <th>view</th>                                        			                                       			                                   			                                        			
+                                        		</tr>
+                                        	</thead>
+                                        </table>
+                                        </div>
+			                            <div id="tab-sessionHistory" class="tab-pane fade in">
+                                        <table id="sessionTable" class="table table-hover table-bordered">
+                                        	<thead>
+                                        		<tr>
+                                                    <th>Session ID</th>
+                                                    <th>IP Address</th>
+                                                    <th>MAC address</th>
+                                                    <th>Start Time</th>
+                                                    <th>Stop Time</th>
+                                                    <th>Data In</th>
+                                                    <th>Data Out</th>
+                                                    <th>Total Data</th>                                       			                                        			                                        			
+                                        		</tr>
+                                        	</thead>
+                                        </table>
+                                        </div> 
+			                            <div id="tab-logs" class="tab-pane fade in">
+                                        <table id="logTable" class="table table-hover table-bordered">
+                                        	<thead>
+                                        		<tr>
+                                                    <th>Created</th>
+                                                    <th>User name</th>
+                                                    <th>MAC Address</th>
+                                                    <th>IP Address</th>
+                                                    <th>Message</th>                                       			                                        			                                        			
+                                        		</tr>
+                                        	</thead>
+                                        </table>
+                                        </div>                                                                                                                       
+			                            <div id="tab-ticket" class="tab-pane fade in">
+                                        <table id="ticketTable" class="table table-hover table-bordered">
+                                        	<thead>
+                                        		<tr>
+                                                    <th>ID</th>
+                                                    <th>Requirement</th>
+                                                    <th>Created_at</th>
+                                                    <th>Updated_at</th>
+                                                    <th>Assgined To</th>
+                                                    <th>Ticket Type</th>
+                                                    <th>status</th>
+                                                    <th>view</th>                                       			                                        			                                        			
+                                        		</tr>
+                                        	</thead>
+                                        </table>
+                                        </div>                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @stop
