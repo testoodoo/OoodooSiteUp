@@ -142,6 +142,7 @@
                                     </ul>
                                     <div id="generalTabContent" class="tab-content">
                                         <div id="tab-bill" class="tab-pane fade in active">
+                                        <div class="panel panel-blue">
                                         <table id="billTable" class="table table-hover table-bordered">
                                         	<thead>
                                         		<tr>
@@ -163,7 +164,9 @@
                                         	</tbody>
                                         </table>
                                         </div>
+                                        </div>
 			                            <div id="tab-payment" class="tab-pane fade in">
+                                        <div class="panel panel-blue">			                            
                                         <table id="paymentTable" class="table table-hover table-bordered">
                                         	<thead>
                                         		<tr>
@@ -180,7 +183,9 @@
                                         	</thead>
                                         </table>
                                         </div>
+                                        </div>
 			                            <div id="tab-dataUsage" class="tab-pane fade in">
+                                        <div class="panel panel-blue">                                        
                                         <table id="usageTable" class="table table-hover table-bordered">
                                         	<thead>
                                         		<tr>
@@ -198,7 +203,9 @@
                                         	</thead>
                                         </table>
                                         </div>
+                                        </div>
 			                            <div id="tab-sessionHistory" class="tab-pane fade in">
+                                        <div class="panel panel-blue">                                        
                                         <table id="sessionTable" class="table table-hover table-bordered">
                                         	<thead>
                                         		<tr>
@@ -213,8 +220,10 @@
                                         		</tr>
                                         	</thead>
                                         </table>
+                                        </div>
                                         </div> 
 			                            <div id="tab-logs" class="tab-pane fade in">
+                                        <div class="panel panel-blue">                                        
                                         <table id="logTable" class="table table-hover table-bordered">
                                         	<thead>
                                         		<tr>
@@ -226,8 +235,10 @@
                                         		</tr>
                                         	</thead>
                                         </table>
+                                        </div>
                                         </div>                                                                                                                       
 			                            <div id="tab-ticket" class="tab-pane fade in">
+                                        <div class="panel panel-blue">                                        
                                         <table id="ticketTable" class="table table-hover table-bordered">
                                         	<thead>
                                         		<tr>
@@ -242,6 +253,7 @@
                                         		</tr>
                                         	</thead>
                                         </table>
+                                        </div>
                                         </div>                                        
                                     </div>
                                 </div>
