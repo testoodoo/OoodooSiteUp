@@ -2,10 +2,10 @@
 namespace Support;
 use View, BaseController, Masterdata, MailSupport, Input, CusDet;
 class SupportController extends BaseController {
-	public function index(){
-	    $mails = MailSupport::where('label', 'INBOX')->get();
-		$data['mails'] = $mails;
-	    #return View::make('support.mailSupport.mail', $data);
+	public function index($account_id){
+
+	    $data['user'] = CusDet::where('account_id','=',$account_id)->get()->first();
+	    return View::make('support.userDetails.account_det', $data);
 		#return View::make('support.mailSupport.mail');
 	}
 

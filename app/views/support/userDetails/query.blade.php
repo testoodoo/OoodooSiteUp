@@ -2,9 +2,12 @@
 <body class="pace-done" style="background:#e0e3ed">
     <div class="col-lg-5 form-horizontal" style="margin-top: 100px; margin-left: 450px">
         <div class="panel panel-blue" style="background:#fff;">
-            <div class="panel-heading">
+            <div class="panel-heading" id="exsistCon">
                 PLEASE ENTER <i><b>ACCOUNT ID</b></i> OR <i><b>MOBILE NUMBER</b></i>
             </div>
+            <div class="panel-heading" id="newCon" style="display:none;">
+                Enter the below details
+            </div>            
             <div class="panel-body pan ">
                     <div class="form-body pal" id="exsistConn">
                         <div class="chat-form">
@@ -16,6 +19,7 @@
                     <h3 style="color:red;"> Please enter valid credentials<h3>
                     </div>
                     </div>
+                <form action="#" class="form-horizontal">
                 <div class="col-lg-9" id="content" style="display:none;">
                     <div class="form-body pal">
                         <div class="row">
@@ -31,7 +35,7 @@
                         <div class="form-group">
                             <div class="input-icon right">
                                 <i class="fa fa-envelope"></i>
-                                <input id="inputEmail" type="text" placeholder="Email address" class="form-control">
+                                <input id="inputEmail" type="email" placeholder="Email address" class="form-control">
                             </div>
                         </div>
                         <div class="form-group">
@@ -53,8 +57,9 @@
 
                 <div class="text-left pal">
                     <button type="submit" class="btn btn-primary" onclick="hello();" value='hide/show'>
-                    New Connection</button>
+                    New Connection</button>             
                 </div>
+                </form>
             </div>
         </div>
     </div>
@@ -77,7 +82,8 @@
     function hello(){ 
              jQuery('#content').toggle('hide');
              jQuery('#exsistConn').toggle('hide');
-             jQuery('#userDet').toggle('hide'); 
+             jQuery('#newCon').toggle('hide');
+             jQuery('#exsistCon').toggle('hide');
     };
     function userDet(){
         $('#myTable > tbody').empty();
@@ -94,9 +100,7 @@
                             $.each(value, function(index, value){
                                 $("#errorMsg").hide();
                                 $("#userDet").show();
-                                var one = value.account_id;
-                                alert(one);
-                                $("#myTable > tbody").append("<tr onclick='hello(\""+one+"\")'><td>"+value.first_name+"</td><td>"+value.address1+value.address2+value.address3+"</td><td style='display:none;'>"+value.account_id+"</td></tr>");
+                                $("#myTable > tbody").append("<tr style='cursor:pointer;' onclick='rowClick(\""+value.account_id+"\")'><td>"+value.first_name+"</td><td>"+value.address1+"&nbsp;&nbsp;"+value.address2+"&nbsp;&nbsp;"+value.address3+"</td></tr>");
                             });
                         }
                         else{
@@ -110,8 +114,8 @@
         }
     };
 
-function hello(hel){
-    alert(+hel);
+function rowClick(account_id){
+    window.location.href="/userDet/"+account_id;
 };
 </script>
 
