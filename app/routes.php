@@ -502,5 +502,5 @@ Route::group( array('domain' => 'test.accounts.oodoo.co.in' ), function() {
 
 
 
-#kavi9525Kavitha2501
+
 #http://localhost:3000/qr_code/index?utf8=%E2%9C%93&device=OFLCO&model_no=1234567&count=24&commit=Submit

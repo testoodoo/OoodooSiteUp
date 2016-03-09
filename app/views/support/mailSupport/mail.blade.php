@@ -1,7 +1,63 @@
 @extends ('support.layouts.default')
 @section('main')
-	<div class="page-content">
-		<div id="tab-general">
+<div class="page-content">
+	<div class="right">
+		<span class="text-muted"><b>1</b>&nbsp; – &nbsp;<b>{{count($mails)}}</b>&nbsp; of &nbsp;<b>{{count($mails)}}</b></span>
+				<button type="button" class="btn btn-default"><span class="fa fa-chevron-left"></span></button>
+				<button type="button" class="btn btn-default"><span class="fa fa-chevron-right"></span></button>
+		</div>
+	</div>
+	<div class="col-lg-12">
+	    <div class="portlet box">
+	        <div class="portlet-header">
+	            <div class="caption">Ticket Summary</div>
+	        </div>
+	        <div class="portlet-body">
+	                <ul class="">
+						@foreach($mails as $mail)
+	                    <li class="clearfix" style="position: relative; list-style-type: none;">
+	                        <span class="drag-drop">
+	                            <i></i>
+	                        </span>
+	                        <div class="todo-check pull-left">
+	                            <div class="icheckbox_minimal-grey" style="position: relative;">
+	                                <input type="checkbox" value="" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);">
+	                                    <ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins>
+	                                </div>
+	                            </div>
+	                            <div class="todo-title">
+	                    
+	                          		<span>@if($mail->label == 'INBOX') {{$mail->from_mail}} @else {{$mail->to_mail}} @endif</span>
+	                          		<span> <a href="/mailSupport/ticket/{{$mail->id}}" style="color: blue;">{{$mail->subject}}</a> </span>
+	                          		<span>{{ Str::limit($mail->body, 100)}}</span>
+
+	                          	</div>
+										<span class="label label-success pull-right mrl"><b>@if($mail->label == 'INBOX') Customer Respond @else Agent Respond @endif</b></span>
+										<span class="label label-default pull-right mrl" title="{{$mail->time}}" data-livestamp="{{$mail->time}}"></span>
+												<span class="pull-right mrl">
+													@if($mail->attachment)
+														<span class="fa fa-paperclip"></span>
+													@endif
+												</span>	                          	
+
+	                    </li>
+	                       @endforeach
+	                </ul>
+	        </div>
+	    </div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<!-- 		<div id="tab-general">
 			<div class="row mbl">
 				<div class="col-lg-12">
 					<div class="col-md-12">
@@ -15,15 +71,8 @@
 <!-- Refresh button -->
 <!--  							<button type="button" data-toggle="tooltip" title="" class="btn btn-default mls mrs" data-original-title="Refresh">
 								<span class="fa fa-refresh"></span>
-							</button> -->
+							</button> --
 
-							<div class="right">
-								<span class="text-muted"><b>1</b>&nbsp; – &nbsp;<b>25</b>&nbsp; of &nbsp;<b>143</b></span>
-								<div class="btn-group mlm">
-										<button type="button" class="btn btn-default"><span class="fa fa-chevron-left"></span></button>
-										<button type="button" class="btn btn-default"><span class="fa fa-chevron-right"></span></button>
-								</div>
-							</div>
 						</div>
 					</div>
 					<div class="mtl mbl"></div>
@@ -39,10 +88,10 @@
 													<ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins>
 												</div>
 												<span class="fa fa-star-o mrm mlm"></span>
-												<span style="min-width: 120px; display: inline-block;" class="name">{{$mail->from_mail}}</span>
-												<span>{{$mail->subject}}</span>
+												<span style="font-size: 20px; min-width: 120px; display: inline-block;" class="name box-heading">{{$mail->from_mail}} - {{$mail->subject}}</span>
 												<span style="font-size: 11px;" class="text-muted">{{$mail->snippet}}</span>
-												<span class="label label-default pull-right" data-livestamp="{{$mail->time}}"></span>
+													<span class="label label-default pull-right" title="{{$mail->time}}" data-livestamp="{{$mail->time}}"></span>
+													<span class="label label-success pull-right"><b>@if($mail->label == 'INBOX') Customer Respond @else Agent Respond @endif</b></span>
 												<span class="pull-right mrl">
 													@if($mail->attachment)
 														<span class="fa fa-paperclip"></span>
@@ -73,7 +122,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
+		</div> -->
+
 @stop
             

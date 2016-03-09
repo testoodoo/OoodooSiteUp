@@ -1,24 +1,21 @@
 @extends('support.layouts.default')
 @section('main')
 	<div class="page-content">
+		@if (Session::has('message'))
+			<div class="alert alert-success">{{ Session::get('message') }}</div>
+		@endif
 		<div class="row">
 			<div class="col-lg-9">
 			    <div class="panel panel-blue" style="background:#FFF;">
-			        <div class="panel-heading">Mail Support</div>
+			        <div class="panel-heading">{{$list->subject}}</div>
 			        <div class="panel-body">
-			        <h3>{{$list->subject}}</h3>
 						@foreach($mails as $mail)
 						<div class="list-group mail-box">
-							<table class="demo-tbl">
-							    <thead>
-							        <tr class="tbl-item">
-							            <td><span style="font-size: 12px;" data-livestamp="1453615002"></span></td>
-							        </tr>
-						            <tr  class="tbl-item">
-						            	<td> {{$mail->body}} </td>
-						            </tr>
-							    </thead>
-							</table>
+				            	<span class="label label-info pull-left">check</span>
+				            	<span class="label label-default pull-right" title="{{$mail->time}}" data-livestamp="{{$mail->time}}"></span>
+				            <div class="well well-lg">
+				            	{{$mail->body}}
+				            </div>
 						</div>
 				        @endforeach
 				        <div class="pull-right">
@@ -50,14 +47,14 @@
 			    </div>
 			</div>
 			<div class="col-lg-3">
-				<div class="form-group">
+<!-- 				<div class="form-group">
 				<div class="panel panel-blue" style="background:#FFF;">
 					<div class ="panel-heading"> Ticket Status </div>
 					<div class="panel-body">
 						hello
 					</div>
 				</div>
-				</div>
+				</div> -->
 				<div class="form-group">
 				<div class="panel panel-blue" style="background:#FFF;">
 					<div class ="panel-heading"> Remarks </div>

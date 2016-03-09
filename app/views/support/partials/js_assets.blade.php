@@ -13,7 +13,7 @@
     {{ HTML::script('/assets/dist/support/js/jquery.menu.js') }}
     {{ HTML::script('/assets/dist/support/js/pace.min.js') }}
     {{ HTML::script('/assets/dist/support/js/holder.js') }}
-    {{ HTML::script('/assets/dist/support/js/responsive-tab.js') }}
+    {{ HTML::script('/assets/dist/support/js/responsive-tabs.js') }}
     {{ HTML::script('/assets/dist/support/js/jquery.flot.js') }}
     {{ HTML::script('/assets/dist/support/js/jquery.flot.categories.js') }}
     {{ HTML::script('/assets/dist/support/js/jquery.flot.tooltip.js') }}
@@ -35,6 +35,7 @@
     {{ HTML::script('/assets/dist/support/js/modernizr.min.js')}}
     {{ HTML::script('assets/dist/support/js/jplist.min.js')}}
     {{ HTML::script('/assets/dist/support/js/jplist.js')}}
+    {{ HTML::script('/assets/dist/support/js/jquery.js') }}        
     {{ HTML::script('/assets/dist/support/js/moment.js') }}    
     {{ HTML::script('/assets/dist/support/js/livestamp.min.js') }}
 

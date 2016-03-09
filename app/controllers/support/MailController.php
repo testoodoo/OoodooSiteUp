@@ -17,8 +17,11 @@ class MailController extends BaseController {
 
    public function index(){
     #$data['mails'] = MailSupport::where('label','INBOX')->get(); 
-    $data['mails'] = MailSupport::whereIn('id', function($query) { $query->selectRaw('max(id)')->from('create_mail_table')->groupBy('thread_id'); })->get();
+    $data['mails'] = MailSupport::whereIn('id', function($query){ $query->selectRaw('max(id)')->from('create_mail_table')->orWhere('label','INBOX')->orWhere('label','SENT')->orderBy('time','ASC')->groupBy('thread_id'); })
+                                    ->get();
+    
     return View::make('support.mailSupport.mail',$data);
+
    }
 
    public function ticket($id){
@@ -50,6 +53,7 @@ class MailController extends BaseController {
             foreach($messageList as $mlist){
                 $idCheck = InboxMail::where('message_id', $mlist->id)->get();
                 if(count($idCheck) == 0){
+/*                    var_dump($mlist->id); die;*/
 
                 $optParamsGet2['format'] = 'full';
                 $single_message = $service->users_messages->get('me',$mlist->id, $optParamsGet2);
@@ -80,6 +84,27 @@ class MailController extends BaseController {
                         }
 
                 }
+
+                $prefix = array("Re: ", "Fwd: ");
+                $new_subject = str_replace($prefix, "", $subject);
+                $fromCheck = InboxMail::where('from_mail', $from)->get();
+                $subjectCheck = InboxMail::where('subject', $new_subject)->get()->first();
+                if(count($fromCheck) > 0 && count($subjectCheck) > 0){
+                    $old_thread_id = $subjectCheck->thread_id;
+                    $single_message->setThreadId($old_thread_id);
+                    $threadId = $single_message->getThreadId();
+
+                }
+
+
+
+
+
+
+
+
+
+
                 /*  body message   */
                 $body = $single_message->getPayload()->getBody();
 
@@ -111,6 +136,7 @@ class MailController extends BaseController {
                 }
 
                 $body = $body_new;
+                var_dump(($body)); die;
                 //attachment success
                 unset($attachment);
                 $parts = $single_message->getPayload()->getParts();
@@ -152,11 +178,13 @@ class MailController extends BaseController {
                     $inboxmail->message_id = $mlist->id;
                     $inboxmail->thread_id = $threadId;
                     $inboxmail->history_id = $historyId;
-                    $inboxmail->label = $labelIds['0'];
+                    if(isset($labelIds['0'])){
+                        $inboxmail->label = $labelIds['0'];
+                    }
                     $inboxmail->subject = $subject;
                     $inboxmail->from_mail = $from;
                     $inboxmail->to_mail = $to;
-                    $inboxmail->body = $body;
+                    $inboxmail->body = nl2br($body);
                     if(isset($attachment)){
                         $inboxmail->attachment = json_encode($attachment);
                     }
@@ -176,19 +204,10 @@ class MailController extends BaseController {
         $service = new Google_Service_Gmail($client);
         $userId='me';
         $subject = "Ticket Received - ".$subject."";
-        $body = "Dear ".$from.",
+        $body = "Dear ".$from.",\n\nWe would like to acknowledge that we have received your request and a ticket has been created.A support representative will be reviewing your request and will send you a personal response (usually within 24 hours).\n\nThank you for your patience.\n\nSincerely,\nOODOO Fiber Support Team";
 
-We would like to acknowledge that we have received your request and a ticket has been created.
-
-A support representative will be reviewing your request and will send you a personal response.(usually within 24 hours).
-
-Thank you for your patience.
-
-Sincerely,
-OODOO Fiber Support Team";
-
-        $message = new Google_Service_Gmail_Message();
-            $text = 'From: '.$to.'
+    $message = new Google_Service_Gmail_Message();
+    $text = 'From: '.$to.'
 To: '.$from.'
 Subject:'.$subject.'
 
@@ -196,7 +215,23 @@ Subject:'.$subject.'
 
         $encoded_message = rtrim(strtr(base64_encode($text), '+/', '-_'), '=');
         $message->setRaw($encoded_message);
+
         $message = $service->users_messages->send($userId, $message);
+
+        $inboxmail=new InboxMail();
+        $inboxmail->message_id = $message->getId();
+        $inboxmail->thread_id = $message->getThreadId();
+        $inboxmail->history_id = 2222;
+        $inboxmail->label = 'ACK';
+        $inboxmail->subject = $subject;
+        $inboxmail->from_mail = $from;
+        $inboxmail->to_mail = $to;
+        $inboxmail->body = $body;
+        if(isset($attachment)){
+        $inboxmail->attachment = json_encode($attachment);
+        }
+        $inboxmail->time = Date("Y-m-d H:i:s");
+        $inboxmail->save();        
     }
 
     public function replyMessage($thread_id){
@@ -211,19 +246,21 @@ Subject:'.$subject.'
             $message = new Google_Service_Gmail_Message();
             $text = 'From: '.$from.'
 To: '.$to.'
-Subject:'.$subject.'
+Subject: Re: '.$subject.'
 
 '.$body.'';
 
             $encoded_message = rtrim(strtr(base64_encode($text), '+/', '-_'), '=');
-/*            $message->setThreadIds($thread_id);*/
             $message->setRaw($encoded_message);
+
             
             $message = $service->users_messages->send($userId, $message);
-           /* $inboxmail=new InboxMail();
+            $thread = $message->setThreadId($thread_id);
+            #var_dump($message); die;
+            $inboxmail=new InboxMail();
             $inboxmail->message_id = $message->getId();
             $inboxmail->thread_id = $thread_id;
-            $inboxmail->history_id = '0000';
+            $inboxmail->history_id = 1111;
             $inboxmail->label = 'SENT';
             $inboxmail->subject = $subject;
             $inboxmail->from_mail = $from;
@@ -234,7 +271,10 @@ Subject:'.$subject.'
             }
             $inboxmail->time = Date("Y-m-d H:i:s");
             $inboxmail->save();
-            */
+
+            Session::flash('message', "Your message has been sent successfully!");
+            return Redirect::back();
+            
     }    
 
 
@@ -256,7 +296,7 @@ public function getClient() {
     $authUrl = $client->createAuthUrl();
     printf("Open the following link in your browser:\n%s\n", $authUrl);
     print 'Enter verification code: ';
-    var_dump(fgets(STDIN)); die;
+    #var_dump(fgets(STDIN)); die;
     $authCode = trim(fgets(STDIN));
     #var_dump($authCode); die;
 

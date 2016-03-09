@@ -63,7 +63,7 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <div class="text-center mbl">
-                                        <img src="assets/dist/support/images/photo5.png" class="img-responsive">
+                                        <img src="/assets/dist/support/images/photo5.png" class="img-responsive">
                                         </div>
                                         <div class="text-center mbl">
                                             <a href="#" class="btn btn-green">
@@ -141,7 +141,7 @@
                                         </li>                                                                               
                                     </ul>
                                     <div id="generalTabContent" class="tab-content">
-                                        <div id="tab-bill" class="tab-pane fade in active">
+                                        <div id="tab-bill" class="tab-pane fade in active" onload="thisis()">
                                         <div class="panel panel-blue">
                                         <table id="billTable" class="table table-hover table-bordered">
                                         	<thead>
@@ -239,7 +239,7 @@
                                         </div>                                                                                                                       
 			                            <div id="tab-ticket" class="tab-pane fade in">
                                         <div class="panel panel-blue">                                        
-                                        <table id="ticketTable" class="table table-hover table-bordered">
+                                        <table id="ticketTable" class="table table-hover table-bordered" on="ticket('{{$user->account_id}}')">
                                         	<thead>
                                         		<tr>
                                                     <th>ID</th>
@@ -254,8 +254,7 @@
                                         	</thead>
                                         </table>
                                         </div>
-                                        </div>                                        
-                                    </div>
+                                    </div>                                        
                                 </div>
                             </div>
                         </div>
@@ -264,4 +263,13 @@
             </div>
         </div>
     </div>
+</div>
+<script>
+function ticket(account_id){
+    alert(account_id);
+}
+function thisis(){
+    alert('hi');
+}
+</script>
 @stop
