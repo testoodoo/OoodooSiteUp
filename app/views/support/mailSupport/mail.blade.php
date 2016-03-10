@@ -28,7 +28,7 @@
 	                            <div class="todo-title">
 	                    
 	                          		<span>@if($mail->label == 'INBOX') {{$mail->from_mail}} @else {{$mail->to_mail}} @endif</span>
-	                          		<span> <a href="/mailSupport/ticket/{{$mail->id}}" style="color: blue;">{{$mail->subject}}</a> </span>
+	                          		<span> <a href="/mailSupport/{{$mail->thread_id}}" style="color: blue;">{{$mail->subject}}</a> </span>
 	                          		<span>{{ Str::limit($mail->body, 100)}}</span>
 
 	                          	</div>

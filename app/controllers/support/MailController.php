@@ -24,10 +24,10 @@ class MailController extends BaseController {
 
    }
 
-   public function ticket($id){
+   public function ticket($thread_id){
 
 
-    $thread_id = MailSupport::where('id',$id)->get()->first()->thread_id;
+/*    $thread_id = MailSupport::where('thread_id',$thread_id)->get()->first()->thread_id;*/
     $data['list'] = MailSupport::where('thread_id', $thread_id)->orderBy('time','ASC')->get()->first();
     $data['mails'] = MailSupport::where('thread_id', $thread_id)->orderBy('time','ASC')->get();
     $remark = Input::get('remark');
@@ -53,7 +53,6 @@ class MailController extends BaseController {
             foreach($messageList as $mlist){
                 $idCheck = InboxMail::where('message_id', $mlist->id)->get();
                 if(count($idCheck) == 0){
-/*                    var_dump($mlist->id); die;*/
 
                 $optParamsGet2['format'] = 'full';
                 $single_message = $service->users_messages->get('me',$mlist->id, $optParamsGet2);
@@ -94,16 +93,8 @@ class MailController extends BaseController {
                     $single_message->setThreadId($old_thread_id);
                     $threadId = $single_message->getThreadId();
 
+
                 }
-
-
-
-
-
-
-
-
-
 
                 /*  body message   */
                 $body = $single_message->getPayload()->getBody();
@@ -136,7 +127,7 @@ class MailController extends BaseController {
                 }
 
                 $body = $body_new;
-                var_dump(($body)); die;
+
                 //attachment success
                 unset($attachment);
                 $parts = $single_message->getPayload()->getParts();

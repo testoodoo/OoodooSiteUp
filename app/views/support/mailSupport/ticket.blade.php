@@ -15,6 +15,13 @@
 				            	<span class="label label-default pull-right" title="{{$mail->time}}" data-livestamp="{{$mail->time}}"></span>
 				            <div class="well well-lg">
 				            	{{$mail->body}}
+				            							        @if($mail->attachment)
+						        <div class="col-sm-6 col-md-3">
+						        	<div class="thumbnail">
+						        		{{ $mail->attachment->filename }}
+						        	</div>
+						        	</div>
+						        @endif
 				            </div>
 						</div>
 				        @endforeach
