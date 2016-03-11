@@ -3,11 +3,81 @@
 <div class="page-content">
 	<div class="right">
 		<span class="text-muted"><b>1</b>&nbsp; – &nbsp;<b>{{count($mails)}}</b>&nbsp; of &nbsp;<b>{{count($mails)}}</b></span>
-				<button type="button" class="btn btn-default"><span class="fa fa-chevron-left"></span></button>
-				<button type="button" class="btn btn-default"><span class="fa fa-chevron-right"></span></button>
-		</div>
+		<button type="button" class="btn btn-default">
+			<span class="fa fa-chevron-left"></span>
+		</button>
+		<button type="button" class="btn btn-default">
+			<span class="fa fa-chevron-right"></span>
+		</button>
 	</div>
-	<div class="col-lg-12">
+
+
+
+
+
+
+
+
+
+<div id="generalTabContent" class="tab-content">
+        <div id="tab-messages" class="tab-pane fade in active">
+            <div class="row mbl">
+                <div class="col-lg-6"><span style="margin-left: 15px"></span><div class="icheckbox_minimal-grey" style="position: relative;"><input type="checkbox" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"><ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins></div><a href="#" class="btn btn-success btn-sm mlm mrm"><i class="fa fa-send-o"></i>&nbsp;
+                    Write Mail</a> <a href="#" class="btn btn-white btn-sm"><i class="fa fa-trash-o"></i>&nbsp;
+                    Delete</a></div>
+                <div class="col-lg-6">
+                    <form action="mailSupport">
+                    	<div class="input-group">
+                    		<input name="query" type="text" class="form-control">
+                    			<span class="input-group-btn">
+                    				<button type="submit" class="btn btn-white">Search</button>
+                    			</span>
+                    	</div>
+                    </form>
+                </div>
+            </div>
+<div class="list-group">
+	@foreach($mails as $mail)
+    <a href="/mailSupport/{{$mail->thread_id}}" class="list-group-item">
+        <div class="icheckbox_minimal-grey" style="position: relative;">
+            <input type="checkbox" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);">
+                <ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins>
+            </div>
+            <span class="fa fa-star-o mrm mlm"></span>
+            <span style="min-width: 120px; display: inline-block;" class="name">@if($mail->label == 'INBOX') {{$mail->from_mail}} @else {{$mail->to_mail}} @endif</span>
+            <span>{{$mail->subject}}</span>&nbsp; - &nbsp;
+            <span style="font-size: 11px;" class="text-muted">{{ Str::limit($mail->body, 100)}}</span>
+			@if($mail->label == 'INBOX')
+				<span class="label label-warning pull-right mrl"><b> Customer Respond </b></span>
+			@else
+				<span class="label label-success pull-right mrl"><b> Agent Respond </b></span> 
+			@endif
+			<span class="label label-default pull-right mrl" title="{{$mail->time}}" data-livestamp="{{$mail->time}}"></span>
+			<span class="pull-right mrl">
+				@if($mail->attachment)
+					<span class="fa fa-paperclip"></span>
+				@endif
+			</span>	
+    </a>
+    @endforeach
+</div>            
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 	<div class="col-lg-12">
 	    <div class="portlet box">
 	        <div class="portlet-header">
 	            <div class="caption">Ticket Summary</div>
@@ -45,7 +115,7 @@
 	                </ul>
 	        </div>
 	    </div>
-	</div>
+	</div> -->
 </div>
 
 

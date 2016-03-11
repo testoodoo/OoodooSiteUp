@@ -15,12 +15,14 @@
 				            	<span class="label label-default pull-right" title="{{$mail->time}}" data-livestamp="{{$mail->time}}"></span>
 				            <div class="well well-lg">
 				            	{{$mail->body}}
-				            							        @if($mail->attachment)
-						        <div class="col-sm-6 col-md-3">
-						        	<div class="thumbnail">
-						        		{{ $mail->attachment->filename }}
-						        	</div>
-						        	</div>
+				            	@if($mail->attachment)
+							        @foreach(json_decode($mail->attachment) as $attachment)</br>
+						        		<a href="/assets/dist/support/images/adminbills.csv" class="btn btn-green">
+						        			<i class="fa fa-download"> 
+						        				{{ $attachment->filename }} 
+						        			</i>
+						        		</a>
+						        	@endforeach
 						        @endif
 				            </div>
 						</div>

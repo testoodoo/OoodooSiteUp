@@ -16,18 +16,20 @@ require 'vendor/autoload.php';
 class MailController extends BaseController {
 
    public function index(){
-    #$data['mails'] = MailSupport::where('label','INBOX')->get(); 
-    $data['mails'] = MailSupport::whereIn('id', function($query){ $query->selectRaw('max(id)')->from('create_mail_table')->orWhere('label','INBOX')->orWhere('label','SENT')->orderBy('time','ASC')->groupBy('thread_id'); })
+    $query = Input::get('query');
+    if($query != NULL){
+        $arr = array("body","from_mail","to_mail");
+        $data['mails'] = MailSupport::where($arr,'like','%'.$query.'%')->get();
+    }else{
+        $data['mails'] = MailSupport::whereIn('id', function($query){ $query->selectRaw('max(id)')->from('create_mail_table')->orWhere('label','INBOX')->orWhere('label','SENT')->orderBy('time','ASC')->groupBy('thread_id'); })
                                     ->get();
-    
+    }    
     return View::make('support.mailSupport.mail',$data);
 
    }
 
    public function ticket($thread_id){
 
-
-/*    $thread_id = MailSupport::where('thread_id',$thread_id)->get()->first()->thread_id;*/
     $data['list'] = MailSupport::where('thread_id', $thread_id)->orderBy('time','ASC')->get()->first();
     $data['mails'] = MailSupport::where('thread_id', $thread_id)->orderBy('time','ASC')->get();
     $remark = Input::get('remark');
@@ -44,6 +46,7 @@ class MailController extends BaseController {
    
 
    public function updateMessage() {
+
             $client = $this->getClient();
             $service = new Google_Service_Gmail($client);
             $userId='me';
@@ -142,15 +145,15 @@ class MailController extends BaseController {
                         $file_ext = new SplFileInfo($filename);
                         $file_ext = $file_ext->getExtension();
                         $file_hash = hash('sha256', $attId);
-                        $file_location = '/tmp/'.$file_hash.'.'.$file_ext;
+                        $file_location = public_path().'/attachId/';
                         #var_dump($file_ext); die;
                         file_put_contents($file_location, $code_binary);
                         #echo "Your attachment ". $filename." with id ".$attId." saved succesfully at ".$file_location;
-                        $attachment[] = [
+                        $attachment[] = array(
                         'filename' => $filename,
                         'attachmentId' => $attId,
                         'filelocation' => $file_location
-                        ];
+                        );
                         // $image= imagecreatefromstring($code_binary);
                         // header('Content-Type: image/jpeg');
                         // imagejpeg($image);
@@ -175,7 +178,7 @@ class MailController extends BaseController {
                     $inboxmail->subject = $subject;
                     $inboxmail->from_mail = $from;
                     $inboxmail->to_mail = $to;
-                    $inboxmail->body = nl2br($body);
+                    $inboxmail->body = $body;
                     if(isset($attachment)){
                         $inboxmail->attachment = json_encode($attachment);
                     }

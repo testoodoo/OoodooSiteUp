@@ -487,6 +487,7 @@ Route::group( array('domain' => 'test.accounts.oodoo.co.in' ), function() {
         
 
         Route::get('mailSupport', array('as' => '', 'uses' => 'MailController@index'));
+        Route::post('mailSupport', array('as' => '', 'uses' => 'MailController@index'));
         Route::get('mailSupport/{id}', array('as'=>'', 'uses' => 'MailController@ticket'));
         Route::post('mailSupport/{id}', array('as'=>'', 'uses' => 'MailController@ticket'));  
         Route::post('replyMessage/{thread_id}',array('as'=>'', 'uses'=> 'MailController@replyMessage'));      
@@ -499,6 +500,9 @@ Route::group( array('domain' => 'test.accounts.oodoo.co.in' ), function() {
 
 
     }); 
+Route::get('/test',array('as' => '', 'uses' => 'support\\TestController@create_employee'));
+Route::post('/check_superior', array('as' => '', 'uses' => 'support\\TestController@check_superior'));
+
 
   
 
