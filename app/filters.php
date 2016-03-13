@@ -115,3 +115,11 @@ Route::filter('auth.user', function() {
 		return Redirect::route('user.login');
 	}
 });
+
+
+Route::filter('auth.support', function() {
+	if( Auth::employee()->guest() ){
+		return Redirect::route('support.login');
+	}
+
+});

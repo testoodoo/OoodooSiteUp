@@ -477,10 +477,12 @@ Route::group( array('domain' => 'test.accounts.oodoo.co.in' ), function() {
 
     });
 
-    Route::group( array('domain' => 'support.wtest.oodoo.co.in' ), function() {
 
-        Route::get('/login',  array('as' => '', 'uses' => 'support\\AuthController@index'));
-        Route::get('/query', array('as' => '', 'uses' => 'support\\SupportController@query'));
+
+    Route::group( array('domain' => 'support.wtest.oodoo.co.in' ), function() {
+    
+    Route::group( array('before' => 'auth.support'), function() {
+        Route::get('/query', array('as' => 'support.query', 'uses' => 'support\\SupportController@query'));
         Route::get('/userDet/{account_id}', array('as' => '', 'uses' => 'support\\SupportController@index'));
         Route::post('query', array('as' => '', 'uses' => 'support\\SupportController@query'));
         Route::post('userDetails', array('as' => '', 'uses' => 'support\\SupportController@userDetails'));
@@ -498,11 +500,12 @@ Route::group( array('domain' => 'test.accounts.oodoo.co.in' ), function() {
         Route::get('mailType', array('as' => '', 'uses' => 'MailController@mailType'));
         Route::get('/oauth2callback', array('as' => '', 'uses' => 'MailController@index'));
 
-
+        });
+        
+        Route::get('/login',  array('as' => 'support.login', 'uses' => 'support\\AuthController@index'));
+        Route::post('/login',  array('as' => 'support.login', 'uses' => 'support\\AuthController@login')); 
+        Route::get('/logout', array('as' => 'support.logout', 'uses' => 'support\\AuthController@logout'));   
     }); 
-Route::get('/test',array('as' => '', 'uses' => 'support\\TestController@create_employee'));
-Route::post('/check_superior', array('as' => '', 'uses' => 'support\\TestController@check_superior'));
-
 
   
 

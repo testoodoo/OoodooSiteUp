@@ -12,7 +12,7 @@
     <div class="page-form">
         <div class="panel panel-blue">
             <div class="panel-body pan">
-                <form action="/query" class="form-horizontal">
+                <form action="/login" method="POST" class="form-horizontal">
                 <div class="form-body login-padding">
                     <div class="col-md-12 text-center">
                         <h1 style="margin-top: -150px; font-size:42px; text-transform:uppercase; letter-spacing:-1px; color:#000; font-weight:bold">
@@ -35,7 +35,7 @@
                         <div class="col-md-9">
                             <div class="input-icon right">
                                 <i class="fa fa-user"></i>
-                                <input id="inputName" type="text" placeholder="Employee ID" class="form-control" /></div>
+                                <input name="employee_id" id="inputName" type="text" placeholder="Employee ID" class="form-control" /></div>
                         </div>
                     </div>
                     <div class="form-group">
@@ -44,7 +44,7 @@
                         <div class="col-md-9">
                             <div class="input-icon right">
                                 <i class="fa fa-lock"></i>
-                                <input id="inputPassword" type="text" placeholder="Password" class="form-control" /></div>
+                                <input name="password" id="inputPassword" type="text" placeholder="Password" class="form-control" /></div>
                         </div>
                     </div>
                     <div class="form-group mbn">
@@ -53,10 +53,12 @@
                                 <div class="col-lg-3">
                                     &nbsp;
                                 </div>
+        @if (Session::has('message'))
+            <div class="alert alert-failure">{{ Session::get('message') }}</div>
+        @endif
                                 <div class="col-lg-9">
                                     <a href="Login.html" class="btn btn-default back-btn">Go back</a>&nbsp;&nbsp;
-                                    <button type="submit" class="btn btn-default sign-btn">
-                                        Sign In</button>
+                                    <input type="submit" name="Sign In" class="btn btn-default sign-btn">
                                 </div>
                             </div>
                         </div>

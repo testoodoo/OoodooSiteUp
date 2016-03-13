@@ -1,6 +1,13 @@
 @extends ('support.layouts.default')
 @section('main')
 <div class="page-content">
+		@if (Session::has('message'))
+			<div class="alert alert-success">{{ Session::get('message') }}</div>
+		@endif
+
+
+
+
 	<div class="right">
 		<span class="text-muted"><b>1</b>&nbsp; – &nbsp;<b>{{count($mails)}}</b>&nbsp; of &nbsp;<b>{{count($mails)}}</b></span>
 		<button type="button" class="btn btn-default">

@@ -16,7 +16,12 @@ require 'vendor/autoload.php';
 class MailController extends BaseController {
 
    public function index(){
-    $query = Input::get('query');
+
+    $check = MailSupport::all();
+    var_dump(count($check)); die;
+
+
+/*    $query = Input::get('query');
     if($query != NULL){
         $arr = array("body","from_mail","to_mail");
         $data['mails'] = MailSupport::where($arr,'like','%'.$query.'%')->get();
@@ -25,7 +30,7 @@ class MailController extends BaseController {
                                     ->get();
     }    
     return View::make('support.mailSupport.mail',$data);
-
+*/
    }
 
    public function ticket($thread_id){
@@ -266,8 +271,8 @@ Subject: Re: '.$subject.'
             $inboxmail->time = Date("Y-m-d H:i:s");
             $inboxmail->save();
 
-            Session::flash('message', "Your message has been sent successfully!");
-            return Redirect::back();
+            Session::flash('message', $message->getId());
+            return View::make('support.mailSupport.mail');
             
     }    
 
