@@ -506,6 +506,13 @@ Route::group( array('domain' => 'test.accounts.oodoo.co.in' ), function() {
         Route::get('/login',  array('as' => 'support.login', 'uses' => 'support\\AuthController@index'));
         Route::post('/login',  array('as' => 'support.login', 'uses' => 'support\\AuthController@login')); 
         Route::get('/logout', array('as' => 'support.logout', 'uses' => 'support\\AuthController@logout'));
+        Route::get('/forgetPass', array('as' => 'support.forget_pass', 'uses' => 'support\\AuthController@getForgotPass'));
+        Route::post('/request-forget-password', array('as' => '','uses' => 'support\\AuthController@requestForgetPassword'));
+        Route::get('/reset-password-request',   array('as' => '','uses' => 'support\\AuthController@resetPasswordRequest'));
+        Route::post('/reset-password',   array('as' => '','uses' => 'support\\AuthController@resetPassword'));
+
+
+
     }); 
 
   

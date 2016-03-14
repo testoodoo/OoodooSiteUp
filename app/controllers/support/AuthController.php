@@ -42,7 +42,7 @@ class AuthController extends BaseController {
 
 	public function getForgotPass() {
 
-			return View::make('admin.auth.forgotpass');
+			return View::make('support.auth.forget_pass');
 	}
 
 	
@@ -117,9 +117,9 @@ class AuthController extends BaseController {
 	 	       $message->from('support@oodoo.co.in',"Support OODOO")->to($employee->email, "Password Reminder")->subject("Reset your OODOO Admin Password");
 	 	    });
 
-	 	    return Redirect::to('/admin/forgotpass')->with('success',"Password Details sent to your Email.");
+	 	    return Redirect::to('/forgetPass')->with('success',"Password Details sent to your Email.");
 		}
-		return Redirect::to('/admin/forgotpass')->with('failure','You are not authorized to do this action');
+		return Redirect::to('/forgetPass')->with('failure','You are not authorized to do this action');
 	}
 
 	public function resetPasswordRequest(){

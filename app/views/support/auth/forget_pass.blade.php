@@ -12,7 +12,7 @@
     <div class="page-form">
         <div class="panel panel-blue">
             <div class="panel-body pan">
-                <form action="/login" method="POST" class="form-horizontal">
+                <form action="/request-forget-password" method="POST" class="form-horizontal">
                 <div class="form-body login-padding">
                     <div class="col-md-12 text-center">
                         <h1 style="margin-top: -100px; font-size:42px; text-transform:uppercase; letter-spacing:-1px; color:#000; font-weight:bold">
@@ -25,26 +25,17 @@
                         </div>
                         <div class="col-md-9">
                             <h2>Login</h2>
-                                  <p>
-                                Please enter your Employee Id and password</p>
+                                  <p><h3>
+                                Please enter your Email Id</h3></p>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputName" class="col-md-3 control-label">
-                            Username:</label>
+                            Email ID:</label>
                         <div class="col-md-9">
                             <div class="input-icon right">
                                 <i class="fa fa-user"></i>
-                                <input name="employee_id" id="inputName" type="text" placeholder="Employee ID" class="form-control" /></div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputPassword" class="col-md-3 control-label">
-                            Password:</label>
-                        <div class="col-md-9">
-                            <div class="input-icon right">
-                                <i class="fa fa-lock"></i>
-                                <input name="password" id="inputPassword" type="text" placeholder="Password" class="form-control" /></div>
+                                <input name="email" id="inputName" type="text" placeholder="Employee ID" class="form-control" /></div>
                         </div>
                     </div>
                     <div class="form-group mbn">
@@ -66,10 +57,6 @@
                 </div>
                 </form>
             </div>
-        </div>
-        <div class="col-lg-12 text-center">
-            <p>
-            <a href="/forgetPass" style="color: #e0e3ed">Forgot password ?</a></p>
         </div>
     </div>
 </body>

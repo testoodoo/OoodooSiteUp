@@ -96,3 +96,36 @@
 	}
 	</script>
 @stop
+
+
+
+
+	function check_employee(){
+	 	$first_name = Input::get('first_name');
+	 	$check = YourModel::where('first_name',$first_name)->get();
+		if(count($check) > 0){
+			//return false, or employee detail
+		}else{
+			//no employee
+		}
+	}
+
+
+
+
+	$('#employee_form').submit(function(e){
+		e.preventDefault();
+		var first_name = $('#first_name');
+		$.ajax({
+			method: "POST",
+			url: "checkUserExistence.php",
+			data: { first_name: first_name }
+		})
+		.done(function( msg ) {
+			if(msg == 'exist') {
+				//employee exists, do something...
+			} else {
+				//employee does not exist, do something...
+			}
+		});
+	})	
