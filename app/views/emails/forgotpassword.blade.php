@@ -67,7 +67,7 @@
 <tbody>
 <tr>
 <td style="color:#ffffff;font-size:13px;font-weight:bold;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;white-space:nowrap;padding-left:30px;padding-right:30px" align="center"><span>
-	<a href="{{ Request::root() }}/admin/reset-password-request?token={{$employee->forget_password_token}}" style="border:none;color:#0084b4;text-decoration:none;color:#ffffff;font-size:13px;font-weight:bold;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif" target="_blank">Reset your password</a></span></td>
+	<a href="{{ Request::root() }}/reset-password-request?token={{$employee->forget_password_token}}" style="border:none;color:#0084b4;text-decoration:none;color:#ffffff;font-size:13px;font-weight:bold;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif" target="_blank">Reset your password</a></span></td>
 </tr>
 </tbody>
 </table> </td>
@@ -76,8 +76,8 @@
 </table> </td>
 </tr>
 <tr>
-<td style="padding:10px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;color:#333;padding-bottom:0;font-size:15px;line-height:20px"> Or use this link to reset your password:<br> <a href="{{ Request::root() }}/admin/reset-password-request?token={{$employee->forget_password_token}}" style="border:none;color:#0084b4;text-decoration:none" target="_blank">
-	{{ Request::root() }}/admin/reset-password-request?token={{$employee->forget_password_token}}
+<td style="padding:10px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;color:#333;padding-bottom:0;font-size:15px;line-height:20px"> Or use this link to reset your password:<br> <a href="{{ Request::root() }}/reset-password-request?token={{$employee->forget_password_token}}" style="border:none;color:#0084b4;text-decoration:none" target="_blank">
+	{{ Request::root() }}/reset-password-request?token={{$employee->forget_password_token}}
 </a> </td>
 </tr>
 <tr>

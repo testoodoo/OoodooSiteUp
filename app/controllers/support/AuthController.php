@@ -116,19 +116,20 @@ class AuthController extends BaseController {
 			Mail::send('emails.forgotpassword', $data, function($message) use ($employee) {
 	 	       $message->from('support@oodoo.co.in',"Support OODOO")->to($employee->email, "Password Reminder")->subject("Reset your OODOO Admin Password");
 	 	    });
-
-	 	    return Redirect::to('/forgetPass')->with('success',"Password Details sent to your Email.");
+			Session::flash('success','Password Details has been sent to your Email.');
+	 	    return Redirect::to('/forgetPass');
 		}
-		return Redirect::to('/forgetPass')->with('failure','You are not authorized to do this action');
+		Session::flash('message','Not authorized to do this action');
+		return Redirect::to('/forgetPass');
 	}
 
 	public function resetPasswordRequest(){
 		$employee = Employee::where('forget_password_token','=',Input::get('token'))->get()->first();
 		if(!is_null($employee)){
 			$data['employee'] = $employee;
-			return View::make('admin.auth.resetpass',$data);		
+			return View::make('support.auth.resetpass',$data);		
 		}
-		return Redirect::route('admin.login')->with('failure',"Invalid Request");		
+		return Redirect::route('/login')->with('failure',"Invalid Request");		
 	}
 
 	public function resetPassword(){
@@ -140,12 +141,13 @@ class AuthController extends BaseController {
 			$employee->password_confirmation = Input::get('password');
 
 			if ($employee->forcesave()){
-				return Redirect::route('admin.login')
-				->with('success',"Password Reset Succesful. Login with your New Password");		
+				Session::flash('message','Please Sign In with your New password!');
+				return Redirect::route('support.login');
 			}
-			return Redirect::to('/admin/forgotpass');
+			return Redirect::to('/forgetPass');
 		}
-		return Redirect::route('admin.login')->with('failure',"Invalid Request");		
+		Session::flash('message', 'Invalid Request');
+		return Redirect::route('support.login');	
 	}
 
 }
