@@ -23,8 +23,7 @@ class MailController extends BaseController {
 
     $query = Input::get('query');
     if($query != NULL){
-        $data['mails'] = MailSupport::whereIn('id', function($query){ $query->selectRaw('max(id)')->from('create_mail_table')->orWhere('label','INBOX')->orWhere('label','SENT')->orderBy('time','ASC')->groupBy('thread_id'); })
-                                    ->orWhere('from_mail','like','%'.$query.'%')
+        $data['mails'] = MailSupport::where('from_mail','like','%'.$query.'%')
                                     ->orWhere('body','like','%'.$query.'%')
                                     ->orWhere('subject','like','%'.$query.'%')->get();
     }else{

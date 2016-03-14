@@ -5,30 +5,12 @@
         <ul id="side-menu" class="nav">
             
              <div class="clearfix"></div>
-            <li><a href="dashboard.html"><i class="fa fa-tachometer fa-fw">
-                <div class="icon-bg bg-orange"></div>
-            </i><span class="menu-title">Dashboard</span></a></li>
 			<li><a href="/userDet"><i class="fa icon-lock fa-fw">
                 <div class="icon-bg bg-pink"></div>
             </i><span class="menu-title">User Info</span></a>
                
             </li>
-            <li><a href="Layout.html"><i class="fa fa-desktop fa-fw">
-                <div class="icon-bg bg-pink"></div>
-            </i><span class="menu-title">Call Info</span></a>
-               
-            </li>
-            <li><a href="UIElements.html"><i class="fa fa-send-o fa-fw">
-                <div class="icon-bg bg-green"></div>
-            </i><span class="menu-title">UI Elements</span></a>
-               
-            </li>
-            <li><a href="DataGrid.html"><i class="fa fa-database fa-fw">
-                <div class="icon-bg bg-red"></div>
-            </i><span class="menu-title">Data Grids</span></a>
-              
-            </li>
-            <li class="active"><a href="/mailSupport"><i class="fa fa-envelope-o">
+            <li><a href="/mailSupport"><i class="fa fa-envelope-o">
                 <div class="icon-bg bg-primary"></div>
             </i><span class="menu-title">Email</span></a>
               
