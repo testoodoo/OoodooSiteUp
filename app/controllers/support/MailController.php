@@ -17,20 +17,21 @@ class MailController extends BaseController {
 
    public function index(){
 
-    $check = MailSupport::all();
+/*    $check = MailSupport::all();
     var_dump(count($check)); die;
+*/
 
-
-/*    $query = Input::get('query');
+    $query = Input::get('query');
     if($query != NULL){
-        $arr = array("body","from_mail","to_mail");
-        $data['mails'] = MailSupport::where($arr,'like','%'.$query.'%')->get();
+        $data['mails'] = MailSupport::whereIn('id', function($query){ $query->selectRaw('max(id)')->from('create_mail_table')->orWhere('label','INBOX')->orWhere('label','SENT')->orderBy('time','ASC')->groupBy('thread_id'); })
+                                    ->orWhere('from_mail','like','%'.$query.'%')
+                                    ->orWhere('body','like','%'.$query.'%')
+                                    ->orWhere('subject','like','%'.$query.'%')->get();
     }else{
         $data['mails'] = MailSupport::whereIn('id', function($query){ $query->selectRaw('max(id)')->from('create_mail_table')->orWhere('label','INBOX')->orWhere('label','SENT')->orderBy('time','ASC')->groupBy('thread_id'); })
                                     ->get();
     }    
     return View::make('support.mailSupport.mail',$data);
-*/
    }
 
    public function ticket($thread_id){
