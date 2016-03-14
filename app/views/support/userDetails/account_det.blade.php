@@ -239,7 +239,7 @@
                                         </div>                                                                                                                       
 			                            <div id="tab-ticket" class="tab-pane fade in">
                                         <div class="panel panel-blue">                                        
-                                        <table id="ticketTable" class="table table-hover table-bordered" on="ticket('{{$user->account_id}}')">
+                                        <table id="ticketTable" class="table table-hover table-bordered" onclick="ticket('{{$user->account_id}}')">
                                         	<thead>
                                         		<tr>
                                                     <th>ID</th>

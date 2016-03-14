@@ -8,7 +8,7 @@
             <li><a href="dashboard.html"><i class="fa fa-tachometer fa-fw">
                 <div class="icon-bg bg-orange"></div>
             </i><span class="menu-title">Dashboard</span></a></li>
-			<li><a href="/userDetails"><i class="fa icon-lock fa-fw">
+			<li><a href="/userDet"><i class="fa icon-lock fa-fw">
                 <div class="icon-bg bg-pink"></div>
             </i><span class="menu-title">User Info</span></a>
                
