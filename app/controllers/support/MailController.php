@@ -21,7 +21,7 @@ class MailController extends BaseController {
     var_dump(count($check)); die;
 */
 
-    return View::make('support.userDetails.test');
+    #return View::make('support.userDetails.test');
 
     $query = Input::get('query');
     if($query != NULL){

@@ -1,5 +1,72 @@
 @extends('support.layouts.default')
 @section('main')
+<div class="page-content">
+		@if (Session::has('message'))
+			<div class="alert alert-success">{{ Session::get('message') }}</div>
+		@endif
+    <div id="tab-general" class="layout-block">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="portlet box">
+                    <div class="portlet-header">
+                        <div class="caption">{{$list->subject}}</div>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="chat-scroller">
+                            <ul class="chats">
+                            @foreach($mails as $mail)
+                                @if($mail->label =='INBOX')
+                                	<li class="in"><img src="/assets/dist/support/images/avatar/48.jpg" class="avatar img-responsive" />
+                                @else
+                                	<li class="out"><img src="/assets/dist/support/images/avatar/49.jpg" class="avatar img-responsive" />
+					        		<a href="/assets/dist/support/images/adminbills.csv" class="btn btn-green">
+					        			<i class="fa fa-download"> 
+					        				
+					        			</i>
+					        		</a>                                        
+                                @endif
+                                    <div class="message">
+                                        <span class="chat-arrow"></span>
+                                        <a href="#" class="chat-name">{{$mail->from_mail}}</a>&nbsp; at
+                            			<span title="{{$mail->time}}" data-livestamp="{{$mail->time}}"></span>
+<!--                                         <span
+                                                            class="chat-datetime">at July 06, 2014 17:06</span> -->
+                                        <span class="chat-body">{{$mail->body}}</span>
+                                    </div>
+                                </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        <div class="chat-form">
+                            <div class="input-group">
+                                <input id="input-chat" type="text" placeholder="Type a message here..." class="form-control" readonly />
+                                <span
+                                                    id="btn-chat" class="input-group-btn">
+                                    <button type="button" class="btn btn-green">
+                                        <i class="fa fa-check"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 	<div class="page-content">
 		@if (Session::has('message'))
 			<div class="alert alert-success">{{ Session::get('message') }}</div>
@@ -17,7 +84,7 @@
 				            	{{$mail->body}}
 				            	@if($mail->attachment)
 							        @foreach(json_decode($mail->attachment) as $attachment)</br>
-						        		<a href="/assets/dist/support/images/adminbills.csv" class="btn btn-green">
+						        		<a href="//assets/dist/support/images/adminbills.csv" class="btn btn-green">
 						        			<i class="fa fa-download"> 
 						        				{{ $attachment->filename }} 
 						        			</i>
