@@ -37,9 +37,33 @@
                                                             class="chat-datetime">at July 06, 2014 17:06</span> -->
                                         <span class="chat-body">{{$mail->body}}</span>
                                     </div>
-                                </li>
                                 @endforeach
+                                </li>
+                                <li class="out" style="background-color: none;"><img src="/assets/dist/support/images/avatar/49.jpg" class="avatar img-responsive" />
+                                <div class="message" id="replyJump">
+                                <span class="chat-arrow"></span>
+	                                <a href="#replyJump" class="jumper">
+	                                	<span class="btn btn-blue">Reply</span>
+	                                </a>&nbsp;&nbsp;&nbsp;&nbsp;
+	                                <a href="#replyJump" class="jumper">
+	                                	<span class="btn btn-blue">Forward</span>
+	                                </a>&nbsp;&nbsp;&nbsp;&nbsp;
+	                                <a href="#replyJump" class="jumper">
+	                                	<span class="btn btn-blue">Add Note</span>
+	                                </a>
+                                </div>
+                                </li>
                             </ul>
+                            <div class="chat-form">
+    <div class="input-group">
+        <input id="input-chat" type="text" placeholder="Type a message here..." class="form-control">
+            <span id="btn-chat" class="input-group-btn">
+                <button type="button" class="btn btn-green">
+                    <i class="fa fa-check"></i>
+                </button>
+            </span>
+        </div>
+    </div>
                         </div>
                         <div class="chat-form">
                             <div  id="test1" class="input-group">
