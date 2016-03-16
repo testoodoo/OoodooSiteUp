@@ -19,11 +19,15 @@
                                 	<li class="in"><img src="/assets/dist/support/images/avatar/48.jpg" class="avatar img-responsive" />
                                 @else
                                 	<li class="out"><img src="/assets/dist/support/images/avatar/49.jpg" class="avatar img-responsive" />
-					        		<a href="/assets/dist/support/images/adminbills.csv" class="btn btn-green">
-					        			<i class="fa fa-download"> 
-					        				
-					        			</i>
-					        		</a>                                        
+					            	@if($mail->attachment)
+								        @foreach(json_decode($mail->attachment) as $attachment)</br>
+							        		<a href="//assets/dist/support/images/adminbills.csv" class="btn btn-green">
+							        			<i class="fa fa-download"> 
+							        				{{ $attachment->filename }} 
+							        			</i>
+							        		</a>
+							        	@endforeach
+							        @endif                                       
                                 @endif
                                     <div class="message">
                                         <span class="chat-arrow"></span>
@@ -38,12 +42,11 @@
                             </ul>
                         </div>
                         <div class="chat-form">
-                            <div class="input-group">
-                                <input id="input-chat" type="text" placeholder="Type a message here..." class="form-control" readonly />
-                                <span
-                                                    id="btn-chat" class="input-group-btn">
-                                    <button type="button" class="btn btn-green">
-                                        <i class="fa fa-check"></i>
+                            <div  id="test1" class="input-group">
+                                <input id="input-chat" style="display: toggle;" type="text" placeholder="Type a message here..." class="form-control" readonly />
+                                <span id="btn-chat" class="input-group-btn">
+                                    <a href="#test1" class="jumper"><button type="button" class="btn btn-green">
+                                        <i class="fa fa-check"></i></a>
                                     </button>
                                 </span>
                             </div>
@@ -84,7 +87,7 @@
 				            	{{$mail->body}}
 				            	@if($mail->attachment)
 							        @foreach(json_decode($mail->attachment) as $attachment)</br>
-						        		<a href="//assets/dist/support/images/adminbills.csv" class="btn btn-green">
+						        		<a href="/assets/dist/support/images/adminbills.csv" class="btn btn-green">
 						        			<i class="fa fa-download"> 
 						        				{{ $attachment->filename }} 
 						        			</i>
@@ -123,14 +126,6 @@
 			    </div>
 			</div>
 			<div class="col-lg-3">
-<!-- 				<div class="form-group">
-				<div class="panel panel-blue" style="background:#FFF;">
-					<div class ="panel-heading"> Ticket Status </div>
-					<div class="panel-body">
-						hello
-					</div>
-				</div>
-				</div> -->
 				<div class="form-group">
 				<div class="panel panel-blue" style="background:#FFF;">
 					<div class ="panel-heading"> Remarks </div>

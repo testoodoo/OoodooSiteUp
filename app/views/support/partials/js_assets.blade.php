@@ -38,6 +38,8 @@
     {{ HTML::script('/assets/dist/support/js/jquery.js') }}        
     {{ HTML::script('/assets/dist/support/js/moment.js') }}    
     {{ HTML::script('/assets/dist/support/js/livestamp.min.js') }}
+    {{ HTML::script('/assets/dist/support/js/support.js') }}
+
 
 
 
