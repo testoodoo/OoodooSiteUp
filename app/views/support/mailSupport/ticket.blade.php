@@ -39,10 +39,10 @@
                                     </div>
                                 @endforeach
                                 </li>
-                                <li class="out" style="background-color: none;"><img src="/assets/dist/support/images/avatar/49.jpg" class="avatar img-responsive" />
+                                <li class="out" id="replyHide"><img src="/assets/dist/support/images/avatar/49.jpg" class="avatar img-responsive" />
                                 <div class="message" id="replyJump">
                                 <span class="chat-arrow"></span>
-	                                <a href="#replyJump" class="jumper">
+	                                <a href="#replyJump" id="replyMessage" class="jumper">
 	                                	<span class="btn btn-blue">Reply</span>
 	                                </a>&nbsp;&nbsp;&nbsp;&nbsp;
 	                                <a href="#replyJump" class="jumper">
@@ -53,17 +53,15 @@
 	                                </a>
                                 </div>
                                 </li>
-                            </ul>
-                            <div class="chat-form">
+<li class="out chat-form" id="replyContent"><img src="/assets/dist/support/images/avatar/49.jpg" class="avatar img-responsive" />
     <div class="input-group">
         <input id="input-chat" type="text" placeholder="Type a message here..." class="form-control">
             <span id="btn-chat" class="input-group-btn">
-                <button type="button" class="btn btn-green">
-                    <i class="fa fa-check"></i>
-                </button>
+                
             </span>
         </div>
-    </div>
+    </li>
+                            </ul>
                         </div>
                         <div class="chat-form">
                             <div  id="test1" class="input-group">
@@ -176,9 +174,12 @@
 		</div>
 	</div>
 
-	<script>
-	function sendmail(){
-	             jQuery('#replyMessage').toggle('hide');	
-	}
-	</script>
+<script>
+$(document).ready(function() {
+		$('#replyContent').hide();
+	$("#replyMessage").click(function() {
+		$('#replyHide, #replyContent').toggle();
+	});
+});
+</script>
 @stop
