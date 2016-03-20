@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $(".jumper").on("click", function( e ) {
+	$(".jumper").on("click", function( e ) {
 
         e.preventDefault();
 
@@ -8,6 +8,11 @@ $(document).ready(function() {
         }, 600);
 
     });
+
+	$('#replyContent').hide();
+	$("#replyMessage").click(function() {
+		$('#replyHide, #replyContent').toggle();
+	});
 });
 
 

@@ -53,15 +53,14 @@
 	                                </a>
                                 </div>
                                 </li>
-<li class="out chat-form" id="replyConten"><img src="/assets/dist/support/images/avatar/49.jpg" class="avatar img-responsive" />
-    <div class="input-group message">
-    <span class="chat-arrow"></span>
-        <input id="input-chat" type="textarea" placeholder="Type a message here..." class="form-control">
-            <span id="btn-chat" class="input-group-btn">
-                
-            </span>
-        </div>
-</li>
+                                <li class="out" id="replyContent"><img src="/assets/dist/support/images/avatar/49.jpg" class="avatar img-responsive" />
+                                <div class="message" id="replyJump">
+                                <span class="chat-arrow"></span>
+                                <textarea style="height: 7cm;" class="form-control"></textarea>
+
+
+                                </div>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -165,12 +164,4 @@
 		</div>
 	</div>
 
-<script>
-$(document).ready(function() {
-		$('#replyContent').hide();
-	$("#replyMessage").click(function() {
-		$('#replyHide, #replyContent').toggle();
-	});
-});
-</script>
 @stop
