@@ -53,25 +53,16 @@
 	                                </a>
                                 </div>
                                 </li>
-<li class="out chat-form" id="replyContent"><img src="/assets/dist/support/images/avatar/49.jpg" class="avatar img-responsive" />
-    <div class="input-group">
-        <input id="input-chat" type="text" placeholder="Type a message here..." class="form-control">
+<li class="out chat-form" id="replyConten"><img src="/assets/dist/support/images/avatar/49.jpg" class="avatar img-responsive" />
+    <div class="input-group message">
+    <span class="chat-arrow"></span>
+        <input id="input-chat" type="textarea" placeholder="Type a message here..." class="form-control">
             <span id="btn-chat" class="input-group-btn">
                 
             </span>
         </div>
-    </li>
+</li>
                             </ul>
-                        </div>
-                        <div class="chat-form">
-                            <div  id="test1" class="input-group">
-                                <input id="input-chat" style="display: toggle;" type="text" placeholder="Type a message here..." class="form-control" readonly />
-                                <span id="btn-chat" class="input-group-btn">
-                                    <a href="#test1" class="jumper"><button type="button" class="btn btn-green">
-                                        <i class="fa fa-check"></i></a>
-                                    </button>
-                                </span>
-                            </div>
                         </div>
                     </div>
                 </div>
