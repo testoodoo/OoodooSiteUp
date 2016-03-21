@@ -15,6 +15,7 @@
                         <div class="chat-scroller">
                             <ul class="chats">
                             @foreach($mails as $mail)
+                            <input type="hidden" id="threadId" value="{{$mail->thread_id}}">
                                 @if($mail->label =='INBOX')
                                 	<li class="in"><img src="/assets/dist/support/images/avatar/48.jpg" class="avatar img-responsive" />
                                 @else
@@ -56,9 +57,9 @@
                                 <li class="out" id="replyContent"><img src="/assets/dist/support/images/avatar/49.jpg" class="avatar img-responsive" />
                                 <div class="message" id="replyJump">
                                 <span class="chat-arrow"></span>
-                                <textarea style="height: 7cm;" class="form-control"></textarea>
-
-
+                                <textarea style="height: 7cm;" class="form-control textarea"></textarea><br>
+                                <span id="cancelMessage" class="btn btn-orange">Cancel</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <span id="reply" class="btn btn-blue">Reply</span>
                                 </div>
                                 </li>
                             </ul>
@@ -70,6 +71,18 @@
     </div>
 </div>
 
+<script>
+$(document).ready(function() {
+ $('#reply').click(function() {
+ 	var body = $('.textarea').val();
+ 	var thread_id = $('#threadId').val();
+ 	alert(thread_id);
+
+
+ });
+
+});
+</script>
 
 
 

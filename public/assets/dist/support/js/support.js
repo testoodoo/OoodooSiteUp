@@ -10,7 +10,7 @@ $(document).ready(function() {
     });
 
 	$('#replyContent').hide();
-	$("#replyMessage").click(function() {
+	$("#cancelMessage, #replyMessage").click(function() {
 		$('#replyHide, #replyContent').toggle();
 	});
 });

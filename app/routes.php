@@ -493,7 +493,7 @@ Route::group( array('domain' => 'test.accounts.oodoo.co.in' ), function() {
         Route::post('mailSupport', array('as' => '', 'uses' => 'MailController@index'));
         Route::get('mailSupport/{id}', array('as'=>'', 'uses' => 'MailController@ticket'));
         Route::post('mailSupport/{id}', array('as'=>'', 'uses' => 'MailController@ticket'));  
-        Route::post('replyMessage/{thread_id}',array('as'=>'', 'uses'=> 'MailController@replyMessage'));      
+        Route::post('replyMessage',array('as'=>'', 'uses'=> 'MailController@replyMessage'));      
 
 
 
