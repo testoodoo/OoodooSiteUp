@@ -79,6 +79,12 @@
                                                 <td>{{$user->account_id}}</td>
                                             </tr>
                                             <tr>
+                                                <td>Status</td>
+                                                <td>
+                                                    <span class="label label-success">Active</span>
+                                                </td>
+                                            </tr>	                                                                                   
+                                            <tr>
                                                 <td>Phone</td>
                                                 <td>{{$user->phone}}</td>
                                             </tr>                                            
@@ -98,12 +104,6 @@
                                                 <td>Plan Cycle</td>
                                                 <td>{{$user->plan()->plan_start_date}}&nbsp;To&nbsp;{{$user->plan()->plan_start_date}}</td>
                                             </tr>
-                                            <tr>
-                                                <td>Status</td>
-                                                <td>
-                                                    <span class="label label-success">Active</span>
-                                                </td>
-                                            </tr>	                                                                                   
                                         </tbody>
                                     </table>
                                     <div class="common-modal modal fade" id="common-Modal1" tabindex="-1" role="dialog" aria-hidden="true">

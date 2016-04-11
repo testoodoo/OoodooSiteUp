@@ -76,7 +76,18 @@ $(document).ready(function() {
  $('#reply').click(function() {
  	var body = $('.textarea').val();
  	var thread_id = $('#threadId').val();
- 	alert(thread_id);
+
+ 	$.ajax(
+ 	{
+ 		url : '/replyMessage',
+ 		type :'post',
+ 		data : {body : body, thread_id : thread_id},
+ 		success: function(data) {
+ 			if(data["mail"] == "false") {
+ 				alert('fail');
+ 			}
+	 	}
+ 	});
 
 
  });
