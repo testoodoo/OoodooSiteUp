@@ -501,6 +501,11 @@ Route::group( array('domain' => 'test.accounts.oodoo.co.in' ), function() {
         Route::get('mailType', array('as' => '', 'uses' => 'MailController@mailType'));
         Route::get('/oauth2callback', array('as' => '', 'uses' => 'MailController@index'));
 
+        Route::get('payment', array('as' => '', 'uses' => 'support\\SupportController@payment_det'));
+        Route::get('bill', array('as' => '', 'uses' => 'support\\SupportController@bill_det'));
+        Route::get('session', array('as' => '', 'uses' => 'support\\SupportController@session_det'));  
+        Route::get('usage', array('as' => '', 'uses' => 'support\\SupportController@usage_det'));  
+        Route::get('ticket', array('as' => '', 'uses' => 'support\\SupportController@ticket_det'));                     
         });
         
         Route::get('/login',  array('as' => 'support.login', 'uses' => 'support\\AuthController@index'));

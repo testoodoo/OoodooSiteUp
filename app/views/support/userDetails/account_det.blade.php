@@ -266,11 +266,21 @@
 </div>
 <script>
 jQuery(document).ready(function() {
-    var oTable = jQuery('#paymentTable').dataTable({
+             var oTable = jQuery('#paymentTable').dataTable({
+                processing: true,
+                serverSide: true,
+                "pageLength": 10,
+                       "ajax": '/payment?account_id={{$user->account_id}}',
+                       "type":'get',
+                   });
+});
+
+
+            var oTable = jQuery('#billTable').dataTable({
                 processing: true,
                 serverSide: true,
                 "pageLength": 3,
-                       "ajax": '/admin/bills/user_bill?account_id={{$user->account_id}}',
+                       "ajax": '/bill?account_id={{$user->account_id}}',
                        "type":'get',
 
                         "createdRow": function ( row, data, index ) {
@@ -284,6 +294,41 @@ jQuery(document).ready(function() {
                 },
 
                    });
-});
+
+              var oTable = jQuery('#usageTable').dataTable({
+                processing: true,
+                serverSide: true,
+                "pageLength": 3,
+                       "ajax": '/usage?account_id={{$user->account_id}}',
+                       "type":'get',
+                        "createdRow": function ( row, data, index ) {
+                        var total_gb=data[8]/1000000000;
+                        var gb=total_gb.toFixed(2);
+                        $('td:eq(8)', row).html(gb);
+                },
+                   });
+
+              var oTable = jQuery('#sessionTable').dataTable({
+                processing: true,
+                serverSide: true,
+                "pageLength": 3,
+                       "ajax": '/session?account_id={{$user->account_id}}',
+                       "type":'get',
+                   });
+
+              var oTable = jQuery('#active_session').dataTable({
+                processing: true,
+                serverSide: true,
+                       "ajax": '/admin/users-old/active_session_ajax?account_id={{$user->account_id}}',
+                       "type":'get',
+                   });
+
+              var oTable = jQuery('#ticketTable').dataTable({
+                processing: true,
+                serverSide: true,
+                "pageLength": 3,
+                       "ajax": '/ticket?account_id={{$user->account_id}}',
+                       "type":'get',
+                   });            
 </script>
 @stop
