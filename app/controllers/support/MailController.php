@@ -17,13 +17,6 @@ class MailController extends BaseController {
 
    public function index(){
 
-    $array = '[null,["2016-03-27 0:04:06 - INFO --> REQUEST is Array"],["("],["[action] => update_sessions"],["[sessionData] => Array"],["("],["[0] => Array"],["("],["[CompletedUserSession] => Array"],["("],["[id] => 562979"],["[user_id] => 991"],["[start_time] => 2016-03-26 01:40:56"],["[stop_time] => 2016-03-26 23:59:28"],["[ip_addr] => 103.38.247.192"],["[mac] => a4:2b:8c:fa:e7:05"],["[download_bytes] => 1974613944"],["[upload_bytes] => 101916837"],["[current_bandwidth] => 31744000\/31744000"],["[bandwidth_template] => 30 Mbps UP 30 Mbps Down"],["[nas_ip_address] => 103.38.244.38"],["[nas_mac] => 00:0c:29:6d:ec:a2"],["[download_rate] => 0"],["[upload_rate] => 0"],["[terminate_cause] => User-Request"],[")"],[""],["[User] => Array"],["("],["[user_group_id] => 17"],[")"],[""],[")"],[""],["[1] => Array"],["("],["[CompletedUserSession] => Array"],["("],["[id] => 564632"],["[user_id] => 2009"],["[start_time] => 2016-03-26 07:10:20"],["[stop_time] => 2016-03-26 10:11:29"],["[ip_addr] => 45.117.134.240"],["[mac] => 70:5a:b6:8f:2f:3f"],["[download_bytes] => 3023981811"],["[upload_bytes] => 2404539492"],["[current_bandwidth] => 9216000\/9216000"],["[bandwidth_template] => 8 Mbps UP 8 Mbps Down"],["[nas_ip_address] => 103.38.244.38"],["[nas_mac] => 00:0c:29:6d:ec:a2"],["[download_rate] => 139176"],["[upload_rate] => 2086808"],[")"],[""],["[User] => Array"],["("],["[user_group_id] => 15"],[")"],[""],[")"],[""],["[2] => Array"],["("],["[CompletedUserSession] => Array"],["("],["[id] => 565152"],["[user_id] => 394"],["[start_time] => 2016-03-26 08:51:39"],["[stop_time] => 2016-03-27 00:02:26"],["[ip_addr] => 103.38.245.247"],["[mac] => a4:2b:8c:f4:00:9f"],["[download_bytes] => 2771205771"],["[upload_bytes] => 269317322"],["[current_bandwidth] => 5120000\/5120000"],["[bandwidth_template] =>  4 Mbps UP 4 Mbps Down"],["[nas_ip_address] => 103.38.244.38"],["[nas_mac] => 00:0c:29:6d:ec:a2"],["[download_rate] => 3594992"],["[upload_rate] => 347112"],[")"],[""],["[User] => Array"],["("],["[user_group_id] => 14"],[")"],[""],[")"],[")"],[""],[")"]]';
-    var_dump(json_decode($array)); die;
-/*    $check = MailSupport::all();
-    var_dump(count($check)); die;
-*/
-
-    #return View::make('support.userDetails.test');
 
     $query = Input::get('query');
     if($query != NULL){

@@ -265,11 +265,25 @@
     </div>
 </div>
 <script>
-function ticket(account_id){
-    alert(account_id);
-}
-function thisis(){
-    alert('hi');
-}
+jQuery(document).ready(function() {
+    var oTable = jQuery('#paymentTable').dataTable({
+                processing: true,
+                serverSide: true,
+                "pageLength": 3,
+                       "ajax": '/admin/bills/user_bill?account_id={{$user->account_id}}',
+                       "type":'get',
+
+                        "createdRow": function ( row, data, index ) {
+                    if(data[12] == "paid"){
+                            $('td:eq(12)', row).html('<span style="color:green">Paid</span>');
+                    }else if(data[12] == "not_paid"){
+                            $('td:eq(12)', row).html('<span style="color:red">Not Paid</span>');
+                    }else if(data[12] == "partially_paid"){
+                            $('td:eq(12)', row).html('<span style="color:orange">Partially Paid</span>');
+                    }
+                },
+
+                   });
+});
 </script>
 @stop

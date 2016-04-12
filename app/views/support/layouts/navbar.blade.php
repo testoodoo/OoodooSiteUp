@@ -16,7 +16,7 @@
                     <span class="fa fa-rocket"></span>
                     <span class="logo-text" style="display: none">Xperia</span>
                     <span class="logo-text-icon">
-                        <img src="assets/dist/support/images/logo.png" alt="xperia" class="img-responsive">
+                        <img src="/assets/dist/support/images/logo.png" alt="xperia" class="img-responsive">
                         </span>
                     </a>
             </div>            
