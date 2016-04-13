@@ -5699,6 +5699,7 @@ background-color: #66b0ea;
     border: 1px solid #c4c9d8;
     box-shadow: inset 0 2px #fff,0 1px 3px rgba(0,0,0,0.05);
     background: #f5f7fa;
+    width: auto;
 }
 .tabbable:before {
   display: table;
