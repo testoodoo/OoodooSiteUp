@@ -75,7 +75,7 @@
                                     </div>
                                     </div>
                                     <div class="col-md-3">
-                                    <table class="table table-striped table-hover">
+                                    <table class="table table-striped table-hover" id="theTable">
                                         <tbody>
                                             <tr>
                                                 <td>Account ID</td>
@@ -86,24 +86,29 @@
                                                 <td>
                                                     <span class="label label-success">Active</span>
                                                 </td>
-                                            </tr>	                                                                                   
+                                            </tr>                                                                                      
                                             <tr>
                                                 <td>Phone</td>
                                                 <td>{{$user->phone}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Address</td>
+                                                <td>{{$user->address1}}<br>{{$user->address2}}<br>{{$user->address3}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Usage</td>
+                                                <td></td>
                                             </tr>
                                         </tbody>
                                     </table>
                                     </div>
                                     <div class="col-md-3">
+                                    <input class="tableid"></input>
                                     <table class="table table-striped table-hover">
                                     <tbody>
                                             <tr>
                                                 <td>Email</td>
                                                 <td>{{$user->email}}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Address</td>
-                                                <td>{{$user->address1}}<br>{{$user->address2}}<br>{{$user->address3}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Plan</td>
@@ -342,6 +347,8 @@ jQuery(document).ready(function() {
                         var total_gb=data[8]/1000000000;
                         var gb=total_gb.toFixed(2);
                         $('td:eq(8)', row).html(gb);
+
+                        $('#theTable tbody tr:nth-child(5),th:nth-child(2)').show(gb);
                 },
                    });
 
