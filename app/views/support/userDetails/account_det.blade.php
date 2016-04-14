@@ -56,10 +56,11 @@
                 </div>
             </div>
             <div class="col-lg-12">
-                <div class="row">
-                    <div class="col-md-12">
+<!--                 <div class="row">
+                    <div class="col-md-12"> -->
                         <h2>{{$user->first_name}}&nbsp;{{$user->last_name}}</h2>
                         <div class="row mtl">
+                        <div class="row">
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <div class="text-center mbl">
@@ -72,6 +73,8 @@
                                             </a>
                                         </div>
                                     </div>
+                                    </div>
+                                    <div class="col-md-3">
                                     <table class="table table-striped table-hover">
                                         <tbody>
                                             <tr>
@@ -87,7 +90,13 @@
                                             <tr>
                                                 <td>Phone</td>
                                                 <td>{{$user->phone}}</td>
-                                            </tr>                                            
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    </div>
+                                    <div class="col-md-3">
+                                    <table class="table table-striped table-hover">
+                                    <tbody>
                                             <tr>
                                                 <td>Email</td>
                                                 <td>{{$user->email}}</td>
@@ -106,6 +115,9 @@
                                             </tr>
                                         </tbody>
                                     </table>
+                                    </div>
+                                    </div>
+                                    </div>
                                     <div class="common-modal modal fade" id="common-Modal1" tabindex="-1" role="dialog" aria-hidden="true">
                                         <div class="modal-content">
                                             <ul class="list-inline item-details">
@@ -119,7 +131,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-9">
+                                <div class="">
                                     <ul class="nav nav-tabs">
                                         <li class="active">
                                             <a href="#tab-bill" data-toggle="tab">Bill</a>
@@ -134,11 +146,15 @@
                                             <a href="#tab-sessionHistory" data-toggle="tab">Session History</a>
                                         </li>
                                         <li>
-                                            <a href="#tab-logs" data-toggle="tab">Logs</a>
+                                            <a href="#tab-logs" data-toggle="tab" onclick="log({{$user->account_no}});">Logs</a>
                                         </li>
                                         <li>
                                             <a href="#tab-ticket" data-toggle="tab">Ticket</a>
-                                        </li>                                                                               
+                                        </li>
+                                        <li>
+                                            <a href="#tab-activeSession" data-toggle="tab">Active Session</a>
+                                        </li>                                         
+
                                     </ul>
                                     <div id="generalTabContent" class="tab-content">
                                         <div id="tab-bill" class="tab-pane fade in active" onload="thisis()">
@@ -224,7 +240,7 @@
                                         </div> 
 			                            <div id="tab-logs" class="tab-pane fade in">
                                         <div class="panel panel-blue">                                        
-                                        <table id="logTable" class="table table-hover table-bordered">
+                                        <table id="logTable" class="table table-hover table-bordered" onload='functon hello();'>
                                         	<thead>
                                         		<tr>
                                                     <th>Created</th>
@@ -234,6 +250,8 @@
                                                     <th>Message</th>                                       			                                        			                                        			
                                         		</tr>
                                         	</thead>
+                                            <tbody>
+                                            </tbody>
                                         </table>
                                         </div>
                                         </div>                                                                                                                       
@@ -254,12 +272,31 @@
                                         	</thead>
                                         </table>
                                         </div>
-                                    </div>                                        
+                                    </div> 
+                                        <div id="tab-activeSession" class="tab-pane fade in">
+                                        <div class="panel panel-blue">                                        
+                                        <table id="activesessionTable" class="table table-hover table-bordered" onclick="ticket('{{$user->account_id}}')">
+                                            <thead>
+                                                <tr>
+                                                    <th>Account ID</th>
+                                                    <th>MAC Address</th>
+                                                    <th>IP Address</th>
+                                                    <th>Bytes Down</th>
+                                                    <th>Bytes Up</th>
+                                                    <th>Download Rate</th>
+                                                    <th>Upload Rate</th>
+                                                    <th>Start Time</th>
+                                                    <th>Duration</th>                                                                                                                                                           
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                        </div>
+                                    </div>                                                                            
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    <!-- </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -316,10 +353,10 @@ jQuery(document).ready(function() {
                        "type":'get',
                    });
 
-              var oTable = jQuery('#active_session').dataTable({
+              var oTable = jQuery('#activesessionTable').dataTable({
                 processing: true,
                 serverSide: true,
-                       "ajax": '/admin/users-old/active_session_ajax?account_id={{$user->account_id}}',
+                       "ajax": '/active_session?account_id={{$user->account_id}}',
                        "type":'get',
                    });
 
@@ -329,6 +366,35 @@ jQuery(document).ready(function() {
                 "pageLength": 3,
                        "ajax": '/ticket?account_id={{$user->account_id}}',
                        "type":'get',
-                   });            
+                   });
+           
+                             
 </script>
+<script>
+function hello(){
+    alert('hi');
+}
+
+     function log(p) {
+            var account_id =+p;
+                $.ajax({
+                    url : '/log',
+                    type : 'GET',
+                    data : {account_id :account_id},
+                    dataType:'json',
+                    success : function(data) {
+                        if (data["found"] == "false") {
+                                    alert('Logs Not available');
+                                }else{
+                        $('#logTable tbody').remove();
+                         var trHTML = '';
+                        $.each(data, function (i, item) {
+                            trHTML += '<tr><td>' + item.created + '</td><td>' + item.username  + '</td><td>' + item.mac + '</td><td>'+ item.ap_mac + '</td><td>'+ item.message + '</td></tr>';
+                        });
+                    $('#logTable').append(trHTML);
+                    }
+                }
+                });
+    }
+</script>    
 @stop

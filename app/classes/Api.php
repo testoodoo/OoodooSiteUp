@@ -3,9 +3,9 @@ class Api  {
 
 	public function jcloud_login() {
 
-		$Jaze_MainUrl = "https://cloud.jazenetworks.com/";
+		$Jaze_MainUrl = "https://nas.oodoo.co.in:8000/";
 
-		$username='gk@oodoo.co.in';
+		$username='nas@oodoo.co.in';
 		$password='H#ll0123';
 		$loginUrl =$Jaze_MainUrl.'login/login_post';
 		 
@@ -23,7 +23,11 @@ class Api  {
 		 
 		//Set the post parameters
 		curl_setopt($ch, CURLOPT_POSTFIELDS, 'username='.$username.'&password='.$password);
-		 
+
+		 //SET ingnore SSL verification 
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+
 		 //Set CAINFO Certicates path
 		curl_setopt ($ch, CURLOPT_CAINFO, "/var/www/japi/ca-bundle.pem");
 
@@ -51,18 +55,17 @@ class Api  {
 			} else {
 				return False;
 			}
-		//the login is now done and you can continue to get the
-		//protected content.
 	}
 
 
 	public static function japi_add_users($jplan_code,$account_id,$password,$userState,$activationDate,$expirationDate)
 	{
+		//var_dump($jplan_code,$account_id,$password,$userState,$activationDate,$expirationDate);die;
 		ini_set('max_execution_time', 3000);
-		$Jaze_MainUrl = "https://cloud.jazenetworks.com/";
+		$Jaze_MainUrl = "https://nas.oodoo.co.in:8000/";
 		$Jaze_ApiUrl = "api/v1/";
 		$Jaze_UserName='oodoo';
-		$Jaze_PassWord='a46778f55540ac42def9e2eaab27cedc660c3eaa';
+		$Jaze_PassWord='24ecf83908129ef632daccf1150019c2de4895da';
 
 		$AddAccountUrl = $Jaze_MainUrl.$Jaze_ApiUrl.'add_user';
 		//echo $AddAccountUrl;
@@ -74,6 +77,10 @@ class Api  {
 		//curl_setopt($ch, CURLOPT_HEADER, 1);
 		 
 		curl_setopt($ch, CURLOPT_USERPWD, $Jaze_UserName. ":" . $Jaze_PassWord );
+
+		 //SET ingnore SSL verification 
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 
 		//Set CAINFO Certicates path
 		curl_setopt ($ch, CURLOPT_CAINFO, "/var/www/japi/ca-bundle.pem");
@@ -111,10 +118,10 @@ class Api  {
 
 
 		ini_set('max_execution_time', 3000);
-		$Jaze_MainUrl = "https://cloud.jazenetworks.com/";
+		$Jaze_MainUrl = "https://nas.oodoo.co.in:8000/";
 		$Jaze_ApiUrl = "api/v1/";
 		$Jaze_UserName='oodoo';
-		$Jaze_PassWord='a46778f55540ac42def9e2eaab27cedc660c3eaa';
+		$Jaze_PassWord='24ecf83908129ef632daccf1150019c2de4895da';
 
 		$ActivateUrl = $Jaze_MainUrl.$Jaze_ApiUrl.'add_user';
 		//echo $AddAccountUrl;
@@ -126,6 +133,10 @@ class Api  {
 		//curl_setopt($ch, CURLOPT_HEADER, 1);
 		 
 		curl_setopt($ch, CURLOPT_USERPWD,$Jaze_UserName. ":" .$Jaze_PassWord);
+
+		 //SET ingnore SSL verification 
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 
 		//Set CAINFO Certicates path
 		curl_setopt ($ch, CURLOPT_CAINFO, "/var/www/japi/ca-bundle.pem");
@@ -155,7 +166,6 @@ class Api  {
 
 		return $store;
 
-
 	}
 
 
@@ -164,10 +174,10 @@ public static function japi_password_reset($jaccount_no,$password)
 
 
 		ini_set('max_execution_time', 3000);
-		$Jaze_MainUrl = "https://cloud.jazenetworks.com/";
+		$Jaze_MainUrl = "https://nas.oodoo.co.in:8000/";
 		$Jaze_ApiUrl = "api/v1/";
 		$Jaze_UserName='oodoo';
-		$Jaze_PassWord='a46778f55540ac42def9e2eaab27cedc660c3eaa';
+		$Jaze_PassWord='24ecf83908129ef632daccf1150019c2de4895da';
 
 		$ActivateUrl = $Jaze_MainUrl.$Jaze_ApiUrl.'add_user';
 		//echo $AddAccountUrl;
@@ -182,6 +192,10 @@ public static function japi_password_reset($jaccount_no,$password)
 
 		//Set CAINFO Certicates path
 		curl_setopt ($ch, CURLOPT_CAINFO, "/var/www/japi/ca-bundle.pem");
+
+		 //SET ingnore SSL verification 
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 
 		// ENABLE HTTP POST
 		curl_setopt($ch, CURLOPT_POST, 1);
@@ -224,6 +238,10 @@ public static function japi_password_reset($jaccount_no,$password)
 		//curl_setopt($ch, CURLOPT_HEADER, 1);
 		 
 		curl_setopt($ch, CURLOPT_USERPWD, $GLOBALS['Jaze_UserName'] . ":" . $GLOBALS['Jaze_PassWord'] );
+
+		 //SET ingnore SSL verification 
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 
 		//Set CAINFO Certicates path
 		curl_setopt ($ch, CURLOPT_CAINFO, "/var/www/japi/ca-bundle.pem");
@@ -271,6 +289,10 @@ public static function japi_password_reset($jaccount_no,$password)
 		 
 		curl_setopt($ch, CURLOPT_USERPWD, $GLOBALS['Jaze_UserName'] . ":" . $GLOBALS['Jaze_PassWord'] );
 
+		 //SET ingnore SSL verification 
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+
 		//Set CAINFO Certicates path
 		curl_setopt ($ch, CURLOPT_CAINFO, "/var/www/japi/ca-bundle.pem");
 
@@ -315,6 +337,10 @@ public static function japi_password_reset($jaccount_no,$password)
 		 
 		curl_setopt($ch, CURLOPT_USERPWD, $GLOBALS['Jaze_UserName'] . ":" . $GLOBALS['Jaze_PassWord'] );
 
+		 //SET ingnore SSL verification 
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+
 		//Set CAINFO Certicates path
 		curl_setopt ($ch, CURLOPT_CAINFO, "/var/www/japi/ca-bundle.pem");
 
@@ -353,6 +379,10 @@ public static function japi_password_reset($jaccount_no,$password)
 		// ENABLE HEADER Print
 		//curl_setopt($ch, CURLOPT_HEADER, 1);
 
+		 //SET ingnore SSL verification 
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+
 		//Set CAINFO Certicates path
 		curl_setopt ($ch, CURLOPT_CAINFO, "/var/www/japi/ca-bundle.pem");
 
@@ -382,7 +412,7 @@ public static function japi_password_reset($jaccount_no,$password)
 
 	public static function japi_user_logs($jaccount_no, $idisplaystart=0, $idisplaylength=10)
 	{
-		$Jaze_MainUrl = "https://cloud.jazenetworks.com/";
+		$Jaze_MainUrl = "https://nas.oodoo.co.in:8000/";
 
 		$api=new Api;
 
@@ -397,6 +427,10 @@ public static function japi_password_reset($jaccount_no,$password)
 		curl_setopt($ch, CURLOPT_URL, $User_Logs );
 		// ENABLE HEADER Print
 		//curl_setopt($ch, CURLOPT_HEADER, 1);
+		
+		 //SET ingnore SSL verification 
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 
 		//Set CAINFO Certicates path
 		curl_setopt ($ch, CURLOPT_CAINFO, "/var/www/japi/ca-bundle.pem");

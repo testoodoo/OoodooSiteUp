@@ -1,6 +1,6 @@
 <?php
 namespace Support;
-use View, BaseController, Masterdata, MailSupport, Input, CusDet, Ticket, DB, Datatables, Bill, SessionDhh;
+use View, BaseController, Masterdata, MailSupport, Input, CusDet, Ticket, DB, Datatables, Bill, SessionDhh, Response, JAccountDetail, Api;
 class SupportController extends BaseController {
 	public function index($account_id){
 
@@ -121,8 +121,42 @@ class SupportController extends BaseController {
                  												</div>',false)->make();
 
         	return $ticket_det;
-	    }		
+	    }
+
 	}  
+	 
+	 public function log_det(){
+
+    	$account_no = Input::get('account_id');
+    	$account=CusDet::where('account_no','=',$account_no)->get()->first();
+    	if($account){
+	    		$jaccount=JAccountDetail::where('account_id','=',$account->account_id)->get()->first();
+
+	    		$logs=Api::japi_user_logs($jaccount->jaccount_no,0,5);
+
+				if(json_decode($logs)->aaData){		
+					return json_decode($logs)->aaData;
+				}else{
+					return Response::json(array('found' => "false"));
+				}
+			}
+		return Response::json(array('found' => "false"));
+
+	}
+
+	public function active_session_det(){
+    	$account_id = Input::get('account_id');
+/*    	var_dump($account_id); die;*/
+    	if($account_id){
+	    		$active_session=DB::table('jactive_session')->select('account_id','mac_address','ip_address','bytes_down','bytes_up',
+	    			'download_rate','upload_rate','start_time','duration')
+	    					->where('account_id','=',$account_id);
+	    	$session_det = Datatables::of($active_session)->make();
+	    	return $session_det;
+	    }		
+	}
+
+
 
 }
 

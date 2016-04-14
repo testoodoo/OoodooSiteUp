@@ -12,7 +12,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a id="logo" href="index.html" class="navbar-brand">
+                <a id="logo" class="navbar-brand">
                     <span class="fa fa-rocket"></span>
                     <span class="logo-text" style="display: none">Xperia</span>
                     <span class="logo-text-icon">
