@@ -96,14 +96,13 @@
                                                 <td>{{$user->address1}}<br>{{$user->address2}}<br>{{$user->address3}}</td>
                                             </tr>
                                             <tr>
-                                                <td>Usage</td>
-                                                <td></td>
+
+                                                
                                             </tr>
                                         </tbody>
                                     </table>
                                     </div>
                                     <div class="col-md-3">
-                                    <input class="tableid"></input>
                                     <table class="table table-striped table-hover">
                                     <tbody>
                                             <tr>
@@ -347,8 +346,7 @@ jQuery(document).ready(function() {
                         var total_gb=data[8]/1000000000;
                         var gb=total_gb.toFixed(2);
                         $('td:eq(8)', row).html(gb);
-
-                        $('#theTable tbody tr:nth-child(5),th:nth-child(2)').show(gb);
+                        $('#theTable > tbody > tr:nth-child(5)').html('<td>Usage</td><td>'+gb+' GB</td>');
                 },
                    });
 
