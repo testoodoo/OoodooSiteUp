@@ -1,6 +1,6 @@
 <?php
 namespace Support;
-use View, BaseController, Masterdata, MailSupport, Input, CusDet, Ticket, DB, Datatables, Bill, SessionDhh, Response, JAccountDetail, Api;
+use View, BaseController, Masterdata, MailSupport, Input, Redirect, CusDet, Ticket, DB, Datatables, Bill, SessionDhh, Response, JAccountDetail, Api;
 class SupportController extends BaseController {
 	public function index($account_id){
 
@@ -17,6 +17,7 @@ class SupportController extends BaseController {
 			$data['cusDet'] = CusDet::where('account_id','like','%'.$query.'%')->orWhere('phone','like','%'.$query.'%')->get();
 		}
 		return View::make('support.userDetails.query',$data);
+
 
 	}
 
