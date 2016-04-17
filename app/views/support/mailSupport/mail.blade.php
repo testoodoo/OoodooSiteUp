@@ -53,7 +53,7 @@
             <span class="fa fa-star-o mrm mlm"></span>
             <span style="min-width: 120px; display: inline-block;" class="name">@if($mail->label == 'INBOX') {{$mail->from_mail}} @else {{$mail->to_mail}} @endif</span>
             <span>{{$mail->subject}}</span>&nbsp; - &nbsp;
-            <span style="font-size: 11px;" class="text-muted">{{ Str::limit($mail->body, 100)}}</span>
+            <span style="font-size: 11px;" class="text-muted">{{ Str::limit($mail->body, 50)}}</span>
 			@if($mail->label == 'INBOX')
 				<span class="label label-warning pull-right mrl"><b> Customer Respond </b></span>
 			@else

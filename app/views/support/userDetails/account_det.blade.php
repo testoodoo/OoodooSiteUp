@@ -268,10 +268,9 @@
 
     <div class="col-lg-12" style="">
         <div class="panel panel-grey">
-            <div class="panel-heading">
-                                                Contacts Form</div>
+            <div class="panel-heading">Complaint</div>
             <div class="panel-body pan">
-                <form action="#">
+                <form action="/ticket/store" method="post">
                     <div class="form-body pal">
                         <div class="row">
                             <div class="col-md-6">
@@ -280,7 +279,8 @@
                                                                     Name</label>
                                     <div class="input-icon right">
                                         <i class="fa fa-user"></i>
-                                        <input id="inputName" type="text" placeholder="" class="form-control" value="{{$user->first_name}}">
+                                        <input name="account_id" type="hidden" value="{{$user->account_id}}">
+                                        <input id="inputName" name="name" type="text" placeholder="" class="form-control" value="{{$user->first_name}}">
                                         </div>
                                     </div>
                                 </div>
@@ -290,7 +290,7 @@
                                                                     Phone</label>
                                         <div class="input-icon right">
                                             <i class="fa fa-phone"></i>
-                                            <input id="inputPhone" type="text" placeholder="Phone" class="form-control">
+                                            <input id="inputPhone" name="mobile" type="text" placeholder="Phone" class="form-control">
                                             </div>
                                         </div>
                                     </div>
@@ -300,7 +300,7 @@
                                                                     E-mail</label>
                                         <div class="input-icon right">
                                             <i class="fa fa-envelope"></i>
-                                            <input id="inputEmail" type="text" placeholder="" class="form-control" value="{{$user->email}}">
+                                            <input id="inputEmail" name="email" type="text" placeholder="" class="form-control" value="{{$user->email}}">
                                             </div>
                                         </div>
                                     </div>
@@ -310,7 +310,7 @@
                                                                 Address</label>
                                         <div class="input-icon right">
                                             <i class="fa fa-tag"></i>
-                                            <input id="inputSubject" type="text" placeholder="" class="form-control" value="{{$user->address1}}, {{$user->address2}}, {{$user->address3}}">
+                                            <input id="inputSubject" name="address" type="text" placeholder="" class="form-control" value="{{$user->address1}}, {{$user->address2}}, {{$user->address3}}">
                                             </div>
                                         </div>
                                 </div>

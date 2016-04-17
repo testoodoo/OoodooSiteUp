@@ -1,6 +1,6 @@
 <?php
 namespace Support;
-use View, BaseController, Masterdata, MailSupport, Input, Redirect, CusDet, Ticket, DB, Datatables, Bill, SessionDhh, Response, JAccountDetail, Api;
+use View, BaseController, Masterdata, MailSupport, Auth, Input, Redirect, CusDet, Ticket, DB, Datatables, Bill, SessionDhh, Response, JAccountDetail, Api;
 class SupportController extends BaseController {
 	public function index($account_id){
 
