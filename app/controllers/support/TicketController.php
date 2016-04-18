@@ -1,7 +1,7 @@
 <?php
 
 namespace support;
-use Auth, View, Ticket, Input, Redirect, CusDet, Employee, Session, PaymentTransaction, MailController;
+use Auth, View, Ticket, Input, Redirect, CusDet, DB, Datatables, Employee, Session, PaymentTransaction, MailController;
 
 class TicketController extends \BaseController {
 
@@ -70,6 +70,20 @@ class TicketController extends \BaseController {
 		//return Redirect::back()->with('success','Succesfully Created');	
 		Session::flash('message','Successfully Created');
 		return Redirect::back();
-		}	
+		}
+
+	public function callDet() {
+		return View::make('support.ticket.call_status');
+	}
+
+	public function exo_call_status() {
+		$call_log= DB::table('exo_call_log')->select('call_sid','start_time','end_time',
+		'call_from','call_to','call_status','recording_url')
+		->orderBy('start_time','desc');
+        
+        $call_logs = Datatables::of($call_log)->make();
+       
+        return $call_logs;		
+	}	
 }
 

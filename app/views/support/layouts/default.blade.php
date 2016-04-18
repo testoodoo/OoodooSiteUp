@@ -11,9 +11,9 @@
         <link rel="apple-touch-icon" sizes="72x72" href="#">
         <link rel="apple-touch-icon" sizes="114x114" href="#">
         <!--Loading bootstrap css-->
-    	<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+<!--     	<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
         <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,700">
-        <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oswald:400,700,300">
+        <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oswald:400,700,300"> -->
         @include('support.partials.css_assets')
         @include('support.partials.js_assets')
     </head>

@@ -15,6 +15,11 @@
             </i><span class="menu-title">Email</span></a>
               
             </li>
+            <li><a href="/callDet"><i class="fa fa-phone">
+                <div class="icon-bg bg-primary"></div>
+            </i><span class="menu-title">Call Log</span></a>
+              
+            </li>            
         </ul>
     </div>
 </nav>

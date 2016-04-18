@@ -3,6 +3,7 @@ namespace Support;
 use View, BaseController, Masterdata, MailSupport, Auth, Input, Redirect, CusDet, Ticket, DB, Datatables, Bill, SessionDhh, Response, JAccountDetail, Api, Session;
 class SupportController extends BaseController {
 	public function index($account_id){
+
 		$data['area'] = Masterdata::where('type','=','area')->get();
 		$data['user'] = $user = CusDet::where('account_id','=',$account_id)->get()->first();
 		$ticket=Ticket::where('account_id',$user->account_id)->orderBy('id','desc')->where('status_id','3')->first();

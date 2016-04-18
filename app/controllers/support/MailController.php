@@ -281,7 +281,36 @@ Subject: Re: '.$subject.'
                 return Response::json(array('mail' => "false"));
             }
             
+    }  
+
+public function addNote(){
+    $thread_id = Input::get('thread_id');
+    $note = Input::get('note');
+    $inboxmail = new InboxMail();
+    $inboxmail->message_id = ' ';
+    $inboxmail->thread_id = $thread_id;
+    $inboxmail->history_id = 1111;
+    $inboxmail->label = 'NOTE';
+    $inboxmail->subject = ' ';
+    $name = Auth::employee()->get()->name.' added Note';
+
+
+    $inboxmail->from_mail = $name;
+    $inboxmail->to_mail = '';
+    $inboxmail->body = $note;
+    if(isset($attachment)){
+    $inboxmail->attachment = json_encode($attachment);
+    }
+    $time = Date("Y-m-d H:i:s");
+    $inboxmail->time = $time;
+    if($inboxmail->save()){
+        return Response::json(array('from' => $name , 'body' => $note, 'time' => $time));
+    }else{
+        return Response::json(array('mail' => "false"));
     }    
+
+
+}  
 
 
 

@@ -487,13 +487,16 @@ Route::group( array('domain' => 'test.accounts.oodoo.co.in' ), function() {
         Route::get('/userDet/{account_id}', array('as' => '', 'uses' => 'support\\SupportController@index'));
         Route::post('query', array('as' => '', 'uses' => 'support\\SupportController@query'));
         Route::post('userDetails', array('as' => '', 'uses' => 'support\\SupportController@userDetails'));
+
         
 
         Route::get('mailSupport', array('as' => '', 'uses' => 'MailController@index'));
         Route::post('mailSupport', array('as' => '', 'uses' => 'MailController@index'));
         Route::get('mailSupport/{id}', array('as'=>'', 'uses' => 'MailController@ticket'));
         Route::post('mailSupport/{id}', array('as'=>'', 'uses' => 'MailController@ticket'));  
-        Route::post('replyMessage',array('as'=>'', 'uses'=> 'MailController@replyMessage'));      
+        
+        Route::post('replyMessage',array('as'=>'', 'uses'=> 'MailController@replyMessage'));  
+        Route::post('addNote', array('as' => '', 'uses'=> 'MailController@addNote'));    
 
 
 
@@ -510,6 +513,8 @@ Route::group( array('domain' => 'test.accounts.oodoo.co.in' ), function() {
         Route::get('active_session', array('as' => '', 'uses' => 'support\\SupportController@active_session_det'));
 
         Route::post('ticket/store', array('as' => '', 'uses' => 'support\\TicketController@store'));
+        Route::get('callDet', array('as'=>'', 'uses' => 'support\\TicketController@callDet'));
+        Route::get('exo_call_status', array('as' => '', 'uses' => 'support\\TicketController@exo_call_status'));
 
         });
         
