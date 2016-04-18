@@ -90,7 +90,6 @@ class PaymentTransaction extends \LaravelBook\Ardent\Ardent {
 	public static function sendsms($mobileNumber, $senderId, $message){
 		//Your authentication key
 		$authKey = "68252AGguI2SK45395d8f7";
-
 		$messageF = urlencode($message);
 		$route = "4";
 		$response = "json";

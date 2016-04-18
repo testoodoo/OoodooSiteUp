@@ -1,6 +1,9 @@
 @extends ('support.layouts.default')
 @section('main')
 <div class="page-content">
+        @if (Session::has('message'))
+            <div class="alert alert-success">{{ Session::get('message') }}</div>
+        @endif
     <div id="tab-general">
         <div class="row mbl">
             <div class="col-lg-12">

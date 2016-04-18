@@ -32,7 +32,7 @@
                                                                     E-mail</label>
                                         <div class="input-icon right">
                                             <i class="fa fa-envelope"></i>
-                                            <input id="inputEmail" name="email" type="text" placeholder="" class="form-control" value="{{$user->email}}">
+                                            <input id="inputEmail" name="email" type="email" placeholder="" class="form-control" value="{{$user->email}}">
                                             </div>
                                         </div>
                                     </div>
@@ -57,19 +57,43 @@
 	                                </select>
                                     </div>
                                 </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                    <label class="control-label">Assign To: </label>
+                                    <select class="form-control" name="employee_id">
+		                                <option value="">Select Employee</option>
+		                                @foreach($user->employee_identity() as $employee )
+					                            <option value="{{$employee->employee_identity}}">
+					                               {{$employee->name}} ({{$employee->employee_identity}})
+					                            </option>
+		                                @endforeach
+	                                </select>
+                                    </div>
+                                </div>                                   
+<!--                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                    <label class="control-label">City</label>
+                                    <select class="form-control" name="city_id">
+		                                <option value="">Select City</option>
+		                                @foreach($user->city() as $city )
+		                                	<option value="{{$city->id}}">{{$city->name}}</option>
+		                                @endforeach
+	                                </select>
+                                    </div>
+                                </div>    -->                             
 
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="inputMessage" name="requirment" class="control-label">
+                                    <label for="inputMessage" class="control-label">
                                                         Requirement</label>
-                                    <textarea rows="5" class="form-control"></textarea>
+                                    <textarea rows="5"  name="requirement" class="form-control"></textarea>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="inputMessage" class="control-label">
                                                         Message</label>
-                                    <textarea rows="5" class="form-control"></textarea>
+                                    <textarea rows="5" name="message" class="form-control"></textarea>
                                 </div>
                                     <div class="form-group mbn">
                                         <div class="checkbox">

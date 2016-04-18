@@ -167,7 +167,7 @@ class MailController extends BaseController {
                 $subject = preg_replace('/^Fwd: /', '', $subject);*/
                 $thread_id = MailSupport::where('thread_id',$threadId)->get();
                 if(!count($thread_id) && $labelIds['0'] == 'INBOX'){
-                    $this->autoMessage($from, $to, $subject);
+                    $this->autoMessage($from, $to, $subject, 123, 'test');
 
                 }
                     $inboxmail=new InboxMail();
@@ -195,12 +195,19 @@ class MailController extends BaseController {
 
     }
 
-    public function autoMessage($from, $to, $subject){
+    public function autoMessage($from, $to, $subject, $ticket_no, $body){
+
         $client = $this->getClient();
         $service = new Google_Service_Gmail($client);
         $userId='me';
+        if($subject != 'Ticket Raised'){
+
         $subject = "Ticket Received - ".$subject."";
         $body = "Dear ".$from.",\n\nWe would like to acknowledge that we have received your request and a ticket has been created.A support representative will be reviewing your request and will send you a personal response (usually within 24 hours).\n\nThank you for your patience.\n\nSincerely,\nOODOO Fiber Support Team";
+        }else{
+            $body = "Dear ".$from.",\n\n".$body."\n\nSincerely,\nOODOO Fiber Support Team";
+        }
+
 
     $message = new Google_Service_Gmail_Message();
     $text = 'From: '.$to.'
@@ -240,7 +247,6 @@ Subject:'.$subject.'
             $to = $senderDet->from_mail;
             $subject = $senderDet->subject;
             $body = Input::get('body');
-            var_dump($thread_id); var_dump($body); die;
             $message = new Google_Service_Gmail_Message();
             $text = 'From: '.$from.'
 To: '.$to.'
@@ -267,9 +273,10 @@ Subject: Re: '.$subject.'
             if(isset($attachment)){
             $inboxmail->attachment = json_encode($attachment);
             }
-            $inboxmail->time = Date("Y-m-d H:i:s");
+            $time = Date("Y-m-d H:i:s");
+            $inboxmail->time = $time;
             if($inboxmail->save()){
-                return Response::json(array('mail' => "true"));
+                return Response::json(array('from' => $from, 'body' => $body, 'time' => $time));
             }else{
                 return Response::json(array('mail' => "false"));
             }

@@ -34,11 +34,10 @@
                                         <span class="chat-arrow"></span>
                                         <a href="#" class="chat-name">{{$mail->from_mail}}</a>&nbsp; at
                             			<span title="{{$mail->time}}" data-livestamp="{{$mail->time}}"></span>
-<!--                                         <span
-                                                            class="chat-datetime">at July 06, 2014 17:06</span> -->
                                         <span class="chat-body">{{$mail->body}}</span>
                                     </div>
                                 @endforeach
+                                <br><div id="chatBox"></div>
                                 </li>
                                 <li class="out" id="replyHide"><img src="/assets/dist/support/images/avatar/49.jpg" class="avatar img-responsive" />
                                 <div class="message" id="replyJump">
@@ -85,6 +84,9 @@ $(document).ready(function() {
  		success: function(data) {
  			if(data["mail"] == "false") {
  				alert('fail');
+ 			}else{
+ 				$('#chatBox').append('<li class="out"><img src="/assets/dist/support/images/avatar/49.jpg" class="avatar img-responsive" /><div class="message"><span class="chat-arrow"></span><a href="#" class="chat-name">'+data.from+'</a>&nbsp; at<span title="'+data.time+'" data-livestamp="'+data.time+'"></span><span class="chat-body">'+data.body+'</span></div>');
+ 				$('#replyContent').hide();
  			}
 	 	}
  	});

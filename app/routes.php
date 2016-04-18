@@ -482,7 +482,6 @@ Route::group( array('domain' => 'test.accounts.oodoo.co.in' ), function() {
     Route::group( array('domain' => 'support.wtest.oodoo.co.in' ), function() {
     
     Route::group( array('before' => 'auth.support'), function() {
-        //Route::get('/query', 'support\\SupportController@query')->with('id', 1);
         Route::get('/query', array('as' => 'support.query', 'uses' => 'support\\SupportController@query'));
         Route::get('/userDet', array('as'=> 'support.userDet', 'uses' => 'support\\SupportController@query'));
         Route::get('/userDet/{account_id}', array('as' => '', 'uses' => 'support\\SupportController@index'));
