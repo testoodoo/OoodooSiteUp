@@ -12,7 +12,7 @@
                                     <div class="input-icon right">
                                         <i class="fa fa-user"></i>
                                         <input name="account_id" type="hidden" value="{{$user->account_id}}">
-                                        <input id="inputName" name="name" type="text" placeholder="" class="form-control" value="{{$user->first_name}}">
+                                        <input id="inputName" name="name" type="text" placeholder="" class="form-control" value="{{$user->first_name}}" required>
                                         </div>
                                     </div>
                                 </div>
@@ -22,7 +22,7 @@
                                                                     Phone</label>
                                         <div class="input-icon right">
                                             <i class="fa fa-phone"></i>
-                                            <input id="inputPhone" name="mobile" type="text" placeholder="Phone" class="form-control">
+                                            <input id="inputPhone" type="mobile" script="minlength:10" id="mobile" placeholder="Phone" class="form-control" required>
                                             </div>
                                         </div>
                                     </div>
@@ -32,7 +32,7 @@
                                                                     E-mail</label>
                                         <div class="input-icon right">
                                             <i class="fa fa-envelope"></i>
-                                            <input id="inputEmail" name="email" type="email" placeholder="" class="form-control" value="{{$user->email}}">
+                                            <input id="inputEmail" name="email" type="email" placeholder="" class="form-control" value="{{$user->email}}" required>
                                             </div>
                                         </div>
                                     </div>
@@ -42,14 +42,14 @@
                                                                 Address</label>
                                         <div class="input-icon right">
                                             <i class="fa fa-tag"></i>
-                                            <input id="inputSubject" name="address" type="text" placeholder="" class="form-control" value="{{$user->address1}}, {{$user->address2}}, {{$user->address3}}">
+                                            <input id="inputSubject" name="address" type="text" placeholder="" class="form-control" value="{{$user->address1}}, {{$user->address2}}, {{$user->address3}}" required>
                                             </div>
                                         </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                     <label class="control-label">Ticket Type</label>
-                                    <select class="form-control" name="ticket_type_id">
+                                    <select class="form-control" name="ticket_type_id" required>
 		                                <option value="">Select Ticket Type</option>
 		                                @foreach($user->ticket_type() as $ticket_type )
 		                                	<option value="{{$ticket_type->id}}">{{$ticket_type->name}}</option>
@@ -60,7 +60,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                     <label class="control-label">Assign To: </label>
-                                    <select class="form-control" name="employee_id">
+                                    <select class="form-control" name="employee_id" required>
 		                                <option value="">Select Employee</option>
 		                                @foreach($user->employee_identity() as $employee )
 					                            <option value="{{$employee->employee_identity}}">
@@ -87,13 +87,13 @@
                                 <div class="form-group">
                                     <label for="inputMessage" class="control-label">
                                                         Requirement</label>
-                                    <textarea rows="5"  name="requirement" class="form-control"></textarea>
+                                    <textarea rows="5"  name="requirement" class="form-control" required></textarea>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="inputMessage" class="control-label">
                                                         Message</label>
-                                    <textarea rows="5" name="message" class="form-control"></textarea>
+                                    <textarea rows="5" name="message" class="form-control" required></textarea>
                                 </div>
                                     <div class="form-group mbn">
                                         <div class="checkbox">
@@ -114,3 +114,23 @@
                             </div>
                         </div>
                         </div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+        $('#mobile').bootstrapValidator({
+            mobile: {
+                validators: {
+                    notEmpty: {
+                        message: 'The phone is required'
+                    },
+                     stringLength: {
+                        min: 10,
+                        message: 'Mobile number minimum 10 required'
+                    }
+                     
+                   
+                }
+            }            
+        });
+});
+</script>                        
