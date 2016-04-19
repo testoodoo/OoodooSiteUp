@@ -26,8 +26,8 @@ class TicketController extends \BaseController {
 			$ticket_process=Ticket::where('account_id',Input::get('account_id'))->where('status_id',5)->first();
 			if($ticket_open || $ticket_process){
 				Session::flash('message','Ticket has been taken which status open');
-				//return Redirect::back();				
-				//return Redirect::back()->with('failure','Ticket has been taken which status open');
+				return Redirect::back();				
+				return Redirect::back()->with('failure','Ticket has been taken which status open');
 			}
 			$ticket->account_id = Input::get('account_id');
 			$area=CusDet::where('account_id',$ticket->account_id)->first()->address3;
@@ -84,6 +84,19 @@ class TicketController extends \BaseController {
         $call_logs = Datatables::of($call_log)->make();
        
         return $call_logs;		
+	}
+
+	public function ticketCheck() {
+		$account_id = Input::get('account_id');
+		$ticket_open=Ticket::where('account_id',Input::get('account_id'))->where('status_id',3)->first();
+		$ticket_process=Ticket::where('account_id',Input::get('account_id'))->where('status_id',5)->first();
+		if($ticket_open || $ticket_process){
+			$data['ticket'] = true;
+		}else{
+			$data['ticket'] = false;
+		}
+		return $data;
+
 	}	
 }
 

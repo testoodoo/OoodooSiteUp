@@ -512,6 +512,8 @@ Route::group( array('domain' => 'test.accounts.oodoo.co.in' ), function() {
         Route::get('log', array('as' => '', 'uses' => 'support\\SupportController@log_det'));
         Route::get('active_session', array('as' => '', 'uses' => 'support\\SupportController@active_session_det'));
 
+        Route::get('ticketCheck', array('as' => '', 'uses' => 'support\\TicketController@ticketCheck'));
+
         Route::post('ticket/store', array('as' => '', 'uses' => 'support\\TicketController@store'));
         Route::get('callDet', array('as'=>'', 'uses' => 'support\\TicketController@callDet'));
         Route::get('exo_call_status', array('as' => '', 'uses' => 'support\\TicketController@exo_call_status'));

@@ -264,7 +264,10 @@
                                         </div>                                                                                                                       
                  
                                         <div id="tab-ticket" class="tab-pane fade in active">
-                                        <button class="btn btn-primary" id="newTicket" style="float:right;">New Ticket</button>
+                                        <div style="float:right;">
+                                        <span class="label label-danger" style="display:none;" id="failMessage">Ticket available with open or processing status</span> &nbsp;&nbsp;
+                                        <button class="btn btn-primary" id="newTicket">New Ticket</button>
+                                        </div>
 
 
 
@@ -322,12 +325,6 @@
 <script>
 jQuery(document).ready(function() {
 
-        $('#newTicket').click(function(){
-            alert('hi');
-        });
-
-
-   
              var oTable = jQuery('#paymentTable').dataTable({
                 processing: true,
                 serverSide: true,

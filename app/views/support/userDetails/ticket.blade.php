@@ -1,4 +1,4 @@
-    <div class="col-lg-12" style="">
+    <div class="col-lg-12" id="newTickets" style="display:none;">
         <div class="panel panel-grey">
             <div class="panel-heading">Complaint</div>
             <div class="panel-body pan">
@@ -22,7 +22,7 @@
                                                                     Phone</label>
                                         <div class="input-icon right">
                                             <i class="fa fa-phone"></i>
-                                            <input id="inputPhone" type="mobile" script="minlength:10" id="mobile" placeholder="Phone" class="form-control" required>
+                                            <input id="inputPhone" name="mobile" pattern="([0-9]{10})|(\([0-9]{3}\)\s+[0-9]{3}\-[0-9]{4})" id="mobisle" placeholder="Phone" class="form-control" required>
                                             </div>
                                         </div>
                                     </div>
@@ -70,18 +70,6 @@
 	                                </select>
                                     </div>
                                 </div>                                   
-<!--                                 <div class="col-md-6">
-                                    <div class="form-group">
-                                    <label class="control-label">City</label>
-                                    <select class="form-control" name="city_id">
-		                                <option value="">Select City</option>
-		                                @foreach($user->city() as $city )
-		                                	<option value="{{$city->id}}">{{$city->name}}</option>
-		                                @endforeach
-	                                </select>
-                                    </div>
-                                </div>    -->                             
-
                                 </div>
 
                                 <div class="form-group">
@@ -106,8 +94,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-actions text-right pal">
-                                        <button type="submit" class="btn btn-primary">
+                                    <div class="text-right pal">
+                                        <button class="btn btn-primary submitBtn">
                                                         Create</button>
                                     </div>
                                 </form>
@@ -117,20 +105,23 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
-        $('#mobile').bootstrapValidator({
-            mobile: {
-                validators: {
-                    notEmpty: {
-                        message: 'The phone is required'
-                    },
-                     stringLength: {
-                        min: 10,
-                        message: 'Mobile number minimum 10 required'
-                    }
-                     
-                   
+    $('#newTicket').on('click', function(event) {
+        var account_id = $("input[name=account_id]").val();
+        $.ajax(
+        {
+            url : '/ticketCheck',
+            type :'get',
+            data : {account_id : account_id},
+            success: function(data) {
+                if(data['ticket']==true){
+                    $('#failMessage').show();
+                    
+                }else{
+                    $('#newTickets').show();
                 }
-            }            
+            }
         });
-});
-</script>                        
+    });
+});    
+
+</script> 
