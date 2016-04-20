@@ -1,6 +1,6 @@
 <?php
 namespace Support;
-use View, BaseController, Masterdata, MailSupport, Auth, Input, Redirect, CusDet, Ticket, DB, Datatables, Bill, SessionDhh, Response, JAccountDetail, Api, Session;
+use View, BaseController, Masterdata, MailSupport, Mail, PaymentTransaction, Auth, Input, Redirect, CusDet, Ticket, TempAccountDetail, DB, Datatables, Bill, SessionDhh, Response, JAccountDetail, Api, Session;
 class SupportController extends BaseController {
 	public function index($account_id){
 
@@ -125,7 +125,7 @@ class SupportController extends BaseController {
         																	Not Found
         																@endif
         															@endif',false)
-        									->addColumn('operation','<button type="button" class="btn btn-minier btn-primary" onclick="ticket({{$id}})" >
+        									->addColumn('operation','<button type="button" class="label label-success" onclick="ticketPop({{$id}})" >
                                                                 view
                  												</div>',false)->make();
 
@@ -165,6 +165,68 @@ class SupportController extends BaseController {
 	    }		
 	}
 
+	public function notifyPassword($id){
+		$user = CusDet::where('account_no','=',$id)->get()->first();
+		if (!is_null($user)) {
+
+			$temp_accout = TempAccountDetail::where('account_id','=',$user->account_id)->get()->first();
+			//var_dump($temp_accout); die;
+				if($temp_accout){
+					$password = $temp_accout->password;
+				}
+			
+			$employee_id=Input::get('employee_id');
+			$passwordChange=Input::get('password');
+	 	    
+	 	    if($employee_id){
+	 	    	
+	 	    	$employee=Employee::where('employee_identity','=',$employee_id)->get()->first();
+	 	       	$senderId = "OODOOS";
+				$message = "Hi, User $user->first_name $user->last_name \n Account ID \n". $user->account_id ."  \n Password \n".$password;
+				$mobileNumber =$employee->mobile;
+				
+				}else if($passwordChange){
+					$new_password=$this->generateStrongPassword(7);
+					$jsubs=Jsubs::where('account_id',$user->account_id)->first();
+					if($jsubs){
+					$new_password_api=Api::japi_password_reset($jsubs->jaccount_no,$new_password);
+					$password_set=json_decode($new_password_api);
+						if($password_set->status == "success"){
+							DB::table('temp_act_det')->where('account_id', $user->account_id)
+									            	->update(array('password' => $new_password));
+							$password=$new_password;
+							$senderId = "OODOOP";
+							$message = "Hi, $user->first_name $user->last_name \n Your Account ID \n". $user->account_id ."  \n Your Password \n". $password ."  \n For any assistance please contact our customer care at +91 8940808080";
+							$mobileNumber = $user->phone;
+						}else{
+							Session::flash('message','Successfully Created');
+							return Redirect::back();
+						}
+					}else{
+						Session::flash('message','Successfully Created');
+						return Redirect::back();	
+					}
+
+				}else{
+					$email = $user->email;		
+					$data = array('password' => $password, 'user' => $user);
+					Mail::send('emails.user_password_remainder', $data, function($message) use ($user,$email) {
+			 	       $message->to($email, $user->first_name )
+			 	       			->subject("Password Reminder");
+			 	    });	
+			 	    $senderId = "OODOOP";
+					$message = "Hi, $user->first_name $user->last_name \n Your Account ID \n". $user->account_id ."  \n Your Password \n". $password ."  \n For any assistance please contact our customer care at +91 8940808080";
+					$mobileNumber = $user->phone;
+				}
+
+
+			PaymentTransaction::sendsms($mobileNumber, $senderId, $message);
+			Session::flash('message','Sent Successfully!');
+			return Redirect::back();
+		}
+		Session::flash('message','Successfully Created');		
+		return Redirect::back()->with('success','Employee Not Found');	
+	}		
 
 
 }

@@ -120,6 +120,10 @@
                                                 <td>Plan Cycle</td>
                                                 <td>{{$user->plan()->plan_start_date}}&nbsp;To&nbsp;{{$user->plan()->plan_start_date}}</td>
                                             </tr>
+                                            <tr>
+                                                <td>Password</td>
+                                                <td><a href="/notifyPassword/{{$user->account_no}}" class="label label-success passWord">Send to User</a></td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                     </div>
@@ -395,10 +399,6 @@ jQuery(document).ready(function() {
                              
 </script>
 <script>
-function hello(){
-    alert('hi');
-}
-
      function log(p) {
             var account_id =+p;
                 $.ajax({
@@ -420,5 +420,10 @@ function hello(){
                 }
                 });
     }
+
+    function ticketPop(t) {
+        window.open("<?php public_path() ?>/ticket_popup/"+t, "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=500, left=500, width=800, height=400");
+    }    
+
 </script>    
 @stop
