@@ -27,17 +27,17 @@
                 </form>
 
                 <div class="news-update-box hidden-xs"><span class="text-uppercase mrm pull-left text-white">News:</span>
-                    <div id="ticker-wrapper-1451288458975" class="ticker-wrapper has-js left"><div id="ticker-1451288458975" class="ticker"><div id="ticker-title-1451288458975" class="ticker-title"><span></span></div><p id="ticker-content-1451288458975" class="ticker-content" style="display: block; opacity: 1; left: 20px;">Welcome to Xperia - Responsive Multi-Style Admin Template</p><div id="ticker-swipe-1451288458975" class="ticker-swipe" style="left: 20px; margin-left: 266.6px;"><span style="display: block;"><!-- --></span></div></div></div>
+                    <div id="ticker-wrapper-1451288458975" class="ticker-wrapper has-js left"><div id="ticker-1451288458975" class="ticker"><div id="ticker-title-1451288458975" class="ticker-title"><span></span></div><p id="ticker-content-1451288458975" class="ticker-content" style="display: block; opacity: 1; left: 20px;">Welcome...!</p><div id="ticker-swipe-1451288458975" class="ticker-swipe" style="left: 20px; margin-left: 266.6px;"><span style="display: block;"><!-- --></span></div></div></div>
                 </div>
                 <ul class="nav navbar navbar-top-links navbar-right mbn">
-                    <li class="dropdown"><a data-hover="dropdown" href="#" class="dropdown-toggle"><i class="fa fa-bell fa-fw"></i><span class="badge badge-green">3</span></a>
+                    <li class="dropdown"><a data-hover="dropdown" href="#" class="dropdown-toggle"><i class="fa fa-bar-chart-o fa-fw"></i><span class="badge badge-green active_session"></span></a>
                         
-                    </li>
-                    <li class="dropdown"><a data-hover="dropdown" href="#" class="dropdown-toggle"><i class="fa fa-envelope fa-fw"></i><span class="badge badge-orange">7</span></a>
+                    </li>&nbsp;&nbsp;
+                    <li class="dropdown"><a data-hover="dropdown" href="#" class="dropdown-toggle"><i class="fa fa-envelope fa-fw"></i><span class="badge badge-orange exo_call"></span></a>
                         
-                    </li>
-                    <li class="dropdown"><a data-hover="dropdown" href="#" class="dropdown-toggle"><i class="fa fa-tasks fa-fw"></i><span class="badge badge-yellow">8</span></a>
-                        
+                    </li>&nbsp;&nbsp;
+                    <li class="dropdown"><a data-hover="dropdown" href="#" class="dropdown-toggle"><i class="fa fa-tasks fa-fw"></i><span class="badge badge-yellow network_status"></span></a>
+                        <ul class="dropdown-menu dropdown-user pull-right network_area"></ul>
                     </li>
                     <li class="dropdown topbar-user"><a data-hover="dropdown" href="#" class="dropdown-toggle"><img src="/assets/dist/support/images/avatar/48.jpg" alt="" class="img-responsive img-circle">&nbsp;<span class="hidden-xs">{{ Auth::employee()->get()->name }}</span>&nbsp;<span class="caret"></span></a>
                         <ul class="dropdown-menu dropdown-user pull-right">
@@ -54,11 +54,37 @@
                 </ul>
             </div>
         </nav>
-
-
-
-
-
-        
-
         </div>
+
+<script type="text/javascript">
+jQuery(document).ready(function() {
+    function Refersh(){
+        $.ajax({
+            url : '/navbar',
+            type : 'GET',
+            success : function(data){
+                $('.active_session').text(data['active_session']);
+                var network=data['server_1'] + data['server_0'];
+                $('.network_status').text(data['server_0']+'/'+network);
+                $(".network_area").empty();
+                $.each(data['network'], function(i,j){
+                    $('.network_area').append('<li><a href="#"><i class="fa fa-tasks fa-fw mrs"></i>'+j['location']+'</a></li>');
+                });
+                if(data['exo_call']==0){
+                   $('.call_status').text('CALL STATUS DOWN');
+                   $('.exo_call').text('DOWN');  
+                }else{
+                   $('.call_status').text('CALL STATUS UP');
+                   $('.exo_call').text('UP');  
+                }
+            }
+        });
+    }
+
+    Refersh();
+    
+        setInterval( function () {
+                Refersh()
+                    }, 15000 );
+    });
+</script>
