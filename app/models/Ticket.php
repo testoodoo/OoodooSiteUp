@@ -14,11 +14,13 @@ class Ticket extends \LaravelBook\Ardent\Ardent {
 
 	
 
-	public function AssignUpdate($remarks){
+	public function AssignUpdate($remarks,$team_type,$complete){
 			$ticket=new AssignTicket();
 			$ticket->ticket_id=$this->id;
 			$ticket->ticket_no=$this->ticket_no;
 			$ticket->remarks=$remarks;
+			$ticket->team_type=$team_type;
+			$ticket->complete=$complete;
 			$ticket->assigned_to=$this->assigned_to;
 			$ticket->assigned_by=$this->assigned_by;
 			$ticket->save();

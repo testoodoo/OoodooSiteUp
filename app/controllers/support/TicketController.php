@@ -243,6 +243,60 @@ class TicketController extends \BaseController {
 
 	}	
 
+	public function SendTicket(){
+
+		$employee_id=Input::get('employee_id');
+		$ticket_no=Input::get('ticket_no');
+		$mobile=Input::get('phone');
+		$employee=Employee::where('employee_identity','=',$employee_id)->get()->first();
+		$ticket=Ticket::where('ticket_no','=',$ticket_no)->get()->first();
+		$assignTicket=AssignTicket::where('ticket_id',$ticket->id)->orderBy('id','desc')->first();
+		if($assignTicket){
+				if($ticket->assigned_to==$employee_id){
+						return Redirect::back()->with('failure','Ticket aleady assigned failure to assign');
+				}
+
+				if(!Input::get('team')){
+					$team=$assignTicket->team_type;
+				}else{
+					$team=Input::get('team');
+				}
+
+
+			if($ticket->account_id)
+			{
+				$account_id=$ticket->account_id;
+			}else{
+				$account_id=$ticket->crf_no;
+			}
+			
+			$address=$ticket->address;
+			$area=$ticket->area;
+			$ticket_no=$ticket->ticket_no;
+			$name=$ticket->name;
+			
+			$ticket->assigned_to=$employee_id;
+			$ticket->assigned_by=Auth::employee()->get()->employee_identity;
+			
+			$assignTicket->complete=1;
+			$assignTicket->save();
+
+			$ticket->save();
+
+
+			$ticket->AssignUpdate(Input::get('remarks'),$team,0);
+
+			$senderId = "OODOOS";
+			$message = 'compilant '.'Ticket No '.$ticket_no.' '.$name.' '.$account_id.' '.$mobile.' '.$address;
+			$mobileNumber = $employee->mobile;		
+
+			$return = PaymentTransaction::sendsms($mobileNumber, $senderId, $message); 
+		
+			return Redirect::back()->with('success','Ticket Assigned Succesfully '); 
+		}
+		return Redirect::back()->with('failure','Ticket Assign Status Not Found');
+	}	
+
 
 
 

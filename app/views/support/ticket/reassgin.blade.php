@@ -39,7 +39,7 @@
         </tbody>
     </table>
 @endif
-{{ Form::open( array( 'route' => array('admin.tickets.send_tickets'), 'method' => 'POST','class' => 'form-horizontal validate-form', 'role' => 'form')  ) }}
+{{ Form::open( array( 'url' => 'ticket/send', 'method' => 'POST','class' => 'form-horizontal validate-form', 'role' => 'form')  ) }}
     {{ Form::hidden('ticket_no',$ticket->ticket_no) }}
     {{ Form::hidden('ticket_id',$ticket->id) }}
     {{ Form::hidden('complete','1', array('class' => 'complete')) }}
