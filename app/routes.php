@@ -520,7 +520,7 @@ Route::group( array('domain' => 'test.accounts.oodoo.co.in' ), function() {
         Route::get('exo_call_status', array('as' => '', 'uses' => 'support\\TicketController@exo_call_status'));
         Route::get('ticket_popup/{id}', array('as' => '', 'uses' => 'support\\TicketController@ticket_popup'));
         Route::post('ticket/message',     array('as' => '', 'uses' => 'support\\TicketController@message'));  
-        Route::post('ticket/store',     array('as' => '', 'uses' => 'support\\TicketController@msgStore'));          
+        Route::post('ticket/status',     array('as' => '', 'uses' => 'support\\TicketController@status'));          
 
 
 

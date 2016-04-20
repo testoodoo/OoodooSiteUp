@@ -2,7 +2,7 @@
 <div class="header blue">
 	<h3>Message History</h3>
 </div>
-{{ Form::open( array('url' => '/ticket/msg','method' => 'POST','class' => 'message-validate-form')  ) }}
+{{ Form::open( array('url' => '/ticket/message','method' => 'POST','class' => 'message-validate-form')  ) }}
 		{{ Form::hidden('object_type','ticket') }}
 		{{ Form::hidden('object_id',$ticket->id) }}
 	<div class="form-group">
