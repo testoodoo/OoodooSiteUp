@@ -333,7 +333,7 @@ jQuery(document).ready(function() {
             var oTable = jQuery('#billTable').dataTable({
                 processing: true,
                 serverSide: true,
-                "pageLength": 10,
+                "pageLength": 3,
                 "pagingType": "full_numbers",
                        "ajax": '/bill?account_id={{$user->account_id}}',
                        "type":'get',
