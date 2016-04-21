@@ -336,8 +336,6 @@ jQuery(document).ready(function() {
                        "ajax": '/payment?account_id={{$user->account_id}}',
                        "type":'get',
                    });
-            });
-
 
             var oTable = jQuery('#billTable').dataTable({
                 processing: true,
@@ -395,6 +393,7 @@ jQuery(document).ready(function() {
                        "ajax": '/ticket?account_id={{$user->account_id}}',
                        "type":'get',
                    });
+});              
            
                              
 </script>

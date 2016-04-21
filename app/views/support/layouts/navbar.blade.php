@@ -58,33 +58,6 @@
 
 <script type="text/javascript">
 jQuery(document).ready(function() {
-    function Refersh(){
-        $.ajax({
-            url : '/navbar',
-            type : 'GET',
-            success : function(data){
-                $('.active_session').text(data['active_session']);
-                var network=data['server_1'] + data['server_0'];
-                $('.network_status').text(data['server_0']+'/'+network);
-                $(".network_area").empty();
-                $.each(data['network'], function(i,j){
-                    $('.network_area').append('<li><a href="#"><i class="fa fa-tasks fa-fw mrs"></i>'+j['location']+'</a></li>');
-                });
-                if(data['exo_call']==0){
-                   $('.call_status').text('CALL STATUS DOWN');
-                   $('.exo_call').text('DOWN');  
-                }else{
-                   $('.call_status').text('CALL STATUS UP');
-                   $('.exo_call').text('UP');  
-                }
-            }
-        });
-    }
 
-    Refersh();
-    
-        setInterval( function () {
-                Refersh()
-                    }, 15000 );
     });
 </script>
