@@ -78,7 +78,7 @@
                                     </div>
                                     </div>
                                     <div class="col-md-3">
-                                    <table class="table table-striped table-hover" id="theTable">
+                                    <table class="table table-striped table-hover" id="theTable1">
                                         <tbody>
                                             <tr>
                                                 <td>Account ID</td>
@@ -106,7 +106,7 @@
                                     </table>
                                     </div>
                                     <div class="col-md-3">
-                                    <table class="table table-striped table-hover">
+                                    <table class="table table-striped table-hover" id="theTable2">
                                     <tbody>
                                             <tr>
                                                 <td>Email</td>
@@ -116,6 +116,10 @@
                                                 <td>Plan</td>
                                                 <td>{{ $user->plan()->plan }}</td>
                                             </tr>
+                                            <tr>
+                                                
+
+                                            </tr>                                                
                                             <tr>
                                                 <td>Plan Cycle</td>
                                                 <td>{{$user->plan()->plan_start_date}}&nbsp;To&nbsp;{{$user->plan()->plan_start_date}}</td>
@@ -365,9 +369,12 @@ jQuery(document).ready(function() {
                        "type":'get',
                         "createdRow": function ( row, data, index ) {
                         var total_gb=data[8]/1000000000;
+                        var current_speed = data[3];
+                        alert(data[3]);
                         var gb=total_gb.toFixed(2);
                         $('td:eq(8)', row).html(gb);
-                        $('#theTable > tbody > tr:nth-child(5)').html('<td>Usage</td><td>'+gb+' GB</td>');
+                        $('#theTable1 > tbody > tr:nth-child(5)').html('<td>Usage</td><td>'+ gb +' GB</td>');
+                        $('#theTable2 > tbody > tr:nth-child(3)').html('<td>Current Speed</td><td>'+ current_speed +'</td>');
                 },
                    });
 
