@@ -69,12 +69,6 @@
                                     <div class="text-center mbl">
                                         <img src="/assets/dist/support/images/photo5.png" class="img-responsive">
                                         </div>
-                                        <div class="text-center mbl">
-                                            <a href="#" class="btn btn-green">
-                                                <i class="fa fa-upload"></i>&nbsp;
-                                        Upload
-                                            </a>
-                                        </div>
                                     </div>
                                     </div>
                                     <div class="col-md-3">
@@ -98,10 +92,7 @@
                                                 <td>Address</td>
                                                 <td>{{$user->address1}}<br>{{$user->address2}}<br>{{$user->address3}}</td>
                                             </tr>
-                                            <tr>
-
-                                                
-                                            </tr>
+                                            <tr></tr>
                                         </tbody>
                                     </table>
                                     </div>
@@ -116,10 +107,8 @@
                                                 <td>Plan</td>
                                                 <td>{{ $user->plan()->plan }}</td>
                                             </tr>
-                                            <tr>
-                                                
-
-                                            </tr>                                                
+                                            <tr>                                                
+                                            </tr>
                                             <tr>
                                                 <td>Plan Cycle</td>
                                                 <td>{{$user->plan()->plan_start_date}}&nbsp;To&nbsp;{{$user->plan()->plan_start_date}}</td>
@@ -370,7 +359,6 @@ jQuery(document).ready(function() {
                         "createdRow": function ( row, data, index ) {
                         var total_gb=data[8]/1000000000;
                         var current_speed = data[3];
-                        alert(data[3]);
                         var gb=total_gb.toFixed(2);
                         $('td:eq(8)', row).html(gb);
                         $('#theTable1 > tbody > tr:nth-child(5)').html('<td>Usage</td><td>'+ gb +' GB</td>');

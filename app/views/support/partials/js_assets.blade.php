@@ -40,7 +40,7 @@
     {{ HTML::script('/assets/dist/support/js/moment.js') }}    
     {{ HTML::script('/assets/dist/support/js/livestamp.min.js') }}
     {{ HTML::script('/assets/dist/support/js/support.js') }}
-<!--     {{ HTML::script('/assets/dist/support/js/dataTables.bootstrap.js') }}    
+    {{ HTML::script('/assets/dist/support/js/dataTables.bootstrap.js') }}    
     {{ HTML::script('/assets/dist/support/js/dataTables.bootstrap.min.js') }}    
     {{ HTML::script('/assets/dist/support/js/dataTables.bootstrap4.js') }}    
     {{ HTML::script('/assets/dist/support/js/dataTables.bootstrap4.min.js') }}    
@@ -53,7 +53,7 @@
     {{ HTML::script('/assets/dist/support/js/dataTables.semanticui.js') }}    
     {{ HTML::script('/assets/dist/support/js/dataTables.semanticui.min.js') }}    
     {{ HTML::script('/assets/dist/support/js/dataTables.uikit.js') }}    
-    {{ HTML::script('/assets/dist/support/js/dataTables.uikit.min.js') }}  -->   
+    {{ HTML::script('/assets/dist/support/js/dataTables.uikit.min.js') }}     
     {{ HTML::script('/assets/dist/support/js/jquery.dataTables.js') }}    
     {{ HTML::script('/assets/dist/support/js/jquery.dataTables.min.js') }}    
     
