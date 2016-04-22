@@ -514,6 +514,7 @@ Route::group( array('domain' => 'test.accounts.oodoo.co.in' ), function() {
         Route::get('ticket', array('as' => '', 'uses' => 'support\\SupportController@ticket_det')); 
         Route::get('log', array('as' => '', 'uses' => 'support\\SupportController@log_det'));
         Route::get('active_session', array('as' => '', 'uses' => 'support\\SupportController@active_session_det'));
+        Route::get('bill_waiver', array('as' => '', 'uses' => 'support\\SupportController@bill_waiver_det'));
         Route::get('notifyPassword/{id}', array('as' => '', 'uses' => 'support\\SupportController@notifyPassword'));
 
         Route::get('ticketCheck', array('as' => '', 'uses' => 'support\\TicketController@ticketCheck'));

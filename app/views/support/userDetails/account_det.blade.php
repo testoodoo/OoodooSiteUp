@@ -157,7 +157,10 @@
                                         </li>
                                         <li>
                                             <a href="#tab-activeSession" data-toggle="tab">Active Session</a>
-                                        </li>                                         
+                                        </li> 
+                                        <li>
+                                            <a href="#tab-billWaiver" data-toggle="tab">Bill Waiver</a>
+                                        </li>                                                                                 
 
                                     </ul>
                                     <div id="generalTabContent" class="tab-content">
@@ -200,7 +203,6 @@
 	                                                <th>Remarks</th>
 	                                                <th>Transaction Type</th>
 	                                                <th>Status</th>
-	                                                <th>view</th>                                       			                                        			                                        			
                                         		</tr>
                                         	</thead>
                                         </table>
@@ -304,7 +306,24 @@
                                             </thead>
                                         </table>
                                         </div>
-                                    </div>                                                                            
+                                    </div> 
+                                        <div id="tab-billWaiver" class="tab-pane fade in">
+                                            <div class="panel panel-blue">  
+                                            <button class="btn btn-primary" style="float:right;">Add New</button>                                       
+                                                <table id="billwaiverTable" class="table table-hover table-bordered" onclick="ticket('{{$user->account_id}}')">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>ID</th>
+                                                            <th>Account ID</th>
+                                                            <th>For Month</th>
+                                                            <th>Amount</th>
+                                                            <th>Top Up Data</th>
+                                                            <th>Remarks</th>
+                                                        </tr>
+                                                    </thead>
+                                                </table>                                                
+                                            </div>
+                                        </div>                                                                                                               
                                 </div>
                             </div>
                         </div>
@@ -317,30 +336,36 @@
 <script>
 jQuery(document).ready(function() {
 
+             var oTable = jQuery('#billwaiverTable').dataTable({
+                processing: true,
+                serverSide: true,
+                "pageLength": 3,
+                    "ajax": '/bill_waiver?account_id={{$user->account_id}}',
+                    "type": 'get',
+             });
+
+
              var oTable = jQuery('#paymentTable').dataTable({
                 processing: true,
                 serverSide: true,
                 "pageLength": 10,
                        "ajax": '/payment?account_id={{$user->account_id}}',
                        "type":'get',
+                        "createdRow": function ( row, data, index ) {
+                            if(data[7] == "success"){
+                                    $('td:eq(7)', row).html('<span style="color:green">'+data[7]+'</span>');
+                            }else if(data[7] == "failure"){
+                                    $('td:eq(7)', row).html('<span style="color:red">'+data[7]+'</span>');
+                            }else if(data[7] == "pending" || data[7] == 'cancelled'){
+                                    $('td:eq(7)', row).html('<span style="color:orange">'+data[7]+'</span>');
+                            }
+                        },                       
                    });
 
             var oTable = jQuery('#billTable').dataTable({
                 processing: true,
                 serverSide: true,
-                 "aoColumns": [
-                      { "sWidth": "10%" },
-                      { "sWidth": "10%" },
-                      { "sWidth": "10%" },
-                      { "sWidth": "10%" },
-                      { "sWidth": "10%" },
-                      { "sWidth": "10%" },
-                      { "sWidth": "10%" },
-                      { "sWidth": "10%" },
-                      { "sWidth": "10%" },
-                      { "sWidth": "5%" },
-                      { "sWidth": "5%" }                                                                   
-                    ],
+                autoWidth: false,
                 "pageLength": 3,
                 "pagingType": "full_numbers",
                 "ajax": '/bill?account_id={{$user->account_id}}',

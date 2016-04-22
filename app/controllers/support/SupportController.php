@@ -44,12 +44,8 @@ class SupportController extends BaseController {
 								'remarks','payment_type',
 								'status')->where('account_id','=',$account_id)->orderBy('bill_no','desc');
         if($payment){
-        $payment_user = Datatables::of($payment)->addColumn('operations','<button type="button" class="btn btn-minier btn-primary" onclick="payment({{$bill_no}})" >
-								                                            view
-								                                            </button>'
-        																,false)->make();
-
-        return $payment_user;
+        $payment_user = Datatables::of($payment)->make();
+        	return $payment_user;
     	}else{
     		return null;
     	}								
@@ -149,6 +145,14 @@ class SupportController extends BaseController {
 	    	$session_det = Datatables::of($active_session)->make();
 	    	return $session_det;
 	    }		
+	}
+
+	public function bill_waiver_det(){
+		$account_id = Input::get('account_id');
+		$bill= DB::table('billwaiver')->select('id','account_id','for_month','amount','waiver_data','remarks')
+										->where('account_id',$account_id)->orderBy('id','desc');
+		$bill_waiver = Datatables::of($bill)->make();
+		return $bill_waiver;
 	}
 
 	public function notifyPassword($id){
