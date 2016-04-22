@@ -1,4 +1,39 @@
 @include('support.partials.css_assets')
+@include('support.partials.js_assets')
+<title> OoDoO | Support </title>
+<div class="page-content" style="width:800px; margin:0 auto;">
+   <div class="portlet box mbl">
+    <div class="portlet-header">
+    <table>
+    <tr>
+        <th><div class="caption" style="float:left;">
+        <div class="demo-layout animated fadeInUp"> hi </div>
+            <div class="chat-form">
+                <input name="query" style="width:10cm;" id="input-chat" type="text" placeholder="Please Enter Account ID or Mobile Number..." class="form-control" onInput="userDet();">
+            </div>
+        </div></th><th><div class="chat-form">
+        <input></input></div></th>
+
+            <th><div class="chat-form">
+                <input name="query" style="width:10cm;" id="input-chat" type="text" placeholder="Please Enter Account ID or Mobile Number..." class="form-control" onInput="userDet();">
+                <a href=""></a>
+            </div></th></tr></table>
+
+
+        <div class="tools">
+            <i class="fa fa-chevron-up"></i>
+            <i data-toggle="modal" data-target="#modal-config" class="fa fa-cog"></i>
+            <i class="fa fa-refresh"></i>
+            <i class="fa fa-times"></i>
+        </div>
+    </div>
+    <div class="portlet-body">
+
+    </div>
+</div>
+
+</div>
+
 <body style="background:#e0e3ed">
     <div class="col-lg-5 form-horizontal" style="margin-top: 100px; margin-left: 450px">
         <div class="panel panel-blue" style="background:#fff;">
@@ -118,5 +153,3 @@ function rowClick(account_id){
     window.location.href="/userDet/"+account_id;
 };
 </script>
-
-@include('support.partials.js_assets')
