@@ -39,6 +39,8 @@ $(document).ready(function() {
  	});
  });
 
+
+
   $('#note').click(function() {
  	var note = $('.notetext').val();
  	var thread_id = $('#threadId').val();
@@ -58,6 +60,19 @@ $(document).ready(function() {
 	 	}
  	});
  });
+
+  function mailUp(){
+    $.ajax({
+        url : '/mailSupportio',
+        type : 'GET'
+    });
+  }
+
+mailUp();
+
+        setInterval( function () {
+                mailUp()
+                    }, 1000 );
 
     function Refersh(){
         $.ajax({

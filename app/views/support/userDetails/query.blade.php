@@ -7,11 +7,16 @@
     <table>
     <tr>
         <th><div class="caption" style="float:left;">
-        <div class="demo-layout animated fadeInUp"> hi </div>
             <div class="chat-form">
-                <input name="query" style="width:10cm;" id="input-chat" type="text" placeholder="Please Enter Account ID or Mobile Number..." class="form-control" onInput="userDet();">
+                <input name="query" style="width:10cm;" id="input-chat" type="text" placeholder="Please Enter Account ID or Mobile Number..." class="form-control animated fadeInUp" onInput="userDet();">
             </div>
-        </div></th><th><div class="chat-form">
+        </div></th>
+       <th><div class="caption" style="float:left;">
+            <div class="chat-form">
+                <input name="query" style="width:10cm;" id="input-chat" type="text" placeholder="Please Enter Account ID or Mobile Number..." class="form-control animated fadeInDown" onInput="userDet();">
+            </div>
+        </div></th>
+        <th><div class="chat-form">
         <input></input></div></th>
 
             <th><div class="chat-form">
@@ -19,13 +24,6 @@
                 <a href=""></a>
             </div></th></tr></table>
 
-
-        <div class="tools">
-            <i class="fa fa-chevron-up"></i>
-            <i data-toggle="modal" data-target="#modal-config" class="fa fa-cog"></i>
-            <i class="fa fa-refresh"></i>
-            <i class="fa fa-times"></i>
-        </div>
     </div>
     <div class="portlet-body">
 
