@@ -163,30 +163,32 @@
                                     <div id="generalTabContent" class="tab-content">
                                         <div id="tab-bill" class="tab-pane fade in" onload="thisis()">
                                         <div class="panel panel-blue">
+                                        <button class="btn btn-primary" style="float:right;" onclick="sendNotify({{$user->account_no}});">Send Notification</button>                                    
+                                        <div style="float:right;" class="notifyMessage">                                        
+                                        </div>                                        
                                         <table id="billTable" class="table table-hover table-bordered">
-                                        	<thead>
-                                        		<tr>
-                                        			<th>Bill No</th>
-                                        			<th>Month</th>
-                                        			<th>Plan</th>
-                                        			<th>Bill Date</th>
-                                        			<th>Previous Balance</th>
-                                        			<th>Last Payment</th>
-                                        			<th>Adjustment</th>
-                                        			<th>Current Charge</th>
-                                        			<th>Amount Before Due Date</th>
-                                        			<th>Amount Paid</th>
-                                        			<th>Status</th>
-                                        			<th>test+send+sms</th>                                        			                                        			                                        			
-                                        		</tr>
-                                        	</thead>
-                                        	<tbody>
-                                        	</tbody>
+                                            <thead>
+                                                <tr>
+                                                    <th>Bill No</th>
+                                                    <th>Month</th>
+                                                    <th>Plan</th>
+                                                    <th>Bill Date</th>
+                                                    <th>Previous Balance</th>
+                                                    <th>Last Payment</th>
+                                                    <th>Adjustment</th>
+                                                    <th>Current Charge</th>
+                                                    <th>Amount Before Due Date</th>
+                                                    <th>Amount Paid</th>
+                                                    <th>Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
                                         </table>
                                         </div>
                                         </div>
-			                            <div id="tab-payment" class="tab-pane fade in">
-                                        <div class="panel panel-blue">			                            
+                                        <div id="tab-payment" class="tab-pane fade in">
+                                        <div class="panel panel-blue">  
                                         <table id="paymentTable" class="table table-striped table-bordered table-hover">
                                         	<thead>
                                         		<tr>
@@ -265,14 +267,7 @@
                                         <span class="label label-danger" style="display:none;" id="failMessage">Ticket available with open or processing status</span> &nbsp;&nbsp;
                                         <button class="btn btn-primary" id="newTicket">New Ticket</button>
                                         </div>
-
-
-
-@include('support.userDetails.ticket')
-
-
-
-
+                                        @include('support.userDetails.ticket')
 
                                         <div class="panel panel-blue">
                                         <table id="ticketTable" class="table table-hover table-bordered" onclick="ticket('{{$user->account_id}}')">
@@ -333,18 +328,30 @@ jQuery(document).ready(function() {
             var oTable = jQuery('#billTable').dataTable({
                 processing: true,
                 serverSide: true,
+                 "aoColumns": [
+                      { "sWidth": "10%" },
+                      { "sWidth": "10%" },
+                      { "sWidth": "10%" },
+                      { "sWidth": "10%" },
+                      { "sWidth": "10%" },
+                      { "sWidth": "10%" },
+                      { "sWidth": "10%" },
+                      { "sWidth": "10%" },
+                      { "sWidth": "10%" },
+                      { "sWidth": "5%" },
+                      { "sWidth": "5%" }                                                                   
+                    ],
                 "pageLength": 3,
                 "pagingType": "full_numbers",
-                       "ajax": '/bill?account_id={{$user->account_id}}',
-                       "type":'get',
-
-                        "createdRow": function ( row, data, index ) {
-                    if(data[12] == "paid"){
-                            $('td:eq(12)', row).html('<span style="color:green">Paid</span>');
-                    }else if(data[12] == "not_paid"){
-                            $('td:eq(12)', row).html('<span style="color:red">Not Paid</span>');
-                    }else if(data[12] == "partially_paid"){
-                            $('td:eq(12)', row).html('<span style="color:orange">Partially Paid</span>');
+                "ajax": '/bill?account_id={{$user->account_id}}',
+                "type":'get',
+                "createdRow": function ( row, data, index ) {
+                    if(data[10] == "paid"){
+                            $('td:eq(10)', row).html('<span style="color:green">Paid</span>');
+                    }else if(data[10] == "not_paid"){
+                            $('td:eq(10)', row).html('<span style="color:red">Not Paid</span>');
+                    }else if(data[10] == "partially_paid"){
+                            $('td:eq(10)', row).html('<span style="color:orange">Partially Paid</span>');
                     }
                 },
 
@@ -393,31 +400,49 @@ jQuery(document).ready(function() {
                              
 </script>
 <script>
-     function log(p) {
-            var account_id =+p;
-                $.ajax({
-                    url : '/log',
-                    type : 'GET',
-                    data : {account_id :account_id},
-                    dataType:'json',
-                    success : function(data) {
-                        if (data["found"] == "false") {
-                                    alert('Logs Not available');
-                                }else{
-                        $('#logTable tbody').remove();
-                         var trHTML = '';
-                        $.each(data, function (i, item) {
-                            trHTML += '<tr><td>' + item.created + '</td><td>' + item.username  + '</td><td>' + item.mac + '</td><td>'+ item.ap_mac + '</td><td>'+ item.message + '</td></tr>';
-                        });
-                    $('#logTable').append(trHTML);
-                    }
+ function log(p) {
+        var account_id =+p;
+            $.ajax({
+                url : '/log',
+                type : 'GET',
+                data : {account_id :account_id},
+                dataType:'json',
+                success : function(data) {
+                    if (data["found"] == "false") {
+                                alert('Logs Not available');
+                            }else{
+                    $('#logTable tbody').remove();
+                     var trHTML = '';
+                    $.each(data, function (i, item) {
+                        trHTML += '<tr><td>' + item.created + '</td><td>' + item.username  + '</td><td>' + item.mac + '</td><td>'+ item.ap_mac + '</td><td>'+ item.message + '</td></tr>';
+                    });
+                $('#logTable').append(trHTML);
                 }
-                });
-    }
+            }
+            });
+}
 
-    function ticketPop(t) {
-        window.open("<?php public_path() ?>/ticket_popup/"+t, "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=500, left=500, width=800, height=400");
-    }    
+function ticketPop(t) {
+    window.open("<?php public_path() ?>/ticket_popup/"+t, "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=500, left=500, width=800, height=400");
+}  
+
+
+function sendNotify(id) {
+    var account_no = id;
+    $.ajax({
+        url : '/sendNotify',
+        type : 'GET',
+        data : {account_no :account_no},
+        dataType:'json',
+        success : function(data) {
+            if (data["message"] == "Bill No Not Found." || data['message'] == 'Message Send Failure.' ) {
+                    $('.notifyMessage').html('<span class="label label-danger">'+ data['message'] +'</span>');
+                }else{
+                    $('.notifyMessage').html('<span class="label label-success">'+ data['message'] +'</span>');
+                }
+        }
+    });    
+}  
 
 </script>    
 @stop

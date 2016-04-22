@@ -59,23 +59,9 @@ class SupportController extends BaseController {
 		$account_id=Input::get('account_id');
 		$bill= Bill::select('bill_no','for_month','cust_current_plan',
 							'bill_date','prev_bal','last_payment','adjustments','current_rental',
-							'amount_before_due_date','amount_after_due_date','amount_paid','status')->where('account_id','=',$account_id)->orderBy('bill_no','desc');
-
-		if(count($bill) != 0){
-        $bill_user = Datatables::of($bill)->addColumn('sendsms','@if($status=="not_paid")
-        														<a href="bills/notify_user_for_bill/{{$bill_no}}">Send SMS</a>
-        														@elseif($status=="partially_paid")
-        														<a href="bills/notify_user_for_bill/{{$bill_no}}">Send SMS</a>
-        														@else
-        														-----
-        														@endif',false)->addColumn('operations',
-        															'<button type="submit" class="btn btn-minier btn-primary" onclick="bill({{$bill_no}});" >
-									                                    view
-									                                    </button>'
-      																,false)->make();
-				return $bill_user;
-			}
-				return null;
+							'amount_before_due_date','amount_paid','status')->where('account_id','=',$account_id)->orderBy('bill_no','desc');
+		$bill_user = Datatables::of($bill)->make();
+		return $bill_user;
 	    }
 
 	public function session_det(){

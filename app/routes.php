@@ -517,7 +517,6 @@ Route::group( array('domain' => 'test.accounts.oodoo.co.in' ), function() {
         Route::get('notifyPassword/{id}', array('as' => '', 'uses' => 'support\\SupportController@notifyPassword'));
 
         Route::get('ticketCheck', array('as' => '', 'uses' => 'support\\TicketController@ticketCheck'));
-
         Route::post('ticket/store', array('as' => '', 'uses' => 'support\\TicketController@store'));
         Route::get('callDet', array('as'=>'', 'uses' => 'support\\TicketController@callDet'));
         Route::get('exo_call_status', array('as' => '', 'uses' => 'support\\TicketController@exo_call_status'));
@@ -525,6 +524,7 @@ Route::group( array('domain' => 'test.accounts.oodoo.co.in' ), function() {
         Route::post('ticket/message',     array('as' => '', 'uses' => 'support\\TicketController@message'));  
         Route::post('ticket/status',     array('as' => '', 'uses' => 'support\\TicketController@status')); 
         Route::post('ticket/send',     array('as' => '', 'uses' => 'support\\TicketController@sendTicket'));         
+        Route::get('sendNotify', array('as' => '', 'uses' => 'support\\DashboardController@sendNotify'));
 
 
 

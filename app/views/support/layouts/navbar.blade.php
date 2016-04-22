@@ -24,10 +24,14 @@
             
                 <ul class="nav navbar navbar-top-links navbar-right mbn">
                     <li class="dropdown"><a data-hover="dropdown" href="#" class="dropdown-toggle"><i class="fa fa-bar-chart-o fa-fw"></i><span class="badge badge-green active_session"></span></a>
-                        
+                        <ul class="dropdown-menu dropdown-user pull-right">
+                            <li><a href="#"><i class="fa fa-bar-chart-o"></i>Active Users</a></li>
+                        </ul>                        
                     </li>&nbsp;&nbsp;
-                    <li class="dropdown"><a data-hover="dropdown" href="#" class="dropdown-toggle"><i class="fa fa-envelope fa-fw"></i><span class="badge badge-orange exo_call"></span></a>
-                        
+                    <li class="dropdown"><a data-hover="dropdown" href="#" class="dropdown-toggle"><i class="fa fa-phone fa-fw"></i><span class="badge badge-orange exo_call"></span></a>
+                        <ul class="dropdown-menu dropdown-user pull-right">
+                            <li><a href="#"><i class="fa fa-phone"></i>Call Status</a></li>                        
+                        </ul>
                     </li>&nbsp;&nbsp;
                     <li class="dropdown"><a data-hover="dropdown" href="#" class="dropdown-toggle"><i class="fa fa-tasks fa-fw"></i><span class="badge badge-yellow network_status"></span></a>
                         <ul class="dropdown-menu dropdown-user pull-right network_area"></ul>
