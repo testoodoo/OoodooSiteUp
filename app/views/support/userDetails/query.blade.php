@@ -1,5 +1,5 @@
 @include('support.partials.css_assets')
-<body class="pace-done" style="background:#e0e3ed">
+<body style="background:#e0e3ed">
     <div class="col-lg-5 form-horizontal" style="margin-top: 100px; margin-left: 450px">
         <div class="panel panel-blue" style="background:#fff;">
             <div class="panel-heading" id="exsistCon">

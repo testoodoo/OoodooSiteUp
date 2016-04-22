@@ -1,6 +1,7 @@
 <div id="wrapper">
     <!--BEGIN SIDEBAR MENU-->
-    <nav id="sidebar" role="navigation" data-step="2" data-intro="Template has <b>many navigation styles</b>" data-position="right" class="navbar-default navbar-static-side" style="width: 10%; min-height: 100%;">
+
+    <nav id="sidebar" role="navigation" data-step="2" data-intro="Template has <b>many navigation styles</b>" data-position="right" class="navbar-default navbar-static-side" style="width: 10%;">
     <div class="sidebar-collapse menu-scroll" style="height: auto;">
         <ul id="side-menu" class="nav">
             
@@ -23,13 +24,14 @@
         </ul>
     </div>
 </nav>
+
 <!-- Sidebar menu end -->
 
 <!-- breadcrumb start -->
-<div id="page-wrapper">
 
+<div id="page-wrapper">
 @yield('main')
-</div> 
+</div>
 <!-- breadcrumb end -->
 
 </div>

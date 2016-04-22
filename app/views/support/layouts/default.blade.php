@@ -18,7 +18,7 @@
         @include('support.partials.js_assets')
     </head>
 
-    <body class="pace-done">
+    <body>
         @include('support.layouts.navbar')
         @include('support.layouts.sidebar')
     </body>

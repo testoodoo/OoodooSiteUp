@@ -1,10 +1,5 @@
-<div class="pace  pace-inactive"><div class="pace-progress" data-progress-text="100%" data-progress="99" style="width: 100%;">
-  <div class="pace-progress-inner"></div>
-</div>
-<div class="pace-activity"></div></div>
-
 <div id="header-topbar-option-demo" class="page-header-topbar">
-            <nav id="topbar" role="navigation" style="margin-bottom: 0;" data-step="3" class="navbar navbar-default navbar-static-top" style="min-width: 10%;">
+            <nav id="topbar" role="navigation" style="margin-bottom: 0;" data-step="3" class="navbar navbar-default navbar-static-top">
             <div class="navbar-header" style="width: 10%;">
                 <a id="logo" class="navbar-brand">
                     <span class="fa fa-rocket"></span>
