@@ -25,9 +25,10 @@ $(document).ready(function() {
  	$.ajax(
  	{
  		url : '/replyMessage',
- 		type :'post',
+ 		type :'',
  		data : {body : body, thread_id : thread_id},
  		success: function(data) {
+            alert(JSON.stringify(data));
  			if(data["mail"] == "false") {
  				alert('fail');
  			}else{
@@ -61,7 +62,7 @@ $(document).ready(function() {
  	});
  });
 
-  function mailUp(){
+/*  function mailUp(){
     $.ajax({
         url : '/mailSupportio',
         type : 'GET'
@@ -72,7 +73,7 @@ mailUp();
 
         setInterval( function () {
                 mailUp()
-                    }, 1000 );
+                    }, 1000 );*/
 
     function Refersh(){
         $.ajax({

@@ -15,10 +15,11 @@ class CreateTicketStatusTable extends Migration {
 	Schema::create('create_ticket_status_table', function(Blueprint $table)
         {
   			$table->increments('id');
-  			$table->string('ticket_id'); 
   			$table->string('thread_id');
-  			$table->string('message'); 
-  			$table->string('updated_by');
+  			$table->string('ticket_no'); 
+  			$table->string('status');
+  			$table->string('assign_to');
+  			$table->string('remarks');
             $table->timestamps();
         });
 	}

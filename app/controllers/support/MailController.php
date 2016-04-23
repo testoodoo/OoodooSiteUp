@@ -16,8 +16,6 @@ require 'vendor/autoload.php';
 class MailController extends BaseController {
 
    public function index(){
-
-
     $query = Input::get('query');
     if($query != NULL){
         $data['mails'] = MailSupport::where('from_mail','like','%'.$query.'%')
@@ -187,6 +185,8 @@ class MailController extends BaseController {
                     $inboxmail->time = $time;
                     $inboxmail->save();
 
+
+
             }   
 
         }
@@ -242,11 +242,15 @@ Subject:'.$subject.'
             $service = new Google_Service_Gmail($client);
             $userId='me';
             $thread_id = Input::get('thread_id');
+            $assign_to = '100035';
+            $ticket_no = TicketSupport::where('thread_id',$assign_to)->get()->first()->ticket_no;
+            $ticket_no = $this->generateTicketNo();
             $senderDet = MailSupport::where('thread_id',$thread_id)->orderBy('time','ASC')->get()->first();
             $from = $senderDet->to_mail;
             $to = $senderDet->from_mail;
             $subject = $senderDet->subject;
-            $body = Input::get('body');
+            $content = Input::get('body');
+            $body = 'Hi '.$from.'<br> Ticket No : '.$ticket_no.'<br><br>'.$content.'<br><br>Sincerely<br>'.Auth::employee()->get()->name.'<br>OODOO Support team.';
             $message = new Google_Service_Gmail_Message();
             $text = 'From: '.$from.'
 To: '.$to.'
@@ -261,7 +265,17 @@ Subject: Re: '.$subject.'
             $message = $service->users_messages->send($userId, $message);
             $thread = $message->setThreadId($thread_id);
             #var_dump($message); die;
-            $inboxmail=new InboxMail();
+
+            $ticketMail = new TicketSupport();
+            $ticketMail->thread_id = $thread_id;
+            $ticketMail->ticket_no = $ticket_no;
+            $ticketMail->status = 'open';
+            $ticketMail->assign_to = $assign_to;
+            $ticketMail->save();
+
+
+
+            $inboxmail=new MailSupport();
             $inboxmail->message_id = $message->getId();
             $inboxmail->thread_id = $thread_id;
             $inboxmail->history_id = 1111;
@@ -375,5 +389,12 @@ public function expandHomeDirectory($path) {
   }
   return str_replace('~', realpath($homeDirectory), $path);
 }
+
+    public function generateTicketNo(){
+        $today_tickets = DB::select('SELECT * FROM create_ticket_status_table where DATE(created_at) = DATE(NOW())');
+        $count = strval(count($today_tickets));
+        $ticket_no = sprintf("%02s", date('d')). sprintf("%02s", date('m')) .  date('y') . sprintf("%04s", $count);
+        return $ticket_no;
+    }
 
 }
