@@ -25,7 +25,7 @@ $(document).ready(function() {
  	$.ajax(
  	{
  		url : '/replyMessage',
- 		type :'',
+ 		type :'post',
  		data : {body : body, thread_id : thread_id},
  		success: function(data) {
             alert(JSON.stringify(data));

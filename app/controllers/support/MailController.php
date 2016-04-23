@@ -243,8 +243,18 @@ Subject:'.$subject.'
             $userId='me';
             $thread_id = Input::get('thread_id');
             $assign_to = '100035';
-            $ticket_no = TicketSupport::where('thread_id',$assign_to)->get()->first()->ticket_no;
-            $ticket_no = $this->generateTicketNo();
+            $ticket_no = TicketSupport::where('thread_id',$thread_id)->get()->first();
+            if(!$ticket_no){
+                $ticket_no = $this->generateTicketNo();
+                $ticketMail = new TicketSupport();
+                $ticketMail->thread_id = $thread_id;
+                $ticketMail->ticket_no = $ticket_no;
+                $ticketMail->status = 'open';
+                $ticketMail->assign_to = $assign_to;
+                $ticketMail->save();
+            }else{
+                $ticket_no = $ticket_no->ticket_no;
+            }
             $senderDet = MailSupport::where('thread_id',$thread_id)->orderBy('time','ASC')->get()->first();
             $from = $senderDet->to_mail;
             $to = $senderDet->from_mail;
@@ -266,12 +276,6 @@ Subject: Re: '.$subject.'
             $thread = $message->setThreadId($thread_id);
             #var_dump($message); die;
 
-            $ticketMail = new TicketSupport();
-            $ticketMail->thread_id = $thread_id;
-            $ticketMail->ticket_no = $ticket_no;
-            $ticketMail->status = 'open';
-            $ticketMail->assign_to = $assign_to;
-            $ticketMail->save();
 
 
 
@@ -393,7 +397,7 @@ public function expandHomeDirectory($path) {
     public function generateTicketNo(){
         $today_tickets = DB::select('SELECT * FROM create_ticket_status_table where DATE(created_at) = DATE(NOW())');
         $count = strval(count($today_tickets));
-        $ticket_no = sprintf("%02s", date('d')). sprintf("%02s", date('m')) .  date('y') . sprintf("%04s", $count);
+        $ticket_no = sprintf("%02s", date('d')). sprintf("%02s", date('m')) .  date('y') . sprintf("%04s", $count+1);
         return $ticket_no;
     }
 

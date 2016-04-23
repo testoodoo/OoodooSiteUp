@@ -1,5 +1,6 @@
 @extends('support.layouts.default')
 @section('main')
+
 <div class="page-content">
 		@if (Session::has('message'))
 			<div class="alert alert-success">{{ Session::get('message') }}</div>
@@ -42,6 +43,17 @@
                                 <li class="out" id="replyHide"><img src="/assets/dist/support/images/avatar/49.jpg" class="avatar img-responsive" />
                                 <div class="message" id="replyJump">
                                 <span class="chat-arrow"></span>
+                                <div class="col-lg-4">
+
+                                            <button type="button" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="true" class="btn btn-primary dropdown-toggle"><i class="fa fa-angle-down"></i></button>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#">Billing Complaint
+                                                    </a></li>
+                                                <li><a href="#">Technical Complaint
+                                                    </a></li>
+                                            </ul>
+
+                                </div>
 	                                <a href="#replyJump" id="replyMessage" class="jumper">
 	                                	<span class="btn btn-blue">Reply</span>
 	                                </a>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -77,6 +89,12 @@
         </div>
     </div>
 </div>
-
+<script type="text/javascript">
+jQuery(document).ready(function() {
+    $('#complaint_type').change(function() {
+        
+    });
+});
+</script>
 
 @stop
