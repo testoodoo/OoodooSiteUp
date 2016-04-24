@@ -19,8 +19,36 @@
                             <input type="hidden" id="threadId" value="{{$mail->thread_id}}">
                                 @if($mail->label =='INBOX')
                                 	<li class="in"><img src="/assets/dist/support/images/avatar/48.jpg" class="avatar img-responsive" />
+                                    <div class="message"  style="background-color: #E5E4E2;">
+                                        <span class="chat-arrow"></span>
+                                        <a href="#" class="chat-name">{{$mail->from_mail}}</a>&nbsp; at
+                                        <span title="{{$mail->time}}" data-livestamp="{{$mail->time}}"></span>
+                                        <span class="chat-body">{{$mail->body}}</span>
+                                    </div>                                    
+                                @elseif($mail->label == 'NOTE')
+                                    <li class="out"><img src="/assets/dist/support/images/avatar/note.jpg" class="avatar img-responsive" />
+                                    <div class="message"  style="background-color: #E0FFFF;">
+                                        <span class="chat-arrow"></span>
+                                        <a href="#" class="chat-name">{{$mail->from_mail}}</a>&nbsp; at
+                                        <span title="{{$mail->time}}" data-livestamp="{{$mail->time}}"></span>
+                                        <span class="chat-body">{{$mail->body}}</span>
+                                    </div> 
+                                @elseif($mail->label == 'ASSIGN')
+                                    <li class="out"><img src="/assets/dist/support/images/avatar/assign.png" class="avatar img-responsive" />
+                                    <div class="message"  style="background-color: #F3E5AB;">
+                                        <span class="chat-arrow"></span>
+                                        <a href="#" class="chat-name">{{$mail->from_mail}}</a>&nbsp; at
+                                        <span title="{{$mail->time}}" data-livestamp="{{$mail->time}}"></span>
+                                        <span class="chat-body">{{$mail->body}}</span>
+                                    </div>                                                                        
                                 @else
                                 	<li class="out"><img src="/assets/dist/support/images/avatar/49.jpg" class="avatar img-responsive" />
+                                    <div class="message"  style="background-color: #E3E4FA;">
+                                        <span class="chat-arrow"></span>
+                                        <a href="#" class="chat-name">{{$mail->from_mail}}</a>&nbsp; at
+                                        <span title="{{$mail->time}}" data-livestamp="{{$mail->time}}"></span>
+                                        <span class="chat-body">{{$mail->body}}</span>
+                                    </div>                                    
 					            	@if($mail->attachment)
 								        @foreach(json_decode($mail->attachment) as $attachment)</br>
 							        		<a href="//assets/dist/support/images/adminbills.csv" class="btn btn-green">
@@ -31,12 +59,6 @@
 							        	@endforeach
 							        @endif                                       
                                 @endif
-                                    <div class="message">
-                                        <span class="chat-arrow"></span>
-                                        <a href="#" class="chat-name">{{$mail->from_mail}}</a>&nbsp; at
-                            			<span title="{{$mail->time}}" data-livestamp="{{$mail->time}}"></span>
-                                        <span class="chat-body">{{$mail->body}}</span>
-                                    </div>
                                 @endforeach
                                 <br><div id="chatBox"></div>
                                 </li>

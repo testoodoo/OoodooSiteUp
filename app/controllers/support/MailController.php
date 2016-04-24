@@ -243,6 +243,8 @@ Subject:'.$subject.'
             $userId='me';
             $thread_id = Input::get('thread_id');
             $assign_to = Input::get('assign_to');
+            $employee_name = Employee::where('employee_identity',$assign_to)->get()->first()->name;
+            DB::table('create_mail_table')->insert(['thread_id' => $thread_id, 'label' => 'ASSIGN', 'body' => ''.Auth::employee()->get()->name.' assigned the complaint to '.$employee_name.'', 'from_mail' => Auth::employee()->get()->name ,  'time' => Date("Y-m-d H:i:s") ]);
             $ticket_no = TicketSupport::where('thread_id',$thread_id)->get()->first();
             if(!$ticket_no){
                 $ticket_no = $this->generateTicketNo();
@@ -322,7 +324,7 @@ public function addNote(){
     $time = Date("Y-m-d H:i:s");
     $inboxmail->time = $time;
     if($inboxmail->save()){
-        return Response::json(array('from' => $name , 'body' => $note, 'time' => $time));
+        return Response::json(array('from' => $name , 'body' => $note, 'time' => $time, 'label' => 'note'));
     }else{
         return Response::json(array('mail' => "false"));
     }    
