@@ -20,19 +20,20 @@ $(document).ready(function() {
 	});	
 
  $('#reply').click(function() {
+    var assign_to = $('#complaint_type').val();
  	var body = $('.textarea').val();
  	var thread_id = $('#threadId').val();
  	$.ajax(
  	{
  		url : '/replyMessage',
  		type :'post',
- 		data : {body : body, thread_id : thread_id},
+ 		data : {body : body, thread_id : thread_id, assign_to : assign_to},
  		success: function(data) {
             alert(JSON.stringify(data));
  			if(data["mail"] == "false") {
  				alert('fail');
  			}else{
- 				$('#chatBox').append('<li class="out"><img src="/assets/dist/support/images/avatar/49.jpg" class="avatar img-responsive" /><div class="message"><span class="chat-arrow"></span><a href="#" class="chat-name">'+data.from+'</a>&nbsp; at<span title="'+data.time+'" data-livestamp="'+data.time+'"></span><span class="chat-body">'+data.body+'</span></div>');
+ 				$('#chatBox').append('<li class="out"><img src="/assets/dist/support/images/avatar/49.jpg" class="avatar img-responsive" /><div class="message"><span class="chat-arrow"></span><a href="#" class="chat-name">'+data.from+'</a>&nbsp; at<span title="'+data.time+'" data-livestamp="'+data.time+'"></span><span class="chat-body">'+data.body+'</span></div><br>');
  				$('#replyContent').hide();
  				$('#replyHide').show();
  			}

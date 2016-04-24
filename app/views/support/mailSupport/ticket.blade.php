@@ -43,43 +43,39 @@
                                 <li class="out" id="replyHide"><img src="/assets/dist/support/images/avatar/49.jpg" class="avatar img-responsive" />
                                 <div class="message" id="replyJump">
                                 <span class="chat-arrow"></span>
-                                <div class="col-lg-4">
-
-                                            <button type="button" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="true" class="btn btn-primary dropdown-toggle"><i class="fa fa-angle-down"></i></button>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="#">Billing Complaint
-                                                    </a></li>
-                                                <li><a href="#">Technical Complaint
-                                                    </a></li>
-                                            </ul>
-
-                                </div>
-	                                <a href="#replyJump" id="replyMessage" class="jumper">
-	                                	<span class="btn btn-blue">Reply</span>
-	                                </a>&nbsp;&nbsp;&nbsp;&nbsp;
-	                                <a href="#replyJump" class="jumper">
-	                                	<span class="btn btn-blue">Forward</span>
-	                                </a>&nbsp;&nbsp;&nbsp;&nbsp;
-	                                <a href="#replyJump" id="replyNote" class="jumper">
-	                                	<span class="btn btn-blue">Add Note</span>
-	                                </a>
+                                    <a href="#replyJump" id="replyMessage" class="jumper">
+                                        <span class="btn btn-blue">Reply</span>
+                                    </a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="#replyJump" class="jumper">
+                                        <span class="btn btn-blue">Forward</span>
+                                    </a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="#replyJump" id="replyNote" class="jumper">
+                                        <span class="btn btn-blue">Add Note</span>
+                                    </a>
                                 </div>
                                 </li>
                                 <li class="out" id="replyContent"><img src="/assets/dist/support/images/avatar/49.jpg" class="avatar img-responsive" />
-	                                <div class="message" id="replyJump">
-		                                <span class="chat-arrow"></span>
-		                                <textarea style="height: 7cm;" class="form-control textarea"></textarea><br>
-		                                <span id="cancelMessage" class="btn btn-orange">Cancel</span>&nbsp;&nbsp;&nbsp;&nbsp;
-		                                <span id="reply" class="btn btn-blue">Reply</span>
-	                                </div>
+                                    <div class="message" id="replyJump">
+                                        <span class="chat-arrow"></span>
+                                        <textarea style="height: 7cm;" class="form-control textarea"></textarea><br>
+                                <div class="col-lg-4">
+<select class="form-control" id="complaint_type">
+<option value="">Select One</optin>
+<option value="100033">Manivannann A A </option>
+<option value="100035">Prakash</option>
+</select>
+</div>
+                                        <span id="cancelMessage" class="btn btn-orange">Cancel</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <span id="reply" class="btn btn-blue" style="display: none;">Reply</span>
+                                    </div>
                                 </li>
                                 <li class="out" id="noteContent"><img src="/assets/dist/support/images/avatar/49.jpg" class="avatar img-responsive" />
-	                                <div class="message" id="replyJump">
-		                                <span class="chat-arrow"></span>
-		                                <textarea style="height: 7cm;" class="form-control notetext"></textarea><br>
-		                                <span id="cancelNote" class="btn btn-orange">Cancel</span>&nbsp;&nbsp;&nbsp;&nbsp;
-		                                <span id="note" class="btn btn-blue">Add Note</span>
-	                                </div>
+                                    <div class="message" id="replyJump">
+                                        <span class="chat-arrow"></span>
+                                        <textarea style="height: 7cm;" class="form-control notetext"></textarea><br>
+                                        <span id="cancelNote" class="btn btn-orange">Cancel</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <span id="note" class="btn btn-blue">Add Note</span>
+                                    </div>
                                 </li>                                
                             </ul>
                         </div>
@@ -91,8 +87,14 @@
 </div>
 <script type="text/javascript">
 jQuery(document).ready(function() {
+    var optionVal = $('#complaint_type').val();
     $('#complaint_type').change(function() {
-        
+        var optionVal = $('#complaint_type').val();
+        if(optionVal != ""){
+        $('#reply').show();            
+        }else{
+        $('#reply').hide();
+        }
     });
 });
 </script>

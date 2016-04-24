@@ -8,7 +8,6 @@ define('SCOPES', implode(' ', array(
   Google_Service_Gmail::MAIL_GOOGLE_COM)
 ));
 
-
 require 'vendor/autoload.php';
 
 
@@ -39,6 +38,7 @@ class MailController extends BaseController {
         $ticket->message = $remark;
         $ticket->save();
     }
+    $data['team_list'] = Masterdata::where('type','=','customer_activation_process')->get();
     $data['messages'] = MailTicket::where('thread_id', $thread_id)->orderBy('created_at','ASC')->get();
     return View::make('support.mailSupport.ticket', $data);
 
@@ -242,7 +242,7 @@ Subject:'.$subject.'
             $service = new Google_Service_Gmail($client);
             $userId='me';
             $thread_id = Input::get('thread_id');
-            $assign_to = '100035';
+            $assign_to = Input::get('assign_to');
             $ticket_no = TicketSupport::where('thread_id',$thread_id)->get()->first();
             if(!$ticket_no){
                 $ticket_no = $this->generateTicketNo();
@@ -294,7 +294,7 @@ Subject: Re: '.$subject.'
             $time = Date("Y-m-d H:i:s");
             $inboxmail->time = $time;
             if($inboxmail->save()){
-                return Response::json(array('from' => $from, 'body' => $body, 'time' => $time));
+                return Response::json(array('from' => $from, 'body' => $body, 'time' => $time, 'assign_to' => $assign_to));
             }else{
                 return Response::json(array('mail' => "false"));
             }
