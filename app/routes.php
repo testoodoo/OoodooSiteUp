@@ -526,6 +526,7 @@ Route::group( array('domain' => 'test.accounts.oodoo.co.in' ), function() {
         Route::post('ticket/status',     array('as' => '', 'uses' => 'support\\TicketController@status')); 
         Route::post('ticket/send',     array('as' => '', 'uses' => 'support\\TicketController@sendTicket'));         
         Route::get('sendNotify', array('as' => '', 'uses' => 'support\\DashboardController@sendNotify'));
+        Route::get('findTicket', array('as' => '', 'uses' => 'support\\TicketController@findTicket'));
 
 
 

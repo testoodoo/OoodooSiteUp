@@ -396,7 +396,17 @@ jQuery(document).ready(function() {
 }
 
 function ticketPop(t) {
-    window.open("<?php public_path() ?>/ticket_popup/"+t, "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=500, left=500, width=800, height=400");
+    var id = t;
+    $.ajax({
+        url : '/findTicket',
+        type: 'GET',
+        data : { id : id },
+        dataType: 'json',
+        success : function(data) {
+            window.location.href="/mailSupport/"+data.thread_id;
+            //window.open("<?php public_path() ?>/ticket_popup/"+t, "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=500, left=500, width=800, height=400");
+        }
+    });
 }  
 
 

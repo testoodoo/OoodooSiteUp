@@ -33,7 +33,7 @@ $(document).ready(function() {
  			if(data["mail"] == "false") {
  				alert('fail');
  			}else{
-                $('#chatBox').append('<li class="out"><img src="/assets/dist/support/images/avatar/note.jpg" class="avatar img-responsive" /><div class="message"><span class="chat-arrow"></span><a href="#" class="chat-name">'+data.from+'</a>&nbsp; at<span title="'+data.time+'" data-livestamp="'+data.time+'"></span><span class="chat-body">'+data.body+'</span></div><br>');
+                $('#chatBox').append('<li class="out"><img src="/assets/dist/support/images/avatar/assign.png" class="avatar img-responsive" /><div class="message" style="background-color: #F3E5AB;"><span class="chat-arrow"></span><a href="#" class="chat-name">'+data.from+'</a>&nbsp; at<span title="'+data.time+'" data-livestamp="'+data.time+'"></span><span class="chat-body">'+data.from+' assigned the complaint to '+data.assign_to+'</span></div><br><li class="out"><img src="/assets/dist/support/images/avatar/49.jpg" class="avatar img-responsive" /><div class="message" style="background-color: #E3E4FA;><span class="chat-arrow"></span><a href="#" class="chat-name">'+data.from+'</a>&nbsp; at<span title="'+data.time+'" data-livestamp="'+data.time+'"></span><span class="chat-body">'+data.body+'</span></div><br>');
  				$('#replyContent').hide();
  				$('#replyHide').show();
  			}

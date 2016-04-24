@@ -31,15 +31,7 @@ class MailController extends BaseController {
 
     $data['list'] = MailSupport::where('thread_id', $thread_id)->orderBy('time','ASC')->get()->first();
     $data['mails'] = MailSupport::where('thread_id', $thread_id)->orderBy('time','ASC')->get();
-    $remark = Input::get('remark');
-    if($remark){
-        $ticket = new MailTicket();
-        $ticket->thread_id = $thread_id;
-        $ticket->message = $remark;
-        $ticket->save();
-    }
     $data['team_list'] = Masterdata::where('type','=','customer_activation_process')->get();
-    $data['messages'] = MailTicket::where('thread_id', $thread_id)->orderBy('created_at','ASC')->get();
     return View::make('support.mailSupport.ticket', $data);
 
    }
@@ -165,7 +157,7 @@ class MailController extends BaseController {
                 $subject = preg_replace('/^Fwd: /', '', $subject);*/
                 $thread_id = MailSupport::where('thread_id',$threadId)->get();
                 if(!count($thread_id) && $labelIds['0'] == 'INBOX'){
-                    $this->autoMessage($from, $to, $subject, 123, 'test');
+                    $this->autoMessage($from, $to, $subject, 123, 'test', 123);
 
                 }
                     $inboxmail=new InboxMail();
@@ -195,17 +187,20 @@ class MailController extends BaseController {
 
     }
 
-    public function autoMessage($from, $to, $subject, $ticket_no, $body){
+    public function autoMessage($from, $to, $subject, $ticket_no, $body, $assigned_to){
 
         $client = $this->getClient();
         $service = new Google_Service_Gmail($client);
         $userId='me';
-        if($subject != 'Ticket Raised'){
+        $label = 'ACK';
+        if($subject != "Ticket Raised"){
 
         $subject = "Ticket Received - ".$subject."";
-        $body = "Dear ".$from.",\n\nWe would like to acknowledge that we have received your request and a ticket has been created.A support representative will be reviewing your request and will send you a personal response (usually within 24 hours).\n\nThank you for your patience.\n\nSincerely,\nOODOO Fiber Support Team";
+        $body = "Dear ".$from.",\n\nWe would like to acknowledge that we have received your request and a ticket has been created.A support representative will be reviewing your request and will send you a personal response in a short time.\n\nThank you for your patience.\n\nSincerely,\nOODOO Fiber Support Team";
         }else{
-            $body = "Dear ".$from.",\n\n".$body."\n\nSincerely,\nOODOO Fiber Support Team";
+            $label = 'SENT';
+            $body = "Dear ".$from.",\n\nTicket No: ".$ticket_no." \n\nWe would like to acknowledge that we have received your request and a ticket has been created.A support representative will be reviewing your request and will send you a personal response in a short time.\n\n".$body."\n\nThank you for your patience.\n\nSincerely,\n".Auth::employee()->get()->name."\nOODOO Fiber Support Team";
+
         }
 
 
@@ -221,11 +216,23 @@ Subject:'.$subject.'
 
         $message = $service->users_messages->send($userId, $message);
 
+        if($subject == "Ticket Raised"){
+            $ticketMail = new TicketSupport();
+            $ticketMail->thread_id = $message->getThreadId();
+            $ticketMail->ticket_no = $ticket_no;
+            $ticketMail->status = 'open';
+            $ticketMail->assign_to = $assigned_to;
+            $ticketMail->save();
+
+        }                      
+
+                    
+
         $inboxmail=new InboxMail();
         $inboxmail->message_id = $message->getId();
         $inboxmail->thread_id = $message->getThreadId();
         $inboxmail->history_id = 2222;
-        $inboxmail->label = 'ACK';
+        $inboxmail->label = $label;
         $inboxmail->subject = $subject;
         $inboxmail->from_mail = $from;
         $inboxmail->to_mail = $to;
@@ -262,7 +269,7 @@ Subject:'.$subject.'
             $to = $senderDet->from_mail;
             $subject = $senderDet->subject;
             $content = Input::get('body');
-            $body = 'Hi '.$from.'<br> Ticket No : '.$ticket_no.'<br><br>'.$content.'<br><br>Sincerely<br>'.Auth::employee()->get()->name.'<br>OODOO Support team.';
+            $body = 'Hi '.$from.'\n Ticket No : '.$ticket_no.'\n\n'.$content.'\n\nSincerely\n'.Auth::employee()->get()->name.'\nOODOO Support team.';
             $message = new Google_Service_Gmail_Message();
             $text = 'From: '.$from.'
 To: '.$to.'

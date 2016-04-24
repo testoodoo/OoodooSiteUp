@@ -1,7 +1,7 @@
 <?php
 
 namespace support;
-use Auth, View, Ticket, TicketInfo, Stattus, AssignTicket, Message, Input, Redirect, Masterdata, CusDet, DB, Datatables, Employee, Session, PaymentTransaction, MailController;
+use Auth, View, Ticket, TicketInfo, TicketSupport, Stattus, AssignTicket, Message, Input, Redirect, Masterdata, CusDet, DB, Datatables, Employee, Session, PaymentTransaction, MailController;
 
 class TicketController extends \BaseController {
 
@@ -15,7 +15,8 @@ class TicketController extends \BaseController {
 		$ticket->ticket_type_id = Input::get('ticket_type_id');
 		$ticket->city_id =12;
 		$ticket->requirement = Input::get('requirement');
-		$ticket->assigned_to =Input::get('employee_id');
+		$assigned_to = Input::get('employee_id');
+		$ticket->assigned_to =$assigned_to;
 		$ticket->assigned_by = Auth::employee()->get()->employee_identity;
 
 		if(Input::get('crf_no')){
@@ -63,7 +64,7 @@ class TicketController extends \BaseController {
 
 			$to_mail = Input::get('email');
 
-			app('MailController')->autoMessage($to_mail, 'testoodoo1@gmail.com', 'Ticket Raised', $ticket->ticket_no, $body);	
+			app('MailController')->autoMessage($to_mail, 'testoodoo1@gmail.com', 'Ticket Raised', $ticket->ticket_no, $body, $assigned_to);	
 			$return = PaymentTransaction::sendsms($mobileNumber, $senderId, $message); 
 		}
 
@@ -97,6 +98,13 @@ class TicketController extends \BaseController {
 		}
 		return $data;
 
+	}
+
+	public function findTicket() {
+		$id = Input::get('id');
+		$ticket_no = Ticket::where('id',$id)->get()->first()->ticket_no;
+		$data['thread_id'] = TicketSupport::where('ticket_no',$ticket_no)->get()->first()->thread_id;
+		return $data;
 	}
 
 	public function ticket_popup($id) {

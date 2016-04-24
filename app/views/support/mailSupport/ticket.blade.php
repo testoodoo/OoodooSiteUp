@@ -37,9 +37,8 @@
                                     <li class="out"><img src="/assets/dist/support/images/avatar/assign.png" class="avatar img-responsive" />
                                     <div class="message"  style="background-color: #F3E5AB;">
                                         <span class="chat-arrow"></span>
-                                        <a href="#" class="chat-name">{{$mail->from_mail}}</a>&nbsp; at
+                                        <span class="chat-body">{{$mail->body}}</span> &nbsp; at &nbsp;
                                         <span title="{{$mail->time}}" data-livestamp="{{$mail->time}}"></span>
-                                        <span class="chat-body">{{$mail->body}}</span>
                                     </div>                                                                        
                                 @else
                                 	<li class="out"><img src="/assets/dist/support/images/avatar/49.jpg" class="avatar img-responsive" />
