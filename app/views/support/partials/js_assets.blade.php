@@ -55,7 +55,11 @@
     {{ HTML::script('/assets/dist/support/js/dataTables.semanticui.min.js') }}    
     {{ HTML::script('/assets/dist/support/js/dataTables.uikit.js') }}    
     {{ HTML::script('/assets/dist/support/js/dataTables.uikit.min.js') }}     
-    {{ HTML::script('/assets/dist/support/js/jquery.dataTables.min.js') }}    
+    {{ HTML::script('/assets/dist/support/js/jquery.dataTables.min.js') }}
+    {{ HTML::script('/assets/dist/support/js/redactor.js')}}
+
+    bootstrap-wysiwyg.min.js
+    bootbox.min.js
     
 
 

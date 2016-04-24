@@ -1,4 +1,4 @@
-    <div class="col-lg-12" id="newTickets" style="display:none;">
+    <div class="col-lg-12" id="newTickets" style="display:non;">
         <div class="panel panel-grey">
             <div class="panel-heading">Complaint</div>
             <div class="panel-body pan">
@@ -56,7 +56,19 @@
 		                                @endforeach
 	                                </select>
                                     </div>
-                                </div>
+                                </div>                                
+<div class="redactor_insert_btns">
+    <ul class="redactor_toolbar">
+        <li>
+            <a href="#" class="insert_solution tooltip" data-editor-id="cnt-reply-body" rel="ticket_solutions" title="Insert Solution">Solution</a>
+        </li>
+        <li class="redactor_separator"></li>
+        <li>
+            <a href="#" class="insert_ca_response tooltip" data-editor-id="cnt-reply-body" rel="ticket_canned_response" title="Insert Canned Response">Canned Response</a>
+            <a href="javascript:void(null);" title="Bold (⌘B)" class="redactor_btn_bold" tabindex="-1"></a>
+        </li>
+    </ul>
+</div>                                
                                 <div class="col-md-6">
                                     <div class="form-group">
                                     <label class="control-label">Assign To: </label>
