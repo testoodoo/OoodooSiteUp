@@ -57,9 +57,10 @@
     {{ HTML::script('/assets/dist/support/js/dataTables.uikit.min.js') }}     
     {{ HTML::script('/assets/dist/support/js/jquery.dataTables.min.js') }}
     {{ HTML::script('/assets/dist/support/js/redactor.js')}}
+    {{ HTML::script('/assets/dist/support/js/bootstrap-wysiwyg.min.js')}}
+    {{ HTML::script('/assets/dist/support/js/bootbox.min.js')}}
+    {{ HTML::script('/assets/dist/support/js/')}}
 
-    bootstrap-wysiwyg.min.js
-    bootbox.min.js
     
 
 
