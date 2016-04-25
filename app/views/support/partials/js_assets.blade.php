@@ -56,10 +56,9 @@
     {{ HTML::script('/assets/dist/support/js/dataTables.uikit.js') }}    
     {{ HTML::script('/assets/dist/support/js/dataTables.uikit.min.js') }}     
     {{ HTML::script('/assets/dist/support/js/jquery.dataTables.min.js') }}
-    {{ HTML::script('/assets/dist/support/js/redactor.js')}}
-    {{ HTML::script('/assets/dist/support/js/bootstrap-wysiwyg.min.js')}}
-    {{ HTML::script('/assets/dist/support/js/bootbox.min.js')}}
-    {{ HTML::script('/assets/dist/support/js/')}}
+    {{ HTML::script('/assets/dist/support/js/firepad.min.js')}}
+    {{ HTML::script('/assets/dist/support/js/codemirror.js')}}
+    {{ HTML::script('/assets/dist/support/js/firebase.js')}}
 
     
 

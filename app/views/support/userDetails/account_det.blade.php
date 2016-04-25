@@ -1,6 +1,7 @@
 @extends ('support.layouts.default')
 @section('main')
 <div class="page-content">
+<div id="firepad-container"></div>
         @if (Session::has('message'))
             <div class="alert alert-success">{{ Session::get('message') }}</div>
         @endif
@@ -427,8 +428,6 @@ function sendNotify(id) {
     });    
 }  
 
-</script>  
-<script>
 function init() {
   var firepadRef = getExampleRef();
   var codeMirror = CodeMirror(document.getElementById('firepad-container'), { lineWrapping: true });

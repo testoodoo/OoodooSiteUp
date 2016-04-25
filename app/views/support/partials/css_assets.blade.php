@@ -25,8 +25,12 @@
     {{ HTML::style('/assets/dist/support/css/jquery.dataTables.css')}}
     {{ HTML::style('/assets/dist/support/css/jquery.dataTables.min.css')}}
     {{ HTML::style('/assets/dist/support/css/jquery.dataTables_themeroller.css')}}  
-    {{ HTML::style('/assets/dist/support/css/ace.min.css')}}  
+    {{ HTML::style('/assets/dist/support/css/codemirror.css')}}
+    {{ HTML::style('/assets/dist/support/css/firepad.css')}}
+
+<!--     {{ HTML::style('/assets/dist/support/css/ace.min.css')}}  
     {{ HTML::style('/assets/dist/support/css/ace-skins.min.css')}}  
-    {{ HTML::style('/assets/dist/support/css/ace-rtl.min.css')}}  
+    {{ HTML::style('/assets/dist/support/css/ace-rtl.min.css')}}  -->
+
 
 
