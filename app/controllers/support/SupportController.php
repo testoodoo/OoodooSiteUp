@@ -13,7 +13,8 @@ class SupportController extends BaseController {
 		}else{
 			$data['tickets']=NULL;
 		}		
-		return View::make('support.userDetails.account_det',$data);
+		//return View::make('support.userDetails.account_det',$data);
+		return View::make('support.userDetails.now',$data);
 	
 	}
 
