@@ -75,19 +75,48 @@
                                     </a>
                                 </div>
                                 </li>
-                                <li class="out" id="replyContent"><img src="/assets/dist/support/images/avatar/49.jpg" class="avatar img-responsive" />
+                                <li class="out" id="replyContents"><img src="/assets/dist/support/images/avatar/49.jpg" class="avatar img-responsive" />
                                     <div class="message" id="replyJump">
                                         <span class="chat-arrow"></span>
                                         <textarea style="height: 7cm;" class="form-control textarea"></textarea><br>
                                 <div class="col-lg-4">
-<select class="form-control" id="complaint_type">
+<select class="form-control ticket_type" id="complaint_type">
 <option value="">Select One</optin>
-<option value="100033">Manivannann A A </option>
-<option value="100035">Prakash</option>
+@foreach($ticket_type as $ticket)
+    @if($ticket->id == 2)
+        <optgroup label="Complaint">
+        @foreach($complaints as $complaint)
+            <option value="{{$complaint->id}}">{{$complaint->name}}<option>
+        @endforeach
+        </optgroup>
+    @endif
+
+    @if($ticket->id != 2)
+    <option value="{{$ticket->id}}">{{$ticket->name}} </option>
+    @endif
+@endforeach
+</select>
+</div>
+                                <div class="col-lg-4">
+<select class="form-control ticket_type" id="emp_subs">
+<option value="">Select One</optin>
+@foreach($ticket_type as $ticket)
+    @if($ticket->id == 2)
+        <optgroup label="Complaint">
+        @foreach($complaints as $complaint)
+            <option value="{{$complaint->id}}">{{$complaint->name}}<option>
+        @endforeach
+        </optgroup>
+    @endif
+    
+    @if($ticket->id != 2)
+    <option value="{{$ticket->id}}">{{$ticket->name}} </option>
+    @endif
+@endforeach
 </select>
 </div>
                                         <span id="cancelMessage" class="btn btn-orange">Cancel</span>&nbsp;&nbsp;&nbsp;&nbsp;
-                                        <span id="reply" class="btn btn-blue" style="display: non;">Reply</span>
+                                        <span id="reply" class="btn btn-blue" style="display: none;">Reply</span>
                                     </div>
                                 </li>
                                 <li class="out" id="noteContent"><img src="/assets/dist/support/images/avatar/49.jpg" class="avatar img-responsive" />
@@ -108,9 +137,11 @@
 </div>
 <script type="text/javascript">
 jQuery(document).ready(function() {
-    var optionVal = $('#complaint_type').val();
     $('#complaint_type').change(function() {
         var optionVal = $('#complaint_type').val();
+        if(optionVal == 27){
+            window.open('/query','_blank');
+        }
         if(optionVal != ""){
         $('#reply').show();            
         }else{
@@ -118,6 +149,27 @@ jQuery(document).ready(function() {
         }
     });
 });
+
+ $('select.ticket_type').change(function(){
+    var plan = $(this).val();
+    alert(plan.length);
+    if (plan.length != 0) {
+      $.ajax({
+            url:'/setEmployee',
+            type:'GET',
+            data: { ticket_type : plan},
+            dataType: 'json',
+            success: function( json ) {
+                $("#emp_subs").empty();
+               $.each(json, function(i, optionHtml){
+                  $('#emp_subs').append(new Option(optionHtml,i));
+               });
+            }
+        });
+    }else{
+        $("#emp_subs").empty();
+    }
+    });
 </script>
 
 @stop

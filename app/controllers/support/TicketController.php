@@ -305,6 +305,21 @@ class TicketController extends \BaseController {
 		return Redirect::back()->with('failure','Ticket Assign Status Not Found');
 	}	
 
+public function setEmployee(){
+    	$ticket_type=Input::get('ticket_type');
+    	var_dump($ticket_type); die;
+    	
+		if($ticket_type==28){
+			$emp=Employee::where('role_id',6)->get();
+		}elseif($ticket_type==29){
+			$emp=Employee::whereIn('role_id',array(9,2,1))->get();
+		}       
+		foreach ($emp as $key) {
+			$subs[$key->employee_identity]=$key->name;
+		}
+        echo json_encode($subs);
+}	
+
 
 
 

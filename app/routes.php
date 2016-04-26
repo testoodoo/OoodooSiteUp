@@ -528,6 +528,8 @@ Route::group( array('domain' => 'test.accounts.oodoo.co.in' ), function() {
         Route::get('sendNotify', array('as' => '', 'uses' => 'support\\DashboardController@sendNotify'));
         Route::get('findTicket', array('as' => '', 'uses' => 'support\\TicketController@findTicket'));
 
+        Route::get('setEmployee', array('as' =>' ', 'uses' => 'support\\TicketController@setEmployee'));
+
 
 
 
