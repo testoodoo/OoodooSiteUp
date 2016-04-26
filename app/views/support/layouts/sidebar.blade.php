@@ -31,9 +31,12 @@
 
 <div id="page-wrapper">
 @yield('main')
-</div>
 <!-- breadcrumb end -->
-
+<div id="footer">
+    <div class="copyright">
+        <a href="#" style="float: bottom;">© OODOO Fiber Support {{Date('Y')}}</a>
+    </div>
+</div>
 </div>
 
 

@@ -29,7 +29,6 @@ $(document).ready(function() {
  		type :'post',
  		data : {body : body, thread_id : thread_id, assign_to : assign_to},
  		success: function(data) {
-            alert(JSON.stringify(data));
  			if(data["mail"] == "false") {
  				alert('fail');
  			}else{
@@ -86,6 +85,8 @@ mailUp();
             type : 'GET',
             success : function(data){
                 $('.active_session').text(data['active_session']);
+                $('#new_ticket').text(data['new_ticket']);
+                $('#total_ticket').text(data['total_ticket']);
                 var network=data['server_1'] + data['server_0'];
                 $('.network_status').text(data['server_0']+'/'+network);
                 $(".network_area").empty();

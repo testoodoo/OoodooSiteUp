@@ -87,7 +87,7 @@
 </select>
 </div>
                                         <span id="cancelMessage" class="btn btn-orange">Cancel</span>&nbsp;&nbsp;&nbsp;&nbsp;
-                                        <span id="reply" class="btn btn-blue" style="display: none;">Reply</span>
+                                        <span id="reply" class="btn btn-blue" style="display: non;">Reply</span>
                                     </div>
                                 </li>
                                 <li class="out" id="noteContent"><img src="/assets/dist/support/images/avatar/49.jpg" class="avatar img-responsive" />

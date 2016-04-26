@@ -1,10 +1,12 @@
 <?php
 
 namespace Support;
-use DB, Response, BaseController, JactiveSession, Input, CusDet, Bill, PaymentTransaction, Redirect ;
+use DB, Response, BaseController, MailSupport, JactiveSession, Input, CusDet, Bill, PaymentTransaction, Redirect ;
 
 Class DashboardController extends BaseController{
 	public function navbar() {
+			$total_ticket = MailSupport::where('label','INBOX')->orWhere('label','SENT')->groupBy('thread_id')->get();
+			$new_ticket = MailSupport::where('label','INBOX')->whereNotIn('thread_id', function($qu){ $qu->selectRaw('thread_id')->from('create_ticket_status_table'); })->groupBy('thread_id')->get();
 			$activeSession=JactiveSession::all();
 			$server_0=DB::table('server_det')->whereIn('status',array(0))->get();
 			$server_1=DB::table('server_det')->whereIn('status',array(1))->get();
@@ -19,7 +21,9 @@ Class DashboardController extends BaseController{
 						'server_0' => count($server_0),
 						'server_1' => count($server_1),
 						'network'  => $server_0,
-						'exo_call' => count($exo_call_status)
+						'exo_call' => count($exo_call_status),
+						'total_ticket' => count($total_ticket),
+						'new_ticket' => count($new_ticket)
 					);
 			return Response::json($response);
 	}
