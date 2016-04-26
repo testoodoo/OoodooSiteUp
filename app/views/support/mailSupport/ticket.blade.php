@@ -79,9 +79,11 @@
                                     <div class="message" id="replyJump">
                                         <span class="chat-arrow"></span>
                                         <textarea style="height: 7cm;" class="form-control textarea"></textarea><br>
-                                <div class="col-lg-4">
-<select class="form-control ticket_type" id="complaint_type">
-<option value="">Select One</optin>
+
+
+<div class="col-lg-4">
+<select class="form-control ticket_type">
+<option value="">Select One</option>
 @foreach($ticket_type as $ticket)
     @if($ticket->id == 2)
         <optgroup label="Complaint">
@@ -97,22 +99,11 @@
 @endforeach
 </select>
 </div>
-                                <div class="col-lg-4">
-<select class="form-control ticket_type" id="emp_subs">
-<option value="">Select One</optin>
-@foreach($ticket_type as $ticket)
-    @if($ticket->id == 2)
-        <optgroup label="Complaint">
-        @foreach($complaints as $complaint)
-            <option value="{{$complaint->id}}">{{$complaint->name}}<option>
-        @endforeach
-        </optgroup>
-    @endif
-    
-    @if($ticket->id != 2)
-    <option value="{{$ticket->id}}">{{$ticket->name}} </option>
-    @endif
-@endforeach
+<div class="col-lg-4">
+<select class="form-control complaint_type" id="emp_subs"> 
+<option value="">Select One</option>
+
+
 </select>
 </div>
                                         <span id="cancelMessage" class="btn btn-orange">Cancel</span>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -137,8 +128,9 @@
 </div>
 <script type="text/javascript">
 jQuery(document).ready(function() {
-    $('#complaint_type').change(function() {
-        var optionVal = $('#complaint_type').val();
+    $('.complaint_type').change(function() {
+        var optionVal = $('.complaint_type').val();
+        alert(optionVal);
         if(optionVal == 27){
             window.open('/query','_blank');
         }
@@ -152,7 +144,6 @@ jQuery(document).ready(function() {
 
  $('select.ticket_type').change(function(){
     var plan = $(this).val();
-    alert(plan.length);
     if (plan.length != 0) {
       $.ajax({
             url:'/setEmployee',
@@ -161,6 +152,7 @@ jQuery(document).ready(function() {
             dataType: 'json',
             success: function( json ) {
                 $("#emp_subs").empty();
+                  $('#emp_subs').append(new Option('Select One',0));
                $.each(json, function(i, optionHtml){
                   $('#emp_subs').append(new Option(optionHtml,i));
                });

@@ -307,8 +307,6 @@ class TicketController extends \BaseController {
 
 public function setEmployee(){
     	$ticket_type=Input::get('ticket_type');
-    	var_dump($ticket_type); die;
-    	
 		if($ticket_type==28){
 			$emp=Employee::where('role_id',6)->get();
 		}elseif($ticket_type==29){
