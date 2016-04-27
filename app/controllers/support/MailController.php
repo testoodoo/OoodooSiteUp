@@ -29,6 +29,7 @@ class MailController extends BaseController {
 
    public function ticket($thread_id){
         $data['ticket_type'] = Masterdata::where('type','=','ticket_type')->get();
+        $data['team_type'] = Masterdata::where('type','=', 'customer_activation_process')->get();
         $data['complaints'] = Masterdata::where('type','=', 'complaint')->get();
         $data['list'] = MailSupport::where('thread_id', $thread_id)->orderBy('time','ASC')->get()->first();
         $data['mails'] = MailSupport::where('thread_id', $thread_id)->orderBy('time','ASC')->get();

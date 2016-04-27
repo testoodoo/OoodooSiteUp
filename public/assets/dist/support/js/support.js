@@ -20,14 +20,16 @@ $(document).ready(function() {
 	});	
 
  $('#reply').click(function() {
-    var assign_to = $('#complaint_type').val();
- 	var body = $('.textarea').val();
- 	var thread_id = $('#threadId').val();
+    var complaint_type = $('.complaint_type').val();
+    var assign_to = $('#emp_subs').val();
+    var body = $('.textarea').val();
+    var thread_id = $('#threadId').val();
+
  	$.ajax(
  	{
  		url : '/replyMessage',
  		type :'post',
- 		data : {body : body, thread_id : thread_id, assign_to : assign_to},
+ 		data : {body : body, thread_id : thread_id, assign_to : assign_to, complaint_type : complaint_type },
  		success: function(data) {
  			if(data["mail"] == "false") {
  				alert('fail');

@@ -80,9 +80,8 @@
                                         <span class="chat-arrow"></span>
                                         <textarea style="height: 7cm;" class="form-control textarea"></textarea><br>
 
-<button class="label label-sm label-success" id="click-btn">hello</button>
-<div class="col-lg-4">
-<select class="form-control ticket_type">
+<div class="col-lg-3">
+<select class="form-control complaint_type">
 <option value="">Select One</option>
 @foreach($ticket_type as $ticket)
     @if($ticket->id == 2)
@@ -99,8 +98,16 @@
 @endforeach
 </select>
 </div>
-<div class="col-lg-4">
-<select class="form-control complaint_type" id="emp_subs"> 
+<div class="col-lg-3" style="display :none;" id="team_type">
+<select class="form-control" > 
+<option value="">Select One</option>
+@foreach($team_type as $team)
+<option value="{{$team->id}}">{{$team->name}} </option>
+@endforeach
+</select>
+</div>
+<div class="col-lg-3" style="display :none;" id="emp_det">
+<select class="form-control " id="emp_subs"> 
 <option value="">Select One</option>
 
 
@@ -128,46 +135,32 @@
 </div>
 <script type="text/javascript">
 jQuery(document).ready(function() {
-    $('#click-btn').click(function() {
-        $('#click-btn').removeClass('label label-sm label-success').addClass('label label-sm label-danger');
-    });
 
-
-
-    $('.complaint_type').change(function() {
+    $('.complaint_type, #team_type').change(function() {
         var optionVal = $('.complaint_type').val();
+        //var team_type = $('#team_type').val();
         alert(optionVal);
         if(optionVal == 27){
             window.open('/query','_blank');
         }
-        if(optionVal != ""){
-        $('#reply').show();            
-        }else{
-        $('#reply').hide();
-        }
-    });
-});
-
- $('select.ticket_type').change(function(){
-    var plan = $(this).val();
-    if (plan.length != 0) {
-      $.ajax({
-            url:'/setEmployee',
-            type:'GET',
-            data: { ticket_type : plan},
+        $('#reply').toggle(optionVal != "" && optionVal != 27);
+        $('#team_type').toggle(optionVal == 1);
+        $.ajax({
+            url: '/setEmployee',
+            type: 'GET',
+            data: { ticket_type : optionVal},
             dataType: 'json',
             success: function( json ) {
                 $("#emp_subs").empty();
                   $('#emp_subs').append(new Option('Select One',0));
                $.each(json, function(i, optionHtml){
+                $('#emp_det').show();
                   $('#emp_subs').append(new Option(optionHtml,i));
                });
-            }
+            }            
         });
-    }else{
-        $("#emp_subs").empty();
-    }
     });
+});
 </script>
 
 @stop
