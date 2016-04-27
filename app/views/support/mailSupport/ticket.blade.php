@@ -80,7 +80,7 @@
                                         <span class="chat-arrow"></span>
                                         <textarea style="height: 7cm;" class="form-control textarea"></textarea><br>
 
-
+<button class="label label-sm label-success" id="click-btn">hello</button>
 <div class="col-lg-4">
 <select class="form-control ticket_type">
 <option value="">Select One</option>
@@ -128,6 +128,12 @@
 </div>
 <script type="text/javascript">
 jQuery(document).ready(function() {
+    $('#click-btn').click(function() {
+        $('#click-btn').removeClass('label label-sm label-success').addClass('label label-sm label-danger');
+    });
+
+
+
     $('.complaint_type').change(function() {
         var optionVal = $('.complaint_type').val();
         alert(optionVal);
