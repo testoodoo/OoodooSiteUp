@@ -4,25 +4,11 @@
 <div class="page-content" style="width:800px; margin:0 auto;">
    <div class="portlet box mbl">
     <div class="portlet-header">
-    <table>
-    <tr>
-        <th><div class="caption" style="float:left;">
+    <div class="caption" style="float:left;">
             <div class="chat-form">
                 <input name="query" style="width:10cm;" id="input-chat" type="text" placeholder="Please Enter Account ID or Mobile Number..." class="form-control animated fadeInUp" onInput="userDet();">
             </div>
-        </div></th>
-       <th><div class="caption" style="float:left;">
-            <div class="chat-form">
-                <input name="query" style="width:10cm;" id="input-chat" type="text" placeholder="Please Enter Account ID or Mobile Number..." class="form-control animated fadeInDown" onInput="userDet();">
-            </div>
-        </div></th>
-        <th><div class="chat-form">
-        <input></input></div></th>
-
-            <th><div class="chat-form">
-                <input name="query" style="width:10cm;" id="input-chat" type="text" placeholder="Please Enter Account ID or Mobile Number..." class="form-control" onInput="userDet();">
-                <a href=""></a>
-            </div></th></tr></table>
+        </div>
 
     </div>
     <div class="portlet-body">
