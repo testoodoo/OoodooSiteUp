@@ -4,11 +4,15 @@
 <div class="page-content" style="width:800px; margin:0 auto;">
    <div class="portlet box mbl">
     <div class="portlet-header">
+    <div class="chat-form">
+      <input type="radio" name="connection_type" value="1" checked> Existing Connection
+      <input type="radio" name="connection_type" value="2"> New Connection<br>
+    </div>
     <div class="caption" style="float:left;">
             <div class="chat-form">
-                <input name="query" style="width:10cm;" id="input-chat" type="text" placeholder="Please Enter Account ID or Mobile Number..." class="form-control animated fadeInUp" onInput="userDet();">
+                <input name="query" style="width:12cm;" id="input-chat" type="text" placeholder="Please Enter Account ID or Mobile Number..." class="form-control animated fadeInUp" onInput="userDet();">
             </div>
-        </div>
+    </div>
 
     </div>
     <div class="portlet-body">
