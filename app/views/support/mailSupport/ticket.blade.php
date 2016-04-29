@@ -75,7 +75,7 @@
                                     </a>
                                 </div>
                                 </li>
-                                <li class="out" id="replyContents"><img src="/assets/dist/support/images/avatar/49.jpg" class="avatar img-responsive" />
+                                <li class="out" id="replyContent"><img src="/assets/dist/support/images/avatar/49.jpg" class="avatar img-responsive" />
                                     <div class="message" id="replyJump">
                                         <span class="chat-arrow"></span>
                                         <textarea style="height: 7cm;" class="form-control textarea"></textarea><br>
