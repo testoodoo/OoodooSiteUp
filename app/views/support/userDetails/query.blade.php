@@ -2,7 +2,7 @@
 @include('support.partials.js_assets')
 <title> OoDoO | Support </title>
 <div class="page-content" style="width:800px; margin:0 auto;">
-   <div class="portlet box mbl">
+   <div class="portlet box mbl" align="center">
     <div class="portlet-header">
     <div class="chat-form">
       <input type="radio" name="connection_type" value="1" checked> Existing Connection
@@ -85,7 +85,14 @@
                                             <textarea style="height: 3cm;" name="remarks" type="text" placeholder="" class="form-control" required></textarea>
                                             </div>
                                         </div>
-                                </div>                                
+                                </div> 
+                                    <div class="form-group">
+                                        <label for="inputSubject" class="control-label">
+                                                                Message</label>
+                                        <div class="input-icon right">
+                                            <textarea style="height: 3cm;" name="message" type="text" placeholder="" class="form-control" required></textarea>
+                                            </div>
+                                        </div>
                                 </div>                                   
                                 </div>
 
@@ -185,6 +192,7 @@ $(document).ready(function(){
              jQuery('#exsistConn').toggle('hide');
              jQuery('#newCon').toggle('hide');
              jQuery('#exsistCon').toggle('hide');
+             $(".exp22").hide();
     };
     function userDet(){
         $('#myTable > tbody').empty();
