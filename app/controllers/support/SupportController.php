@@ -32,9 +32,11 @@ class SupportController extends BaseController {
 
 	public function userDetails(){
 		$query = Input::get('query');
-		$data['cusDet'] = CusDet::where('account_id','like','%'.$query.'%')
-								->orWhere('phone','like','%'.$query.'%')->get();
-		echo json_encode($data);
+		$cusDet = CusDet::select('first_name','address1','address2', 'account_id')
+							->where('account_id','like','%'.$query.'%')
+							->orWhere('phone','like','%'.$query.'%');
+		$cus_det = Datatables::of($cusDet)->make();
+		return $cus_det;
 	}
 
 	public function payment_det(){
