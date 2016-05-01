@@ -25,6 +25,7 @@
     {{ HTML::style('/assets/dist/support/css/jquery.dataTables.css')}}
     {{ HTML::style('/assets/dist/support/css/jquery.dataTables.min.css')}}
     {{ HTML::style('/assets/dist/support/css/jquery.dataTables_themeroller.css')}}  
+    {{ HTML::style('/assets/dist/support/css/support.css')}}
 
 
 

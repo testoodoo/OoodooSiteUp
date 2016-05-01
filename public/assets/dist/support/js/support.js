@@ -68,6 +68,37 @@ $(document).ready(function() {
  	});
  });
 
+    $('input[type=radio][name=connection_type]').change(function(){
+        $('#new_conn, #exist_conn').toggle('slow');        
+    });
+
+
+    $('#input-chat').on('input',function(){ 
+        var query = $('#input-chat').val();   
+        var oTable = jQuery('#myTable').dataTable({
+        processing: true,
+        serverSide: true,
+        "bDestroy": true,
+        "pageLength": 6,
+        "ajax": '/userDetails?query='+query+'',
+        "type":'get',
+        "columnDefs": [
+            {
+                "targets": [ 3 ],
+                "visible": false,
+                "searchable": true
+            }
+        ]        
+
+        });
+    });
+     $("#myTable tbody").on('click','tr',function(){
+        var table = $('#myTable').DataTable();
+        var rowData = table.row( this ).data();
+        window.location.href = 'userDet/'+rowData[3]+'';
+
+    });
+
 /*  function mailUp(){
     $.ajax({
         url : '/mailSupportio',
