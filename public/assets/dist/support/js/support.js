@@ -79,14 +79,15 @@ $(document).ready(function() {
         processing: true,
         serverSide: true,
         "bDestroy": true,
+        "bSearchable": true,
         "pageLength": 6,
         "ajax": '/userDetails?query='+query+'',
         "type":'get',
+        "aoColumns": [{"sType":"string"}],
         "columnDefs": [
             {
                 "targets": [ 3 ],
                 "visible": false,
-                "searchable": true
             }
         ]        
 
