@@ -140,10 +140,6 @@ $(document).ready(function(){
         "pageLength": 6,
         "ajax": '/userDetails?query='+query+'',
         "type":'get',
-"fnRowCallback": function( row, data ) {
-    $('tr', row).attr('data-navigate-url','userDet/' + data[3]);
-    return row;
-},                   
         "columnDefs": [
             {
                 "targets": [ 3 ],
@@ -154,14 +150,12 @@ $(document).ready(function(){
 
         });
     });
-$("#myTable").on('click','tr',function(){
-    window.location = $(this).data('data-navigate-url');
-});    
-/*     $("#myTable tbody").on('click','tr',function(){
+     $("#myTable tbody").on('click','tr',function(){
         var table = $('#myTable').DataTable();
-        var allData = table.row( this ).data();
-        alert(JSON.stringify(allData));
-    });*/    
+        var rowData = table.row( this ).data();
+        window.location.href = 'userDet/'+rowData[3]+'';
+
+    });
 });
 </script>
 <script>
