@@ -59,7 +59,7 @@ class TicketController extends \BaseController {
 		$employee=Employee::where('employee_identity','=',Input::get('employee_id'))->get()->first();
 		 if($employee){
 			$senderId = "OODOOS";
-			$message = 'compilant '.'Ticket No '.$ticket->ticket_no.' '.$ticket->name.' '.$ticket->account_id.' '.$ticket->mobile.' '.$ticket->address;
+			$message = 'complaint '.'Ticket No '.$ticket->ticket_no.' '.$ticket->name.' '.$ticket->account_id.' '.$ticket->mobile.' '.$ticket->address;
 			$mobileNumber = $employee->mobile;	
 
 			$to_mail = Input::get('email');

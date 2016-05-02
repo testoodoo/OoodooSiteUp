@@ -79,7 +79,9 @@
                                     <div class="message" id="replyJump">
                                         <span class="chat-arrow"></span>
                                         <textarea style="height: 7cm;" class="form-control textarea"></textarea><br>
-
+<div style="float: left;">
+<input type="checkbox"> Test
+</div>
 <div class="col-lg-3">
 <select class="form-control complaint_type">
 <option value="">Select One</option>

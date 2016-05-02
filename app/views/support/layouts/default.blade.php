@@ -10,15 +10,6 @@
         <link rel="apple-touch-icon" href="#">
         <link rel="apple-touch-icon" sizes="72x72" href="#">
         <link rel="apple-touch-icon" sizes="114x114" href="#">
-  <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
-
-  <!-- CodeMirror -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.2.0/codemirror.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.2.0/codemirror.css" />
-
-  <!-- Firepad -->
-  <link rel="stylesheet" href="https://cdn.firebase.com/libs/firepad/1.2.0/firepad.css" />
-  <script src="https://cdn.firebase.com/libs/firepad/1.2.0/firepad.min.js"></script>        
         <!--Loading bootstrap css-->
 <!--     	<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
         <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,700">
