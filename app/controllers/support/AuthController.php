@@ -6,12 +6,14 @@ use Session, Input, Validator, Auth, Password, BaseController, View, Redirect, L
 
 class AuthController extends BaseController {
 
-		protected $layout = 'support.auth.index';
+		protected $layout = 'support.auth.index1';
 
 	
 	public function index() {
 		if( !Auth::check() ) {
-			$this->layout->main = View::make('support.auth.index');
+			$this->layout->main = View::make('support.auth.index1');
+			//$this->layout->main = View::make('support.auth.login');
+
 		}
 		
 	}
