@@ -24,7 +24,7 @@ class MailController extends BaseController {
         $data['mails'] = MailSupport::whereIn('id', function($query){ $query->selectRaw('max(id)')->from('create_mail_table')->orWhere('label','INBOX')->orWhere('label','SENT')->orderBy('time','ASC')->groupBy('thread_id'); })
                                     ->get();
     }    
-    return View::make('support.mailSupport.login',$data);
+    return View::make('support.mailSupport.mail',$data);
    }
 
    public function ticket($thread_id){
