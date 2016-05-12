@@ -1,4 +1,4 @@
-    {{ HTML::script('/assets/dist/support/js/jquery.min.js') }}    
+    {{ HTML::script('/assets/dist/support/js/jquery1.min.js') }}    
     {{ HTML::script('/assets/dist/support/js/jquery-migrate-1.2.1.min.js') }}
     {{ HTML::script('/assets/dist/support/js/jquery-ui.js') }}
     {{ HTML::script('/assets/dist/support/js/bootstrap.min.js') }}
