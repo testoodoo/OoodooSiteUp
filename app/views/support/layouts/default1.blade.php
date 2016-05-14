@@ -10,6 +10,9 @@
 		@include('support.partials.css_assets1')
 		@include('support.layouts.sidebar1')
 		@include('support.layouts.navbar1')
+		<section class="page-container">
+			@yield('main')
+		</section>
 		@include('support.partials.js_assets1')
 	</body>
 </html>
