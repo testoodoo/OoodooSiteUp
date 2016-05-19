@@ -121,6 +121,6 @@
           </div>
         </li>
         <li><a href="javascript:;" role="button" class="right-sidebar-toggle bubble header-icon"><i class="ti-comment-alt text-muted"></i><span class="dot bg-danger"></span></a></li>
-        <li><a href="login.html" role="button" class="header-icon"><i class="ti-power-off text-muted"></i></a></li>
+        <li><a href="/logout" role="button" class="header-icon"><i class="ti-power-off text-muted"></i></a></li>
       </ul>
     </header>
