@@ -34,7 +34,8 @@ class MailController extends BaseController {
         $data['list'] = MailSupport::where('thread_id', $thread_id)->orderBy('time','ASC')->get()->first();
         $data['mails'] = MailSupport::where('thread_id', $thread_id)->orderBy('time','ASC')->get();
         $data['team_list'] = Masterdata::where('type','=','customer_activation_process')->get();
-        return View::make('support.mailSupport.ticket', $data);
+        //return View::make('support.mailSupport.ticket', $data);
+        return View::make('support.mailSupport.ticket1', $data);
 
    }
    

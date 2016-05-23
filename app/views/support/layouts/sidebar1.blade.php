@@ -95,7 +95,7 @@
           <button type="button" data-toggle="modal" data-target=".compose-mail-modal" class="btn btn-raised btn-block btn-danger mt-10"><i class="ti-pencil-alt"></i> Compose Mail</button>
           <ul class="list-unstyled navigation mb-0">
             <li class="header">Email</li>
-            <li><a href="mailbox.html" class="bubble"><i class="ti-archive"></i> Inbox<span class="badge bg-danger">5</span></a></li>
+            <li><a href="/mailSupport" class="bubble"><i class="ti-archive"></i> Inbox<span class="badge bg-danger">5</span></a></li>
             <li><a href="mailbox.html"><i class="ti-location-arrow"></i> Sent</a></li>
             <li><a href="mailbox.html"><i class="ti-notepad"></i> Draft</a></li>
             <li><a href="mailbox.html"><i class="ti-trash"></i> Trash</a></li>
