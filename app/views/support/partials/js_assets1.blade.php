@@ -14,7 +14,7 @@
 	{{ HTML::script('/assets/dist/support/js1/mailbox.js') }}
     {{ HTML::script('/assets/dist/support/js1/moment.js') }}    
     {{ HTML::script('/assets/dist/support/js1/livestamp.min.js') }}	
-	<!-- {{ HTML::script('/assets/dist/support/js1/') }}
+<!-- 	{{ HTML::script('/assets/dist/support/js1/') }}
 	{{ HTML::script('/assets/dist/support/js1/') }}
 	{{ HTML::script('/assets/dist/support/js1/') }}
 	{{ HTML::script('/assets/dist/support/js1/') }}
