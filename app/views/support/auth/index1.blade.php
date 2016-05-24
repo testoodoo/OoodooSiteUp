@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>OoDoO Support - Login</title>
-    @include('support.partials.css_assets1')
-  </head>
+ @extends('support.layouts.login_default')
+ @section('main')
   <body class="user-page">
     <h1 class="fw-600 mt-0 mb-20">OoDoO</h1>
     <form method="POST" action="/login" class="form-horizontal">
@@ -26,10 +19,9 @@
     </form>
     <hr>
         <div class="col-xs-12">
-          <div class="pull-right"><a href="javascript:;" class="inline-block form-control-static">Forgot Passowrd?</a></div>
+          <div class="pull-right"><a href="/forgetPass" class="inline-block form-control-static">Forgot Passowrd?</a></div>
         </div>
     <hr>
     <div class="form-horizontal">
-    @include('support.partials.js_assets1')
   </body>
-</html>
+@stop

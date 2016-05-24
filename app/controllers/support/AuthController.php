@@ -46,7 +46,7 @@ class AuthController extends BaseController {
 
 	public function getForgotPass() {
 
-			return View::make('support.auth.forget_pass');
+			return View::make('support.auth.forget_pass1');
 	}
 
 	
