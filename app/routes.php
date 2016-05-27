@@ -500,7 +500,7 @@ Route::group( array('domain' => 'test.accounts.oodoo.co.in' ), function() {
         Route::get('replyMessage',array('as'=>'', 'uses'=> 'MailController@replyMessage'));  
         Route::post('addNote', array('as' => '', 'uses'=> 'MailController@addNote'));    
 
-        Route::get('mailSupports', array('as' => '', 'uses' => 'support\\CheckControllerController@newNew'));
+        Route::get('mailSupports', array('as' => '', 'uses' => 'support\\MailsController@newNew'));
         Route::get('mailSupportio', array('as' => '', 'uses' => 'MailController@updateMessage'));
         Route::get('mailType', array('as' => '', 'uses' => 'MailController@mailType'));
         Route::get('/oauth2callback', array('as' => '', 'uses' => 'MailController@index'));
