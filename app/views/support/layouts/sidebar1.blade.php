@@ -1,6 +1,6 @@
 <div class="main-container">
       <!-- Main Sidebar start-->
-      <aside data-mcs-theme="minimal-dark" class="main-sidebar mCustomScrollbar _mCS_2 mCS-autoHide" style="overflow: visible;"><div id="mCSB_2" class="mCustomScrollBox mCS-minimal-dark mCSB_vertical mCSB_outside" style="max-height: none;" tabindex="0"><div id="mCSB_2_container" class="mCSB_container" style="position: relative; top: 0px; left: 0px;" dir="ltr">
+     <aside data-mcs-theme="minimal-dark" style="overflow: visible; background-image: url(&quot;../build/images/backgrounds/11.jpg&quot;);" class="main-sidebar mCustomScrollbar _mCS_2 mCS-autoHide"><div id="mCSB_2" class="mCustomScrollBox mCS-minimal-dark mCSB_vertical mCSB_outside" style="max-height: none;" tabindex="0"><div id="mCSB_2_container" class="mCSB_container" style="position:relative; top:0; left:0;" dir="ltr">
         <div class="user">
           <div id="esp-user-profile" data-percent="65" style="height: 104px; width: 104px; line-height: 80px; padding: 12px;" class="easy-pie-chart"><img src="../build/images/users/04.jpg" alt="" class="avatar img-circle mCS_img_loaded"><span class="status bg-success"></span><canvas height="104" width="104"></canvas></div>
           <h4 class="fs-14 text-muted mt-15 mb-5 fw-300">Matthew Gonzalez</h4>
