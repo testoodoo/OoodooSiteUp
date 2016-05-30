@@ -1,5 +1,12 @@
 <?php
 
+define('STDIN',fopen("php://stdin","r"));
+define('APPLICATION_NAME', 'Gmail API PHP Quickstart');
+define('CREDENTIALS_PATH', '~/.credentials/gmail-php-quickstart.json');
+define('CLIENT_SECRET_PATH', 'client_secret.json');
+define('SCOPES', implode(' ', array(
+  Google_Service_Gmail::MAIL_GOOGLE_COM)
+));
 
 class ApiController extends \BaseController {
 
@@ -9,6 +16,7 @@ class ApiController extends \BaseController {
 		$userId='me';
 		$list = $service->users_messages->listUsersMessages($userId,['maxResults' => 1000]);
 		$messageList = $list->getMessages();
+		var_dump(count($messageList)); die;
 	}
 
 
@@ -40,7 +48,15 @@ class ApiController extends \BaseController {
 			file_put_contents($credentialsPath, $client->getAccessToken());
 		}
 		return $client;
-	}	
+	}
+
+	public function expandHomeDirectory($path) {
+	  $homeDirectory = getenv('HOME');
+	  if (empty($homeDirectory)) {
+	    $homeDirectory = getenv("HOMEDRIVE") . getenv("HOMEPATH");
+	  }
+	  return str_replace('~', realpath($homeDirectory), $path);
+	}		
 
 
 }
