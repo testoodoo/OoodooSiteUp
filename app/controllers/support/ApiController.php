@@ -16,6 +16,12 @@ class ApiController extends \BaseController {
 		$userId='me';
 		$list = $service->users_messages->listUsersMessages($userId,['maxResults' => 1000]);
 		$messageList = $list->getMessages();
+
+		foreach($messageList as $message){
+			var_dump($message); die;
+		}
+
+
 		var_dump(count($messageList)); die;
 	}
 
