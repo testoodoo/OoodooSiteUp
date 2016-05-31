@@ -20,11 +20,15 @@ class ApiController extends \BaseController {
 		foreach($messageList as $message){
 			$optParamsGet2['format'] = 'full';
 			$single_message = $service->users_messages->get('me',$message->id, $optParamsGet2);			
-			var_dump($single_message); die;
+			$this->updateMail($single_message);
 		}
 
 
 		var_dump(count($messageList)); die;
+	}
+
+	public function updateMail($single_message){
+		var_dump($single_message); die;
 	}
 
 
