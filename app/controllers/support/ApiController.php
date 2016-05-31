@@ -18,7 +18,9 @@ class ApiController extends \BaseController {
 		$messageList = $list->getMessages();
 
 		foreach($messageList as $message){
-			var_dump($message); die;
+			$optParamsGet2['format'] = 'full';
+			$single_message = $service->users_messages->get('me',$message->id, $optParamsGet2);			
+			var_dump($single_message); die;
 		}
 
 
