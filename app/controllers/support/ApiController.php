@@ -10,6 +10,8 @@ define('SCOPES', implode(' ', array(
 
 class ApiController extends \BaseController {
 
+
+
 	public function update() {
 		$client = $this->getClient();
 		$service = new Google_Service_Gmail($client);
@@ -28,7 +30,101 @@ class ApiController extends \BaseController {
 	}
 
 	public function updateMail($single_message){
-		var_dump($single_message->getPayload()->getParts()); die;
+
+
+		$client = $this->getClient();
+		$service = new Google_Service_Gmail($client);
+		$userId='me';
+
+        $messageId = $single_message->getId();
+        $threadId = $single_message->getThreadId();
+        $historyId = $single_message->getHistoryId();
+        $labelIds = $single_message->getLabelIds();
+
+        $headers = $single_message->getPayload()->getHeaders();
+            foreach ($headers as $header) {
+                if ($header->getName() == 'Subject') {
+                    $subject = $header->getValue();
+                }
+                if($header->getName() == 'From'){
+                    $from = $header->getValue();
+                }
+                if($header->getName() == 'To'){
+                    $to = $header->getValue();
+                    #var_dump($to); die;
+                } 
+                if ($header->getName() == 'Date') {
+                    $message_date = $header->getValue();
+                    $time = date('Y-m-d H:i:s', strtotime($message_date));
+                }
+        }
+
+        $prefix = array("Re: ", "Fwd: ");
+        $new_subject = str_replace($prefix, "", $subject);
+        $fromCheck = InboxMail::where('from_mail', $from)->get();
+        $subjectCheck = InboxMail::where('subject', $new_subject)->get()->first();
+        if(count($fromCheck) > 0 && count($subjectCheck) > 0){
+            $old_thread_id = $subjectCheck->thread_id;
+            $single_message->setThreadId($old_thread_id);
+            $threadId = $single_message->getThreadId();
+
+        }
+
+        $body = $single_message->getPayload()->getBody();
+        $body_new = $this->decode_body($body['data']);
+        if(!$body_new){
+            $parts = $single_message->getPayload()->getParts();
+            foreach($parts as $part){
+                    if($part['body']) {
+                    $body_new = $this->decode_body($part['body']->data);
+                    if($body_new === true){
+                        break;
+                    }
+                }
+                if($part['parts'] && !$body_new) {
+                    foreach ($part['parts'] as $p) {
+                        if($p['mimeType'] === 'text/plain' && $p['body']) {
+                            $body_new = $this->decode_body($p['body']->data);
+                            break;
+                        }
+                    }
+                }
+                if($body_new) {
+                    break;
+                }
+            }
+        }
+        $body = $body_new;
+
+        unset($attachment);
+        $parts = $single_message->getPayload()->getParts();
+        foreach ($parts as $part ) {
+            if ($part->getFilename() != null && strlen($part->getFilename())   > 0) {
+                $filename = $part->getFilename();
+                $attId = $part->getBody()->getAttachmentId();
+                $attachPart = $service->users_messages_attachments->get($userId, $messageId, $attId);
+                $attachPart = strtr($attachPart->getData() , "-_" , "+/" );
+                $code_base64 = $attachPart;
+                $code_binary = base64_decode($code_base64);
+                $file_ext = new SplFileInfo($filename);
+                $file_ext = $file_ext->getExtension();
+                $file_hash = hash('sha256', $attId);
+                $file_location = public_path().'/attachId/';
+                #var_dump($file_ext); die;
+                //file_put_contents($file_location, $code_binary);
+                #echo "Your attachment ". $filename." with id ".$attId." saved succesfully at ".$file_location;
+                $attachment[] = array(
+                'filename' => $filename,
+                'attachmentId' => $attId,
+                'filelocation' => $file_location
+                );
+                $image= imagecreatefromstring($code_binary);
+                header('Content-Type: image/jpeg');
+                imagejpeg($image);
+                imagedestroy($image);
+            }
+        }                
+
 	}
 
 
@@ -68,7 +164,19 @@ class ApiController extends \BaseController {
 	    $homeDirectory = getenv("HOMEDRIVE") . getenv("HOMEPATH");
 	  }
 	  return str_replace('~', realpath($homeDirectory), $path);
-	}		
+	}
+
+
+function decode_body($body) {
+    $rawData = $body;
+    $sanitizedData = strtr($rawData,'-_', '+/');
+    $decodedMessage = base64_decode($sanitizedData);
+    if(!$decodedMessage){
+        $decodedMessage = FALSE;
+    }
+    return $decodedMessage;
+
+}			
 
 
 }
