@@ -28,7 +28,7 @@ class ApiController extends \BaseController {
 	}
 
 	public function updateMail($single_message){
-		var_dump($single_message); die;
+		var_dump($single_message->getPayload()->getParts()); die;
 	}
 
 
