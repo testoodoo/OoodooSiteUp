@@ -109,21 +109,24 @@ class ApiController extends \BaseController {
                 $file_ext = new SplFileInfo($filename);
                 $file_ext = $file_ext->getExtension();
                 $file_hash = hash('sha256', $attId);
-                $file_location = public_path().'/attachId/';
+                //var_dump($attId); die;
+                $file_location = public_path().'/assets/dist/support/attach/'.$filename;
+
                 #var_dump($file_ext); die;
-                //file_put_contents($file_location, $code_binary);
+                file_put_contents($file_location, $code_binary);
                 #echo "Your attachment ". $filename." with id ".$attId." saved succesfully at ".$file_location;
                 $attachment[] = array(
                 'filename' => $filename,
                 'attachmentId' => $attId,
                 'filelocation' => $file_location
                 );
-                $image= imagecreatefromstring($code_binary);
+/*                $image= imagecreatefromstring($code_binary);
                 header('Content-Type: image/jpeg');
                 imagejpeg($image);
-                imagedestroy($image);
+                imagedestroy($image);*/
             }
         }                
+                var_dump($attachment); die;
 
 	}
 
@@ -180,3 +183,6 @@ function decode_body($body) {
 
 
 }
+
+
+
