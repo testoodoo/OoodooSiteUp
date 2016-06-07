@@ -12,7 +12,10 @@ class TicketTable extends Migration {
 	 */
 	public function up()
 	{
-		//
+	Schema::create('ticket_table', function(Blueprint $table)
+        {	
+        	$table->increments('id');
+        });			
 	}
 
 	/**
@@ -22,7 +25,7 @@ class TicketTable extends Migration {
 	 */
 	public function down()
 	{
-		//
+		Schema::dropIfExists('ticket_table');
 	}
 
 }
